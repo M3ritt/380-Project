@@ -22,7 +22,7 @@ public class Register {
 	public void sale() {
 		System.out.print("Please enter an item to sell: ");
 		itemTemp.setName(sc.nextLine());
-		itemTemp = inventory.get(itemTemp);
+		itemTemp = inventory.findItemByName(itemTemp.getName());
 		dailySalesTotal += itemTemp.getPrice();
 		saleTotal += itemTemp.getPrice();
 		saleTotal = saleTotal * taxRate;
@@ -60,14 +60,10 @@ public class Register {
 	public void changeItemPrice() {
 		System.out.print("Please enter the name of the item you would like to change: ");
 		itemTemp.setName(sc.nextLine());
-//		iList = inventory.getAll(itemTemp);
-//		inventory.iList.removeAll(iList);
+		itemTemp = inventory.findItemByName(itemTemp.getName());
 		System.out.print("Please enter the new price for " + itemTemp.getName() + ": ");
 		newPrice = sc.nextDouble();
-		for(Item i : iList) {
-			i.setPrice(newPrice);
-		}
-//		inventory.iList.addAll(iList);
+		itemTemp.setPrice(newPrice);
 	}
 	
 	public void checkInventory() {
@@ -78,9 +74,9 @@ public class Register {
 	}
 	
 	public void itemReturn() {
-		System.out.println("Please enter an item to return: ");
+		System.out.print("Please enter an item to return: ");
 		itemTemp.setName(sc.nextLine());
-		System.out.println("Please enter the price of what is being returned: ");
+		System.out.print("Please enter the price of what is being returned: ");
 		temp = sc.nextLine();
 		itemTemp.setPrice(Double.parseDouble(temp));
 		inventory.addItem(itemTemp);

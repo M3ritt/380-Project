@@ -41,15 +41,12 @@ public class Main{
         
         reg = new Register(invt);
         reg.checkInventory();
-//        reg.sale();
-//        reg.itemReturn();
-//        reg.changeItemPrice();
-//        invt.getItems();
-//        reg.removeItem();
-//        invt.getItems();
-//        invt.removeItemByName("gOLF CLUB sET");
-//        System.out.println();
-//        invt.getItems();
-//        reg.checkInventory();
+        reg.sale();
+        reg.itemReturn();
+        reg.changeItemPrice();
+        invt.getItems();
+        invt.removeItemByName("gOLF CLUB sET");
+        invt.getItems();
+        reg.checkInventory();
     }
 }
