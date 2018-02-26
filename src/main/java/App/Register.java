@@ -37,34 +37,44 @@ public class Register {
 		amountGiven = Double.parseDouble(temp);
 		changeDue = amountGiven - saleTotal;
 		System.out.println("Customer Change: " + df.format(changeDue) + ".");
-		inventory.removeItem(itemTemp);
+		inventory.removeItemByName(itemTemp.getName());
 		saleTotal = amountGiven = changeDue = 0.0;
 	}
 	
 	public void removeItem() {
-		//Not working yet
-		System.out.print("Please enter the item to remove: ");
-		itemTemp.setName(sc.nextLine());
-		inventory.removeItem(itemTemp);
+		boolean leave = false;
+		do {
+			System.out.println("Please enter the item to remove: ");
+			String item = sc.nextLine();
+			if(item.toLowerCase().contains("exit") == true) {
+				leave = true;
+				System.out.println("HERE");
+			}else{
+				inventory.removeItemByName(item);
+				if(inventory.checkItemByName(item) == true)
+					System.out.println(item +" was removed from the inventory.");
+			}
+		}while (leave == false);
 	}
 	
 	public void changeItemPrice() {
 		System.out.print("Please enter the name of the item you would like to change: ");
 		itemTemp.setName(sc.nextLine());
-		iList = inventory.getAll(itemTemp);
-		inventory.iList.removeAll(iList);
+//		iList = inventory.getAll(itemTemp);
+//		inventory.iList.removeAll(iList);
 		System.out.print("Please enter the new price for " + itemTemp.getName() + ": ");
 		newPrice = sc.nextDouble();
 		for(Item i : iList) {
 			i.setPrice(newPrice);
 		}
-		inventory.iList.addAll(iList);
+//		inventory.iList.addAll(iList);
 	}
 	
 	public void checkInventory() {
 		//for(Item i: inventory) {
 			//This needs to get the index of the first instance of each item, then store those indexes somewhere, get the items and then use item.getItemCount();
 		//}
+		inventory.getItems();
 	}
 	
 	public void itemReturn() {

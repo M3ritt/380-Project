@@ -37,14 +37,19 @@ public class Main{
             e.printStackTrace();
             invt = null;
         }
-        invt.getItems();
+//        invt.getItems();
         
         reg = new Register(invt);
-        reg.sale();
-        //reg.itemReturn();
-        reg.changeItemPrice();
-        invt.getItems();
-        reg.removeItem();
-        invt.getItems();
+        reg.checkInventory();
+//        reg.sale();
+//        reg.itemReturn();
+//        reg.changeItemPrice();
+//        invt.getItems();
+//        reg.removeItem();
+//        invt.getItems();
+//        invt.removeItemByName("gOLF CLUB sET");
+//        System.out.println();
+//        invt.getItems();
+//        reg.checkInventory();
     }
 }

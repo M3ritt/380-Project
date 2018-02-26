@@ -3,7 +3,8 @@ package App;
 public class Item {
 	private String itemName;
 	private double price;
-	private int itemCount;
+	private int amount = 0;
+	//private int numSold;
 	//Could convert this to a hashmap
 
 	public Item(String itemName, double price) {
@@ -16,20 +17,24 @@ public class Item {
 		price = 0.0;
 	}
 
-	public int getItemCount() {
-		return itemCount;
-	}
-
-	public void setItemCount(int itemCount) {
-		this.itemCount = itemCount;
-	}
-
 	public String getName() {
 		return this.itemName;
 	}
 	
 	public void setName(String itemName) {
 		this.itemName = itemName;
+	}
+	
+	public void incrementAmount() {
+		this.amount ++;
+	}
+	
+	public void decreaseAmount() {
+		this.amount--;;
+	}
+	
+	public int getAmount() {
+		return this.amount;
 	}
 
 	public double getPrice() {
@@ -42,6 +47,7 @@ public class Item {
 
 	@Override
 	public String toString() {
-		return "Item: "+ this.itemName + " Price: " + this.price + ".";
+		//return "Amount of item: "+this.getAmount() + " Item: "+ this.itemName + " Price: " + this.price + ".";
+		return this.amount +"x "+this.itemName + "(s)"+ " with a price of: "+this.price;
 	}
 }

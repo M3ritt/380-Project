@@ -21,6 +21,7 @@ public class InventoryParser extends DefaultHandler {
 	private String itemName;
 	public void startDocument() throws SAXException {
 		iList = new ArrayList<Item>();
+		newInv = new Inventory(iList);
 	}
 
 	public void startElement(String namespaceURI,
@@ -36,6 +37,7 @@ public class InventoryParser extends DefaultHandler {
 				price = Double.parseDouble(sprice);
 				Item i = new Item(itemName, price);
 				iList.add(i);
+				newInv.addItem(i);
 				break;
 			default:
 				break;
