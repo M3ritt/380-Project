@@ -40,13 +40,15 @@ public class Main{
 //        invt.getItems();
         
         reg = new Register(invt);
-        reg.checkInventory();
-        reg.sale();
-        reg.itemReturn();
-        reg.changeItemPrice();
+        //reg.checkInventory();
+        //reg.sale();
+        //reg.itemReturn();
+        //reg.changeItemPrice();
+        //invt.getItems();
+        //invt.removeItemByName("gOLF CLUB sET");
+        //invt.getItems();
+       // reg.checkInventory();
+        reg.addItem();
         invt.getItems();
-        invt.removeItemByName("gOLF CLUB sET");
-        invt.getItems();
-        reg.checkInventory();
     }
 }

@@ -41,6 +41,15 @@ public class Register {
 		saleTotal = amountGiven = changeDue = 0.0;
 	}
 	
+	public void addItem() {
+		System.out.print("Please enter the item you would like to add: ");
+		temp = sc.nextLine();
+		itemTemp.setName(temp);
+		System.out.print("Please enter the price of the item: ");
+		itemTemp.setPrice(sc.nextDouble());
+		inventory.addItem(itemTemp);
+	}
+	
 	public void removeItem() {
 		boolean leave = false;
 		do {
@@ -77,8 +86,7 @@ public class Register {
 		System.out.print("Please enter an item to return: ");
 		itemTemp.setName(sc.nextLine());
 		System.out.print("Please enter the price of what is being returned: ");
-		temp = sc.nextLine();
-		itemTemp.setPrice(Double.parseDouble(temp));
+		itemTemp.setPrice(sc.nextDouble());
 		inventory.addItem(itemTemp);
 		changeDue = itemTemp.getPrice() * taxRate;
 		System.out.println("Item returned total due back to customer is: " + changeDue + ".");
