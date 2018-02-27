@@ -5,14 +5,6 @@
   <artifactId>Register</artifactId>
   <version>1.0</version>
   <build>
-  <dependencies>
-  	<dependency>
-  		<groupID>junit</groupID>
-  		<artifactID>junit</artifactID>
-  		<version>4.8.1</version>
-  		<scope>test</scope>
-  	</dependency>
-  </dependencies>
   <plugins>
     <plugin>
       <!-- Build an executable JAR -->
