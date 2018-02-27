@@ -13,6 +13,7 @@ public class Register {
 	private Scanner sc = new Scanner(System.in);
 	private String temp;
 	public DecimalFormat df = new DecimalFormat("#.##");
+	boolean isValid;
 	
 	public Register(Inventory inventory) {
 		this.inventory = inventory;
@@ -31,10 +32,18 @@ public class Register {
 		//temp.toLowerCase();
 		//if(temp == "yes")
 		//	sale();
-		System.out.println("Amount Due: " + df.format(saleTotal) + ".");
-		System.out.print("Amount taken: ");
-		temp = sc.nextLine();
-		amountGiven = Double.parseDouble(temp);
+		while(isValid == false) {
+			System.out.println("Amount Due: " + df.format(saleTotal) + ".");
+			System.out.print("Amount taken: ");
+			temp = sc.nextLine();
+			amountGiven = Double.parseDouble(temp);
+			if(amountGiven < saleTotal) {
+				System.out.println("Sorry not enough money try again.");
+				isValid = false;
+			}
+			else
+				isValid = true;
+		}
 		changeDue = amountGiven - saleTotal;
 		System.out.println("Customer Change: " + df.format(changeDue) + ".");
 		inventory.removeItemByName(itemTemp.getName());
