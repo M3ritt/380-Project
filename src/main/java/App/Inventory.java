@@ -74,8 +74,6 @@ public class Inventory {
 				if(temp.getName().equals(item.getName())) {
 					return temp;
 				}
-				else
-					continue;
 			}
 		}
 		else {
