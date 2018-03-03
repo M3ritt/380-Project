@@ -6,10 +6,11 @@ import java.text.DecimalFormat;
 
 public class Register {
 
-	private Item itemTemp = new Item();
+	//private Item itemTemp = new Item();
 	private ArrayList<Item> iList;
 	private Inventory inventory;
-	private double dailySalesTotal, saleTotal, amountGiven, changeDue, taxRate, newPrice;
+	private double dailySalesTotal = 0;
+	private double saleTotal, amountGiven, changeDue, taxRate, newPrice;
 	private Scanner sc = new Scanner(System.in);
 	private String temp;
 	public DecimalFormat df = new DecimalFormat("#.##");
@@ -21,10 +22,17 @@ public class Register {
 	}
 	
 	public void sale() {
+		Item itemTemp = new Item();
 		System.out.print("Please enter an item to sell: ");
-		itemTemp.setName(sc.nextLine());
+		String enteredName = sc.nextLine();
+		itemTemp.setName(enteredName);
 		itemTemp = inventory.findItemByName(itemTemp.getName());
-		dailySalesTotal += itemTemp.getPrice();
+		//if(dailySalesTotal != 0.0d)
+			dailySalesTotal += itemTemp.getPrice();
+		/*else
+			dailySalesTotal = itemTemp.getPrice();
+		*/
+		
 		saleTotal += itemTemp.getPrice();
 		saleTotal = saleTotal * taxRate;
 		//System.out.print("Would you like to add another item?");
@@ -35,8 +43,7 @@ public class Register {
 		while(isValid == false) {
 			System.out.println("Amount Due: " + df.format(saleTotal) + ".");
 			System.out.print("Amount taken: ");
-			temp = sc.nextLine();
-			amountGiven = Double.parseDouble(temp);
+			amountGiven = Double.parseDouble(sc.nextLine());
 			if(amountGiven < saleTotal) {
 				System.out.println("Sorry not enough money try again.");
 				isValid = false;
@@ -51,11 +58,13 @@ public class Register {
 	}
 	
 	public void addItem() {
+		Item itemTemp = new Item();
 		System.out.print("Please enter the item you would like to add: ");
 		temp = sc.nextLine();
 		itemTemp.setName(temp);
 		System.out.print("Please enter the price of the item: ");
-		itemTemp.setPrice(sc.nextDouble());
+		Double enteredDouble = Double.parseDouble(sc.nextLine());
+		itemTemp.setPrice(enteredDouble);
 		inventory.addItem(itemTemp);
 	}
 	
@@ -76,6 +85,7 @@ public class Register {
 	}
 	
 	public void changeItemPrice() {
+		Item itemTemp = new Item();
 		System.out.print("Please enter the name of the item you would like to change: ");
 		itemTemp.setName(sc.nextLine());
 		itemTemp = inventory.findItemByName(itemTemp.getName());
@@ -92,6 +102,7 @@ public class Register {
 	}
 	
 	public void itemReturn() {
+		Item itemTemp = new Item();
 		System.out.print("Please enter an item to return: ");
 		itemTemp.setName(sc.nextLine());
 		System.out.print("Please enter the price of what is being returned: ");

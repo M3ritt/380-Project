@@ -41,6 +41,7 @@ public class Main{
         
         reg = new Register(invt);
         reg.checkInventory();
+        reg.addItem();
         reg.sale();
         //reg.itemReturn();
         //reg.changeItemPrice();
@@ -48,7 +49,6 @@ public class Main{
         //invt.removeItemByName("gOLF CLUB sET");
         //invt.getItems();
         //reg.checkInventory();
-        reg.addItem();
         invt.getItems();
     }
 }

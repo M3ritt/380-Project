@@ -6,11 +6,12 @@ public class Inventory {
 	//Some data structure to save the items... some type of array?
 	//Generic for items
 	private ArrayList<Item> iList;
-	private int count = 0;
+	private int count;
 	private Item temp;
 	
 	public Inventory(ArrayList<Item> iList) {
 		this.iList = iList;
+		count = iList.size();
 	}
 	
 	//gets the count of items in the inventory 
