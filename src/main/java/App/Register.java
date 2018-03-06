@@ -12,7 +12,7 @@ public class Register {
 	private double dailySalesTotal = 0;
 	private double saleTotal, amountGiven, changeDue, taxRate, newPrice;
 	private Scanner sc = new Scanner(System.in);
-	private String temp;
+	//private String temp;
 	public DecimalFormat df = new DecimalFormat("#.##");
 	boolean isValid;
 	
@@ -27,11 +27,8 @@ public class Register {
 		String enteredName = sc.nextLine();
 		itemTemp.setName(enteredName);
 		itemTemp = inventory.findItemByName(itemTemp.getName());
-		//if(dailySalesTotal != 0.0d)
-			dailySalesTotal += itemTemp.getPrice();
-		/*else
-			dailySalesTotal = itemTemp.getPrice();
-		*/
+		//try/catch for null here
+		dailySalesTotal += itemTemp.getPrice();
 		
 		saleTotal += itemTemp.getPrice();
 		saleTotal = saleTotal * taxRate;
@@ -60,7 +57,7 @@ public class Register {
 	public void addItem() {
 		Item itemTemp = new Item();
 		System.out.print("Please enter the item you would like to add: ");
-		temp = sc.nextLine();
+		String temp = sc.nextLine();
 		itemTemp.setName(temp);
 		System.out.print("Please enter the price of the item: ");
 		Double enteredDouble = Double.parseDouble(sc.nextLine());
