@@ -43,12 +43,12 @@ public class Main{
         reg.checkInventory();
         reg.addItem();
         reg.sale();
-        reg.itemReturn();
-        reg.changeItemPrice();
-        invt.getItems();
-        invt.removeItemByName("gOLF CLUB sET");
-        invt.getItems();
-        reg.checkInventory();
-        invt.getItems();
+        //reg.itemReturn();
+        //reg.changeItemPrice();
+        //invt.getItems();
+        //invt.removeItemByName("gOLF CLUB sET");
+        //invt.getItems();
+        //reg.checkInventory();
+        //invt.getItems();
     }
 }
