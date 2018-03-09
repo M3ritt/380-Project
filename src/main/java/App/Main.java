@@ -1,6 +1,5 @@
 package App;
 
-//import java.util.ArrayList;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.IOException;
@@ -22,8 +21,6 @@ public class Main{
         Register reg;
 
         SAXParserFactory spf = SAXParserFactory.newInstance();
-        
-        //System.out.println("Enter the name of the file: ");
         String fileName = "InventoryFile.xml";
         
         try{
@@ -37,18 +34,47 @@ public class Main{
             e.printStackTrace();
             invt = null;
         }
-//        invt.getItems();
         
         reg = new Register(invt);
+        /*
         reg.checkInventory();
         reg.addItem();
         reg.sale();
-        //reg.itemReturn();
-        //reg.changeItemPrice();
-        //invt.getItems();
-        //invt.removeItemByName("gOLF CLUB sET");
-        //invt.getItems();
-        //reg.checkInventory();
-        //invt.getItems();
+        reg.itemReturn();
+        reg.changeItemPrice();
+        invt.getItems();
+        invt.removeItemByName("gOLF CLUB sET");
+        invt.getItems();
+        reg.checkInventory();
+        invt.getItems();
+        */
+        System.out.println("What would you like to do?");
+        String command = sc.nextLine();
+        
+        while(!(command.equalsIgnoreCase("exit"))) {
+        		switch(command) {
+        			case "add item":
+        				reg.addItem();
+        				break;
+        			case "change price":
+        				reg.changeItemPrice();
+        				break;
+        			case "return item":
+        				reg.itemReturn();
+        				break;
+        			case "sale":
+        				//This should be looped until there are no more items to add
+        				reg.sale();
+        				break;
+        			case "inventory":
+        				reg.checkInventory();
+        				break;
+        			default:
+        				System.out.println("Cannot " + command);
+        				break;
+        		}
+        		System.out.println("What would you like to do?");
+        		command = sc.nextLine();
+        }
     }
 }
