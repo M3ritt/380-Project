@@ -65,7 +65,7 @@ public class Main{
         			case "remove item":
         				System.out.print("Enter the name of the item you want to remove");
         				String eItem = sc.nextLine();
-        				invt.removeItemByName();
+        				invt.removeItemByName(eItem);
         			case "return item":
         				reg.itemReturn();
         				break;
