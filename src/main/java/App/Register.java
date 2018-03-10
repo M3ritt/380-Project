@@ -22,21 +22,20 @@ public class Register {
 	}
 	
 	public void sale() {
-		Item itemTemp = new Item();
-		System.out.print("Please enter an item to sell: ");
-		String enteredName = sc.nextLine();
-		itemTemp.setName(enteredName);
-		itemTemp = inventory.findItemByName(itemTemp.getName());
-		//try/catch for null here
-		dailySalesTotal += itemTemp.getPrice();
-		
-		saleTotal += itemTemp.getPrice();
+		String enteredName;
+		do {
+			System.out.println("Please enter the item to remove, or press enter to leave: ");
+			enteredName = sc.nextLine();
+			if(inventory.checkItemByName(enteredName)) {
+				System.out.println(enteredName +" was removed from the inventory.");
+				dailySalesTotal += inventory.findItemByName(enteredName).getPrice();
+				saleTotal += inventory.findItemByName(enteredName).getPrice();
+				inventory.removeItemByName(enteredName);
+			} else if(!(enteredName.equals(""))){
+				System.out.println(enteredName + " is not a valid item.");
+			}
+		} while(!(enteredName.equals("")));
 		saleTotal = saleTotal * taxRate;
-		//System.out.print("Would you like to add another item?");
-		//temp = sc.nextLine();
-		//temp.toLowerCase();
-		//if(temp == "yes")
-		//	sale();
 		while(isValid == false) {
 			System.out.println("Amount Due: " + df.format(saleTotal) + ".");
 			System.out.print("Amount taken: ");
@@ -50,7 +49,7 @@ public class Register {
 		}
 		changeDue = amountGiven - saleTotal;
 		System.out.println("Customer Change: " + df.format(changeDue) + ".");
-		inventory.removeItemByName(itemTemp.getName());
+		//inventory.removeItemByName(itemTemp.getName());
 		saleTotal = amountGiven = changeDue = 0.0;
 	}
 	
@@ -72,24 +71,6 @@ public class Register {
 		inventory.addItem(newItem);
 	}
 	
-	public void removeItem() {
-		boolean leave = false;
-		do {
-			System.out.println("Please enter the item to remove, or type exit to leave: ");
-			String enteredName = sc.nextLine();
-			if(enteredName.toLowerCase().contains("exit")) {
-				leave = true;
-				System.out.println("Exiting...");
-			}else{
-				if(inventory.checkItemByName(enteredName)) {
-					inventory.removeItemByName(enteredName);
-					System.out.println(enteredName +" was removed from the inventory.");
-				}
-					
-			}
-		}while (leave == false);
-	}
-	
 	public void changeItemPrice() {
 		Item itemTemp = new Item();
 		System.out.print("Please enter the name of the item you would like to change: ");
@@ -101,9 +82,6 @@ public class Register {
 	}
 	
 	public void checkInventory() {
-		//for(Item i: inventory) {
-			//This needs to get the index of the first instance of each item, then store those indexes somewhere, get the items and then use item.getItemCount();
-		//}
 		inventory.getItems();
 	}
 	
