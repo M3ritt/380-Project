@@ -12,9 +12,7 @@ public class Register {
 	private double dailySalesTotal = 0;
 	private double saleTotal, amountGiven, changeDue, taxRate, newPrice;
 	private Scanner sc = new Scanner(System.in);
-	//private String temp;
 	public DecimalFormat df = new DecimalFormat("#.##");
-	boolean isValid;
 	
 	public Register(Inventory inventory) {
 		this.inventory = inventory;
@@ -36,16 +34,16 @@ public class Register {
 			}
 		} while(!(enteredName.equals("")));
 		saleTotal = saleTotal * taxRate;
-		while(isValid == false) {
+		boolean qualified = false;
+		while(qualified == false) {
 			System.out.println("Amount Due: " + df.format(saleTotal) + ".");
 			System.out.print("Amount taken: ");
 			amountGiven = Double.parseDouble(sc.nextLine());
 			if(amountGiven < saleTotal) {
 				System.out.println("Sorry not enough money try again.");
-				isValid = false;
 			}
 			else
-				isValid = true;
+				qualified = true;
 		}
 		changeDue = amountGiven - saleTotal;
 		System.out.println("Customer Change: " + df.format(changeDue) + ".");
