@@ -59,15 +59,19 @@ public class Main{
         			case "change price":
         				reg.changeItemPrice();
         				break;
+        			case "inventory":
+        				reg.checkInventory();
+        				break;
+        			case "remove item":
+        				System.out.print("Enter the name of the item you want to remove");
+        				String eItem = sc.nextLine();
+        				invt.removeItemByName();
         			case "return item":
         				reg.itemReturn();
         				break;
         			case "sale":
         				//This should be looped until there are no more items to add
         				reg.sale();
-        				break;
-        			case "inventory":
-        				reg.checkInventory();
         				break;
         			default:
         				System.out.println("Cannot " + command);
