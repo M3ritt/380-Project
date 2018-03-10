@@ -70,12 +70,11 @@ public class Register {
 	}
 	
 	public void changeItemPrice() {
-		Item itemTemp = new Item();
 		System.out.print("Please enter the name of the item you would like to change: ");
-		itemTemp.setName(sc.nextLine());
-		itemTemp = inventory.findItemByName(itemTemp.getName());
+		String searchForName = sc.nextLine();
+		Item itemTemp = inventory.findItemByName(searchForName);
 		System.out.print("Please enter the new price for " + itemTemp.getName() + ": ");
-		newPrice = sc.nextDouble();
+		Double newPrice = Double.parseDouble(sc.nextLine());
 		itemTemp.setPrice(newPrice);
 	}
 	
@@ -88,7 +87,8 @@ public class Register {
 		System.out.print("Please enter an item to return: ");
 		itemTemp.setName(sc.nextLine());
 		System.out.print("Please enter the price of what is being returned: ");
-		itemTemp.setPrice(sc.nextDouble());
+		Double priceSetter = Double.parseDouble(sc.nextLine());
+		itemTemp.setPrice(priceSetter);
 		inventory.addItem(itemTemp);
 		changeDue = itemTemp.getPrice() * taxRate;
 		System.out.println("Item returned total due back to customer is: " + changeDue + ".");
