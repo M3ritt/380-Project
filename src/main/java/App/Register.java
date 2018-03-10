@@ -55,6 +55,7 @@ public class Register {
 	}
 	
 	public void addItem() {
+		/*
 		Item itemTemp = new Item();
 		System.out.print("Please enter the item you would like to add: ");
 		String temp = sc.nextLine();
@@ -62,21 +63,29 @@ public class Register {
 		System.out.print("Please enter the price of the item: ");
 		Double enteredDouble = Double.parseDouble(sc.nextLine());
 		itemTemp.setPrice(enteredDouble);
-		inventory.addItem(itemTemp);
+		*/
+		System.out.print("Please enter the item you would like to add: ");
+		String enteredName = sc.nextLine();
+		System.out.print("Please enter the price of the item: ");
+		Double enteredDouble = Double.parseDouble(sc.nextLine());
+		Item newItem = new Item(enteredName, enteredDouble);
+		inventory.addItem(newItem);
 	}
 	
 	public void removeItem() {
 		boolean leave = false;
 		do {
-			System.out.println("Please enter the item to remove: ");
-			String item = sc.nextLine();
-			if(item.toLowerCase().contains("exit") == true) {
+			System.out.println("Please enter the item to remove, or type exit to leave: ");
+			String enteredName = sc.nextLine();
+			if(enteredName.toLowerCase().contains("exit")) {
 				leave = true;
-				System.out.println("HERE");
+				System.out.println("Exiting...");
 			}else{
-				inventory.removeItemByName(item);
-				if(inventory.checkItemByName(item) == true)
-					System.out.println(item +" was removed from the inventory.");
+				if(inventory.checkItemByName(enteredName)) {
+					inventory.removeItemByName(enteredName);
+					System.out.println(enteredName +" was removed from the inventory.");
+				}
+					
 			}
 		}while (leave == false);
 	}
