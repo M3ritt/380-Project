@@ -30,7 +30,7 @@ public class Item {
 	}
 	
 	public void decreaseAmount() {
-		this.amount--;;
+		this.amount--;
 	}
 	
 	public int getAmount() {

@@ -36,18 +36,6 @@ public class Main{
         }
         
         reg = new Register(invt);
-        /*
-        reg.checkInventory();
-        reg.addItem();
-        reg.sale();
-        reg.itemReturn();
-        reg.changeItemPrice();
-        invt.getItems();
-        invt.removeItemByName("gOLF CLUB sET");
-        invt.getItems();
-        reg.checkInventory();
-        invt.getItems();
-        */
         System.out.println("What would you like to do?");
         String command = sc.nextLine();
         

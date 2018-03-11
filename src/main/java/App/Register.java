@@ -13,12 +13,14 @@ public class Register {
 	private double saleTotal, amountGiven, changeDue, taxRate, newPrice;
 	private Scanner sc = new Scanner(System.in);
 	public DecimalFormat df = new DecimalFormat("#.##");
-	
+
+	boolean isValid;
+
 	public Register(Inventory inventory) {
 		this.inventory = inventory;
 		this.taxRate = 1.08;
 	}
-	
+
 	public void sale() {
 		String enteredName;
 		do {
@@ -50,7 +52,7 @@ public class Register {
 		//inventory.removeItemByName(itemTemp.getName());
 		saleTotal = amountGiven = changeDue = 0.0;
 	}
-	
+
 	public void addItem() {
 		/*
 		Item itemTemp = new Item();
@@ -68,7 +70,23 @@ public class Register {
 		Item newItem = new Item(enteredName, enteredDouble);
 		inventory.addItem(newItem);
 	}
-	
+
+	public void removeItem() {
+		boolean leave = false;
+		do {
+			System.out.println("Please enter the item to remove: ");
+			String item = sc.nextLine();
+			if(item.toLowerCase().contains("exit") == true) {
+				leave = true;
+				System.out.println("HERE");
+			}else{
+				inventory.removeItemByName(item);
+				if(inventory.checkItemByName(item) == true)
+					System.out.println(item +" was removed from the inventory.");
+			}
+		}while (leave == false);
+	}
+
 	public void changeItemPrice() {
 		System.out.print("Please enter the name of the item you would like to change: ");
 		String searchForName = sc.nextLine();
@@ -77,45 +95,49 @@ public class Register {
 		Double newPrice = Double.parseDouble(sc.nextLine());
 		itemTemp.setPrice(newPrice);
 	}
-	
+
 	public void checkInventory() {
 		inventory.getItems();
 	}
-	
+
 	public void itemReturn() {
 		Item itemTemp = new Item();
 		System.out.print("Please enter an item to return: ");
 		itemTemp.setName(sc.nextLine());
-		System.out.print("Please enter the price of what is being returned: ");
-		Double priceSetter = Double.parseDouble(sc.nextLine());
-		itemTemp.setPrice(priceSetter);
-		inventory.addItem(itemTemp);
-		changeDue = itemTemp.getPrice() * taxRate;
-		System.out.println("Item returned total due back to customer is: " + changeDue + ".");
-		dailySalesTotal -= itemTemp.getPrice();
-		changeDue = 0.0;
+		itemTemp = inventory.findItemByName(itemTemp.getName());
+		if (itemTemp != null) {
+//			System.out.print("Please enter the price of what is being returned: ");
+//			itemTemp.setPrice(sc.nextDouble());	
+			inventory.addItem(itemTemp);
+			changeDue = itemTemp.getPrice() * taxRate;
+			changeDue = Math.round(changeDue * 100);
+			changeDue = changeDue/100;
+			System.out.println("Item returned total due back to customer is: " + changeDue + ".");
+			dailySalesTotal -= itemTemp.getPrice();
+			changeDue = 0.0;
+		}else System.out.println("That item was not in the inventory.");
 	}
-	
+
 	public void dailyInventory() {
 		//This will go through and get the inventory for each item at the end of the day
 	}
-	
+
 	public void weeklyInventory() {
 		//This will check the inventory at the end of the week
 	}
-	
+
 	public void dailySalesTotals() {
 		System.out.println(dailySalesTotal);
 	}
-	
+
 	public void weeklySalesTotals() {
 		//This will get the weekly sales totals
 	}
-	
+
 	public void dailyReport() {
 		//This will give daily report for sales, inventory, total tax, and user metrics
 	}
-	
+
 	public void weeklyReport() {
 		//This will give the weekly report for sales, inventory, total tax, and user metrics.
 	}
@@ -143,5 +165,5 @@ public class Register {
 	public void setTaxRate(int taxRate) {
 		this.taxRate = taxRate;
 	}
-	
+
 }
