@@ -56,13 +56,9 @@ public class Register {
 		inventory.addItem(newItem);
 	}
 
-	public void changeItemPrice() {
-		System.out.print("Please enter the name of the item you would like to change: ");
-		String searchForName = sc.nextLine();
-		Item itemTemp = inventory.findItemByName(searchForName);
-		System.out.print("Please enter the new price for " + itemTemp.getName() + ": ");
-		Double newPrice = Double.parseDouble(sc.nextLine());
-		itemTemp.setPrice(newPrice);
+	public void changeItemPrice(String enteredName, Double enteredDouble) {
+		Item itemTemp = inventory.findItemByName(enteredName);
+		itemTemp.setPrice(enteredDouble);
 	}
 
 	public void checkInventory() {
