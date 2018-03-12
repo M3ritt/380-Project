@@ -14,8 +14,6 @@ public class Register {
 	private Scanner sc = new Scanner(System.in);
 	public DecimalFormat df = new DecimalFormat("#.##");
 
-	boolean isValid;
-
 	public Register(Inventory inventory) {
 		this.inventory = inventory;
 		this.taxRate = 1.08;
@@ -69,22 +67,6 @@ public class Register {
 		Double enteredDouble = Double.parseDouble(sc.nextLine());
 		Item newItem = new Item(enteredName, enteredDouble);
 		inventory.addItem(newItem);
-	}
-
-	public void removeItem() {
-		boolean leave = false;
-		do {
-			System.out.println("Please enter the item to remove: ");
-			String item = sc.nextLine();
-			if(item.toLowerCase().contains("exit") == true) {
-				leave = true;
-				System.out.println("HERE");
-			}else{
-				inventory.removeItemByName(item);
-				if(inventory.checkItemByName(item) == true)
-					System.out.println(item +" was removed from the inventory.");
-			}
-		}while (leave == false);
 	}
 
 	public void changeItemPrice() {

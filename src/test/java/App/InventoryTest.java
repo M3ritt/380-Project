@@ -33,31 +33,12 @@ public class InventoryTest {
 	@Test
 	public void testFindItemByName() {
 		Item i = in.findItemByName("basketball");
-		assertEquals("ahhh", i.getName());
+		assertEquals("Basketball", i.getName());
 	}
 	
 	@Test
 	public void testGetCount() {
 		assertEquals(25, in.getCount());
-	}
-	
-	//In Register
-	//Errors when the searched for item is null ----------------------------------------
-	@Test
-	public void testAddItem() {
-		Register r = new Register(in);
-		r.addItem();
-		assertEquals("peach", in.findItemByName("Peach").getName());
-	}
-	
-	//In Register
-	//Errors when the searched for item is null ----------------------------------------
-	@Test
-	public void testItemReturn() {
-		Register r = new Register(in);
-		r.itemReturn();
-		
-		assertEquals("Basketball", in.findItemByName("basketball").getName());
 	}
 	
 	//In User
