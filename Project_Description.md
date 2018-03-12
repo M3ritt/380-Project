@@ -87,7 +87,7 @@ Case 6: Have a rating of how much employees are selling
 Case 7: Sell items
 Case 8: Return items
 Case 9: Log in
-Case 10: Restrictions
+Case 10: Levels of access for users
 Case 11: See Profits
 
 User Story|UC1|UC2|UC3|UC4|UC5|UC6|UC7|UC8|UC9|UC10|UC11|
@@ -200,4 +200,61 @@ Use Case 6 Rating of how much employees are selling.:
 		-Manager initiates getting ratings
 		-Ratings are displayed
 			dailyReport(), weeklyReport().
+			
+Use case 7: Sell Items
+	Required Requirements: R1, R7, R15
+	Initiating Actor: Cashier
+	Actor's goals: For cashier to be able to sell items
+	Participating Actor: Register, Inventory, Items
+	Preconditions: The items is in the inventory
+	Postconditions: There is less of that item in the inventory
+	Flow of events for Main success scenario:
+		-->  Customer brings item to Cashier to sell
+		<-- Register uses UC4 and checks inventory for item to find price of item for customer to pay and finds money 			back
+
+Use case 8: Return Items
+	Required Requirements:R7, R15
+	Initiating Actor: Cashier
+	Actor's goals: Return an item to the inventory and give money back to the customer
+	Participating Actor: Item, Register
+	Preconditions: The item was in the inventory
+	Postconditions: The item now has one more to it's amount 
+	Flow of events for Main success scenario:
+		--> Customer brings item to return
+		<-- Register searches through inventory to find price of item
+		<-- Register calculates how much money to give back to Customer
+
+Use case 9: Log in 
+	Required Requirements:R2, R3
+	Initiating Actor:Manager, Cashier
+	Actor's goals:Log in to the worker's account
+	Participating Actor: User
+	Preconditions: The user has a user name and password already in the system
+	Postconditions: They user is logged in
+	Flow of events for Main success scenario:
+		--> Manager creates a new account (UC2)
+		<-- User creates account for new worker if they don't have existing account UC2
+		<-- User must enter password of their user name to get access, otherwise they cannot get into their account
+
+Use case 10: Levels of access for users
+	Required Requirements: R2, R3, R14
+	Initiating Actor: Manager
+	Actor's goals: The manager has access to everything while cashiers have limited access
+	Participating Actor: User, Register
+	Preconditions: The cashier that has an account cannot access a lot compared to the manager
+	Postconditions: Manager has access to everything
+	Flow of events for Main success scenario:
+	--> Manager creates account (UC2)
+	<-- Register allows cashier to have less access and not view everything on the system 
+
+Use case 11: See profits
+	Required Requirements:R1,R4,R5, R7, R10,R13,
+	Initiating Actor: Manager
+	Actor's goals: View the profits of the company 
+	Participating Actor: Register, Inventory
+	Preconditions: Items have been sold 
+	Postconditions: profits has increased
+	Flow of events for Main success scenario:
+		--> Manager must log in (UC9)
+		--> Manager can check weekly/daily sales totals due to access (UC10)
 	
