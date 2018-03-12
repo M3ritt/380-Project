@@ -41,21 +41,6 @@ public class InventoryTest {
 		assertEquals(25, in.getCount());
 	}
 	
-	//In User
-	@Test
-	public void testSetUserPassword() {
-		User u = new User("Josh", "");
-		u.setPassword("Password321");
-		assertEquals("Password321", u.getPassword());
-	}
-	
-	//In User
-	@Test
-	public void testGetUserPassword() {
-		User u = new User("Josh", "Bet");
-		assertEquals(u.getPassword(), "Bet");
-	}
-	
 	//In Inventory
 	//Errors when searched for item is null ----------------------------------------
 	@Test
