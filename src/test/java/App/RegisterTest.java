@@ -44,4 +44,15 @@ public class RegisterTest {
 		r.itemReturn("Basketball");
 		assertEquals("Basketball", in.findItemByName("basketball").getName());
 	}
+	
+	@Test
+	public void testAddItemWithRemoveItem() {
+		Register r = new Register(in);
+		r.addItem("Sour Patch Kids", 4.99);
+		r.addItem("Sour Patch Kids", 4.99);
+		r.addItem("Sour Patch Kids", 4.99);
+		r.addItem("Sour Patch Kids", 4.99);
+		in.removeItemByName("Sour Patch Kids");
+		assertEquals("Sour Patch Kids", in.findItemByName("Sour Patch Kids").getName());
+	}
 }
