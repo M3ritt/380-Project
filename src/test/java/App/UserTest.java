@@ -43,4 +43,16 @@ public class UserTest {
 		
 	}
 	
+	@Test
+	public void testGetUserName() {
+		User u = new User("Jon", "a");
+		User u1 = new User("1234", "a");
+		User u2 = new User("Jon Doe", "a");
+		
+		assertEquals("Jon", u.getUserName());
+		assertEquals("1234", u1.getUserName());
+		assertEquals("Jon Doe", u2.getUserName());
+		
+	}
+	
 }
