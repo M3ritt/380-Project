@@ -30,14 +30,14 @@ public class RegisterTest {
 			e.printStackTrace();
 		}
 	}
-	/*
+	
 	@Test
 	public void testAddItem() {
 		Register r = new Register(in);
-		r.addItem();
-		assertEquals("peach", in.findItemByName("Peach").getName());
+		r.addItem("Peach", 12.00);
+		assertTrue(in.findItemByName("Peach").getName().equals("Peach"));
 	}
-	
+	/*
 	@Test
 	public void testItemReturn() {
 		Register r = new Register(in);

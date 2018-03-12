@@ -42,7 +42,11 @@ public class Main{
         while(!(command.equalsIgnoreCase("exit"))) {
         		switch(command) {
         			case "add item":
-        				reg.addItem();
+        				System.out.print("Please enter the item you would like to add: ");
+        				String enteredName = sc.nextLine();
+        				System.out.print("Please enter the price of the item: ");
+        				Double enteredDouble = Double.parseDouble(sc.nextLine());
+        				reg.addItem(enteredName, enteredDouble);
         				break;
         			case "change price":
         				reg.changeItemPrice();

@@ -51,7 +51,7 @@ public class Register {
 		saleTotal = amountGiven = changeDue = 0.0;
 	}
 
-	public void addItem() {
+	public void addItem(String enteredName, Double enteredDouble) {
 		/*
 		Item itemTemp = new Item();
 		System.out.print("Please enter the item you would like to add: ");
@@ -61,11 +61,9 @@ public class Register {
 		Double enteredDouble = Double.parseDouble(sc.nextLine());
 		itemTemp.setPrice(enteredDouble);
 		*/
-		System.out.print("Please enter the item you would like to add: ");
-		String enteredName = sc.nextLine();
-		System.out.print("Please enter the price of the item: ");
-		Double enteredDouble = Double.parseDouble(sc.nextLine());
-		Item newItem = new Item(enteredName, enteredDouble);
+		String eName = enteredName;
+		Double eDouble = enteredDouble;
+		Item newItem = new Item(eName, eDouble);
 		inventory.addItem(newItem);
 	}
 
