@@ -49,7 +49,11 @@ public class Main{
         				reg.addItem(enteredName, enteredDouble);
         				break;
         			case "change price":
-        				reg.changeItemPrice();
+        				System.out.print("Please enter the item to change the price: ");
+        				String changedName = sc.nextLine();
+        				System.out.print("Please enter the new price for the item: ");
+        				Double changedPrice = Double.parseDouble(sc.nextLine());
+        				reg.changeItemPrice(changedName, changedPrice);
         				break;
         			case "inventory":
         				reg.checkInventory();
