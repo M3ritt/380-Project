@@ -10,11 +10,19 @@ import javax.xml.parsers.SAXParserFactory;
 
 import static org.junit.Assert.*;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.xml.sax.SAXException;
 
+
+import org.junit.rules.ErrorCollector;
+
 public class InventoryTest {
 	private Inventory in;
+	
+	@Rule
+	public ErrorCollector eCol = new ErrorCollector();
+	
 	@Before
 	public void setUp() {
 		String fileName = "InventoryFile.xml";
@@ -36,11 +44,26 @@ public class InventoryTest {
 		assertEquals("Basketball", i.getName());
 	}
 	
+	@Test(expected = NullPointerException.class)
+	public void failTestFindItemByName() {
+			Item i = in.findItemByName("yemen");
+			i.getName();
+	}
 	@Test
 	public void testGetCount() {
-		assertEquals(25, in.getCount());
+		Item i = new Item("string", 1.99);
+		Item j = new Item("straw", 2.99);
+		in.addItem(i);
+		in.addItem(j);
+		try {
+			assertEquals(35, in.getCount());
+			fail();
+		} catch(AssertionError e) {
+			//fail();
+			System.out.println("Not equal");
+		}
+		
 	}
-	
 	//In Inventory
 	//Errors when searched for item is null ----------------------------------------
 	@Test
