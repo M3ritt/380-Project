@@ -73,3 +73,30 @@ Time: 5
 
 User Story 10: As a cashier, I want to be able to cash people out so that I can make sales and keep my job. 
 Time: 4
+
+Use Cases
+Case 1: Load in Inventory
+Case 2: Add Users
+Case 3: Save Inventory
+Case 4: See Inventory
+Case 5: See the Distribution of Items sold
+Case 6: Have a rating of how much employees are selling
+Case 7: Sell items
+Case 8: Return items
+Case 9: Log in
+Case 10: Restrictions
+Case 11: See Profits
+
+User Story|UC1|UC2|UC3|UC4|UC5|UC6|UC7|UC8|UC9|UC10|UC11|
+	1	  | X |   |   |   |   |   |   |   |   |    |    |
+	2	  |   | X |   |   |   |   | X |   |   |    |    |
+	3	  | X |   |   |   | X |   |   |   |   |    |    |
+	4	  | X |   |   | X | X |   | X |   |   |    |    |
+	5	  | X |   | X | X |   |   | X | X |   |    |    |
+	6	  |   |   |   |   |   |   |   |   |   |    | X  |
+	7	  |   | X |   |   |   | X | X |   | X | X  |    |
+	8	  |   |   |   |   |   |   |   |   |   | X  |    |
+	9	  |   | X |   |   |   |   |   |   | X | X  |    |
+	10	  |   | X |   |   |   |   | X |   | X |    |    |
+
+	Use Case 1:
