@@ -37,12 +37,11 @@ public class RegisterTest {
 		r.addItem("Peach", 12.00);
 		assertTrue(in.findItemByName("Peach").getName().equals("Peach"));
 	}
-	/*
+	
 	@Test
 	public void testItemReturn() {
 		Register r = new Register(in);
-		r.itemReturn();
+		r.itemReturn("Basketball");
 		assertEquals("Basketball", in.findItemByName("basketball").getName());
 	}
-	*/
 }

@@ -59,7 +59,9 @@ public class Main{
         				String eItem = sc.nextLine();
         				invt.removeItemByName(eItem);
         			case "return item":
-        				reg.itemReturn();
+        				System.out.print("Please enter an item to return: ");
+        				String tempName = sc.nextLine();
+        				reg.itemReturn(tempName);
         				break;
         			case "sale":
         				//This should be looped until there are no more items to add

@@ -52,18 +52,7 @@ public class Register {
 	}
 
 	public void addItem(String enteredName, Double enteredDouble) {
-		/*
-		Item itemTemp = new Item();
-		System.out.print("Please enter the item you would like to add: ");
-		String temp = sc.nextLine();
-		itemTemp.setName(temp);
-		System.out.print("Please enter the price of the item: ");
-		Double enteredDouble = Double.parseDouble(sc.nextLine());
-		itemTemp.setPrice(enteredDouble);
-		*/
-		String eName = enteredName;
-		Double eDouble = enteredDouble;
-		Item newItem = new Item(eName, eDouble);
+		Item newItem = new Item(enteredName, enteredDouble);
 		inventory.addItem(newItem);
 	}
 
@@ -80,10 +69,8 @@ public class Register {
 		inventory.getItems();
 	}
 
-	public void itemReturn() {
-		Item itemTemp = new Item();
-		System.out.print("Please enter an item to return: ");
-		itemTemp.setName(sc.nextLine());
+	public void itemReturn(String eName) {
+		Item itemTemp = new Item(eName, 0.0d);
 		itemTemp = inventory.findItemByName(itemTemp.getName());
 		if (itemTemp != null) {
 //			System.out.print("Please enter the price of what is being returned: ");
