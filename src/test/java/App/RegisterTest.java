@@ -55,4 +55,11 @@ public class RegisterTest {
 		in.removeItemByName("Sour Patch Kids");
 		assertEquals("Sour Patch Kids", in.findItemByName("Sour Patch Kids").getName());
 	}
+	
+	@Test
+	public void testChangeItemPrice() {
+		Register r = new Register(in);
+		r.changeItemPrice("Basketball", 19.99);
+		assertEquals(19.99, in.findItemByName("Basketball").getPrice(), .01);
+	}
 }
