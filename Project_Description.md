@@ -74,6 +74,9 @@ Time: 5
 User Story 10: As a cashier, I want to be able to cash people out so that I can make sales and keep my job. 
 Time: 4
 
+
+## Traceability Matrix
+
 Use Cases
 Case 1: Load in Inventory
 Case 2: Add Users
@@ -99,4 +102,102 @@ User Story|UC1|UC2|UC3|UC4|UC5|UC6|UC7|UC8|UC9|UC10|UC11|
 	9	  |   | X |   |   |   |   |   |   | X | X  |    |
 	10	  |   | X |   |   |   |   | X |   | X |    |    |
 
-	Use Case 1:
+Use Case 1, Load in Inventory:
+	Related User Stories: User Story 1, 3, 4, 5.
+	Initiating Actor: Manager, Key Holder.
+	Actor's Goal: To load in either the starting inventory or an updated inventory.
+	Participating Actors: Inventory, Item, InventoryParser.
+	Preconditions:
+		-The inventory is blank or up to date with new additions and how it was previously.
+		-The inventory needs to be updated.
+	Postconditions:
+		The inventory will be updated and be able to used by Register.
+	Flow of Events:
+		-New/Updated inventory is given to the manager or key holder
+		-The employee initiates loading the inventory into the system.
+			Includes InventoryParser and .parse().
+		-The inventory is now loaded and can be used in the register.
+		
+Use Case 2, Add Users:
+	Related User Stories: User Story 2, 7, 9, 10.
+	Initiating Actor: Manager.
+	Actor's Goal: To create new users to user the register for returns, sales, changing item prices, loading inventories.
+	Participating Actors: User
+	Preconditions:
+		-The user does not already exist.
+		-The user name is valid.
+		-The user password meets minimum security specifications. 
+	Postconditions:
+		The new user is created.
+	Flow of Events:
+		-Manager gets information for the new user.
+		-The manager inputs the new user information
+			setUserName, setUserPassword.
+		-The new user is now created.
+
+Use Case 3, Save Inventory:
+	Related User Stories: User Story 5.
+	Initiating Actor: Manager Key Holder, Sales Clerk.
+	Actor's Goal: To save the inventory in order to be loaded again.
+	Participating Actors: Inventory, InventoryParser.
+	Preconditions:
+		-The inventory is not null.
+		-The inventory is current.
+	Postconditions:
+		-The inventory is saved so it can be loaded in again.
+	Flow of Events:
+		-The user chooses to save the inventory
+			close method in Register
+		-The inventory is saved to a .xml file.
+
+Use Case 4, See Inventory:
+	Related User Stories: User Story 4, 5.
+	Initiating Actor: Manager, Key Holder, Sales Clerk.
+	Actor's Goal: To see the available inventory in the store.
+	Participating Actors: Inventory, Register
+	Preconditions:
+		-The inventory is not null.
+		-The inventory is loaded in.
+	Postcondition:
+		The inventory is displayed.
+	Flow of Events:
+		-User uses command to see the inventory
+			checkInventory().
+			
+Use Case 5, See the Distribution of Items sold:
+	Related User Stories: User Story 3, 4.
+	Initiating Actor: Manager, Key Holder, Sales Clerk.
+	Actor's Goal: To see what has been sold in order to get trends.
+	Participating Actors: Inventory, Register.
+	Preconditions:
+		-The inventory is not null.
+		-The inventory is loaded into the register
+		-Items have been sold.
+	Postcondition:
+		The amounts that have been sold is displayed.
+	Flow of Events.
+		-Inventory is loaded into register
+		-Sales, and returns occur
+			sale(), return()
+		-Displays of sales can be generated.
+			dailySalesTotals(), weeklySalesTotals().
+
+Use Case 6 Rating of how much employees are selling.:
+	Related User Story 7.
+	Initiating Actor: Manager.
+	Actor's Goal: To see what has been sold.
+	Participating Actors: Register, Inventory.
+	Preconditions:
+		-More than one user has sold inventory
+		-Inventory has been sold
+		-All inventory sold has been properly tracked and logged by sales clerks.
+	Postcondition:
+		The ratings will be displayed
+	Flow of Events
+		-Inventory is loaded into register
+		-Sales and returns occur.
+			sale(), return().
+		-Manager initiates getting ratings
+		-Ratings are displayed
+			dailyReport(), weeklyReport().
+	
