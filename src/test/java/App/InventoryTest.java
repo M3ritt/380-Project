@@ -110,4 +110,21 @@ public class InventoryTest {
 		i.setPrice(12.32);
 		assertEquals(i.getPrice(), 12.32, .001);
 	}
+	
+	@Test
+	public void testAddItem() {
+		Item i = new Item("Soccer Shorts", 12.99);
+		Item i1 = new Item("1234", 10.99);
+		in.addItem(i);
+		in.addItem(i1);
+		assertTrue(in.checkItemByName("Soccer Shorts"));
+		assertTrue(in.checkItemByName("1234"));
+		assertFalse(in.checkItemByName("Hammer"));
+	}
+	
+	@Test
+	public void testCheckItemByName() {
+		assertTrue(in.checkItemByName("Basketball"));
+		assertFalse(in.checkItemByName("0"));
+	}
 }
