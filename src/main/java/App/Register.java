@@ -56,7 +56,8 @@ public class Register {
 		if(newItem == null) {
 			newItem = new Item(enteredName, enteredDouble);
 			inventory.addItem(newItem);
-		}else newItem.incrementAmount();
+		} else
+			newItem.incrementAmount();
 	}
 
 	public void changeItemPrice(String enteredName, Double enteredDouble) {
