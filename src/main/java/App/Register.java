@@ -52,8 +52,11 @@ public class Register {
 	}
 
 	public void addItem(String enteredName, Double enteredDouble) {
-		Item newItem = new Item(enteredName, enteredDouble);
-		inventory.addItem(newItem);
+		Item newItem = inventory.findItemByName(enteredName);
+		if(newItem == null) {
+			newItem = new Item(enteredName, enteredDouble);
+			inventory.addItem(newItem);
+		}else newItem.incrementAmount();
 	}
 
 	public void changeItemPrice(String enteredName, Double enteredDouble) {
