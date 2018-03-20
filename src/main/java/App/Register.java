@@ -22,7 +22,7 @@ public class Register {
 	public void sale() {
 		String enteredName;
 		do {
-			System.out.println("Please enter the item to remove, or press enter to leave: ");
+			System.out.print("Please enter the item to remove, or press enter to leave: ");
 			enteredName = sc.nextLine();
 			if(inventory.checkItemByName(enteredName)) {
 				System.out.println(enteredName +" was removed from the inventory.");
@@ -79,6 +79,11 @@ public class Register {
 			dailySalesTotal -= itemTemp.getPrice();
 			changeDue = 0.0;
 		}else System.out.println("That item was not in the inventory.");
+	}
+	
+	public double checkPrice(String eName) {
+		//This method will take in an item and return the price.
+		return double getPrice = 0;
 	}
 
 	public void dailyInventory() {
