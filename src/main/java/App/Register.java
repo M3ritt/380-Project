@@ -83,7 +83,8 @@ public class Register {
 	
 	public double checkPrice(String eName) {
 		//This method will take in an item and return the price.
-		return double getPrice = 0;
+		Item i = inventory.findItemByName(eName);
+		return i.getPrice();
 	}
 
 	public void dailyInventory() {
