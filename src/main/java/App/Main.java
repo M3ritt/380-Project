@@ -36,8 +36,9 @@ public class Main{
         }
         
         reg = new Register(invt);
-        System.out.println("What would you like to do?");
+        System.out.print("What would you like to do? ");
         String command = sc.nextLine();
+        command = command.toLowerCase();
         
         while(!(command.equalsIgnoreCase("exit"))) {
         		switch(command) {
