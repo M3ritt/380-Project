@@ -10,6 +10,7 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.SAXException;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main{
@@ -19,6 +20,7 @@ public class Main{
 	public static void main(String[] args){
         Inventory invt;
         Register reg;
+        ArrayList<User> uList = new ArrayList<>();
 
         SAXParserFactory spf = SAXParserFactory.newInstance();
         String fileName = "InventoryFile.xml";
@@ -34,6 +36,10 @@ public class Main{
             e.printStackTrace();
             invt = null;
         }
+        
+        UserLogin ul = new UserLogin();
+        uList.add(ul.callToArms());
+        
         
         reg = new Register(invt);
         System.out.print("What would you like to do? ");

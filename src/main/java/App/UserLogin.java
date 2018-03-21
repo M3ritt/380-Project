@@ -11,19 +11,32 @@ public class UserLogin {
 	public UserLogin() {
 		userAccess = false;
 	}
-	public void callToArms() {
+	public User callToArms() {
 		System.out.println("New User?");
 		String userStatus = sc.nextLine();
 		if(userStatus.equalsIgnoreCase("Yes")) {
-			//Call the newUserSetup() method
+			return newUserSetup();
 			//Call the login() method
 		} else {
 			//Call the login() method
 		}
+		return null;
 	}
 	
-	public void newUserSetup() {
+	public User newUserSetup() {
 		//Create the User object
+		System.out.print("Enter a username. ");
+		String createdUName = sc.nextLine();
+		System.out.print("Enter a password. ");
+		String firstEnteredPass = sc.nextLine();
+		System.out.print("Enter the password again. ");
+		if(firstEnteredPass.equals(sc.nextLine())) {
+			User userToCreate = new User(createdUName, firstEnteredPass);
+			return userToCreate;
+		}
+		else
+			newUserSetup();
+		return null;
 	}
 
 	public void login() {
