@@ -15,6 +15,7 @@ public class UserLoginTest {
 		assertTrue(ul.existsUserByName("Taddy Mason"));
 	}
 	
+	/*
 	@Test
 	public void testLogin() {
 		ul = new UserLogin();
@@ -38,4 +39,5 @@ public class UserLoginTest {
 		ul.login("Taddy Mason", "password");
 		assertTrue(ul.getUserAccess());
 	}
+	*/
 }

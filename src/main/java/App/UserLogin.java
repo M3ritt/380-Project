@@ -15,7 +15,7 @@ public class UserLogin {
 		userAccess = false;
 		uList = new ArrayList<>();
 	}
-	/*
+	
 	public void callToArms() {
 		System.out.println("New User?");
 		String userStatus = sc.nextLine();
@@ -25,31 +25,31 @@ public class UserLogin {
 		} else
 			login();
 	}
-	*/
-	public void newUserSetup(String createdUName, String firstEnteredPass, String secondEnteredPass) {
+	
+	public void newUserSetup() {
 		//Create the User object
 		System.out.print("Enter a username. ");
-		//String createdUName = sc.nextLine();
+		String createdUName = sc.nextLine();
 		System.out.print("Enter a password. ");
-		//String firstEnteredPass = sc.nextLine();
+		String firstEnteredPass = sc.nextLine();
 		System.out.print("Enter the password again. ");
-		if(firstEnteredPass.equals(secondEnteredPass/*sc.nextLine()*/))
+		if(firstEnteredPass.equals(sc.nextLine()))
 			uList.add(new User(createdUName, firstEnteredPass));
 		//else
 			//newUserSetup();
 	}
 
-	public void login(String potentialUserName, String potentialPassword) {
+	public void login() {
 		//Call the database the users are saved in
 		//Compare to see if this is a valid user
 		User loginUser;
 		System.out.println("Enter your username, or press enter to exit. ");
-		//String potentialUserName = sc.nextLine();
+		String potentialUserName = sc.nextLine();
 		while(!(potentialUserName.equals("/n")) || userAccess == false) {
 			if(existsUserByName(potentialUserName) == true) {
 				loginUser = findUserByName(potentialUserName);
 				System.out.println("Please enter your password");
-				//potentialPassword = sc.nextLine();
+				String potentialPassword = sc.nextLine();
 				if(loginUser.getPassword().equals(potentialPassword)) {
 					userAccess = true;
 					potentialUserName = "/n";
