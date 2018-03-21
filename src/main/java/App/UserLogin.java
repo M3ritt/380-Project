@@ -26,25 +26,24 @@ public class UserLogin {
 			login();
 	}
 	*/
-	public User newUserSetup() {
+	public void newUserSetup(String createdUName, String firstEnteredPass, String secondEnteredPass) {
 		//Create the User object
 		System.out.print("Enter a username. ");
-		String createdUName = sc.nextLine();
+		//String createdUName = sc.nextLine();
 		System.out.print("Enter a password. ");
-		String firstEnteredPass = sc.nextLine();
+		//String firstEnteredPass = sc.nextLine();
 		System.out.print("Enter the password again. ");
-		if(firstEnteredPass.equals(sc.nextLine()))
+		if(firstEnteredPass.equals(secondEnteredPass/*sc.nextLine()*/))
 			uList.add(new User(createdUName, firstEnteredPass));
-		else
-			newUserSetup();
-		return null;
+		//else
+			//newUserSetup();
 	}
 
 	public void login(String potentialUserName, String potentialPassword) {
 		//Call the database the users are saved in
 		//Compare to see if this is a valid user
 		User loginUser;
-		System.out.println("Enter your username, or press space to exit. ");
+		System.out.println("Enter your username, or press enter to exit. ");
 		//String potentialUserName = sc.nextLine();
 		while(!(potentialUserName.equals("/n")) || userAccess == false) {
 			if(existsUserByName(potentialUserName) == true) {
