@@ -26,7 +26,6 @@ public class UserTest {
 		u.userSale(20.00);
 		u.userSale(30.50);
 		assertEquals(50.50, u.getSalesTotal(), 0.001);
-		
 	}
 	
 	@Test

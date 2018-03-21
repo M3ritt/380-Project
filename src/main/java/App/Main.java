@@ -37,9 +37,9 @@ public class Main{
             invt = null;
         }
         
+        //Login the user to check their level of access
         UserLogin ul = new UserLogin();
-        uList.add(ul.callToArms());
-        
+        ul.callToArms();
         
         reg = new Register(invt);
         System.out.print("What would you like to do? ");
