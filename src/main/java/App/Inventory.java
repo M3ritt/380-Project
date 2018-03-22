@@ -21,9 +21,9 @@ public class Inventory {
 	
 	//adds a new item to the inventory
 	public void addItem(Item newItem){
-		if(checkItemByName(newItem.getName()) == true) { 
-			findItemByName(newItem.getName()).incrementAmount();
-			count++;
+		if(checkItemByName(newItem.getName()) == true && (haveBrand(newItem.getName(), newItem.getBrand()))){
+				findItemByName(newItem.getName(), newItem.getBrand()).incrementAmount();
+				count++;
 		} else {
 			iList.add(count, newItem);
 			count++;
@@ -32,11 +32,12 @@ public class Inventory {
 	}
 	
 	//removes an item based on it's name
-	public void removeItemByName(String itemName) {
+	public void removeItemByName(String itemName, String brandName) {
 		if(checkItemByName(itemName) == true) {
-			findItemByName(itemName).decreaseAmount();
+			findItemByName(itemName, brandName).decreaseAmount();
 			count--;
-		}else {
+			System.out.println(itemName + " from: "+brandName+ " was removed.");
+		} else {
 			System.out.println("That item is not in the inventory.");
 		}
 	}
@@ -59,9 +60,9 @@ public class Inventory {
 	}
 	
 	//returns the item if it's name in the inventory, null otherwise
-	public Item findItemByName(String name) {
+	public Item findItemByName(String name, String brandName) {
 		for(Item i: iList) {
-			if(i.getName().toLowerCase().equals(name.toLowerCase()))
+			if(i.getName().toLowerCase().equals(name.toLowerCase()) && (i.getBrand().toLowerCase().equals(brandName.toLowerCase())))
 				return i;
 		}
 		return null;
@@ -81,6 +82,15 @@ public class Inventory {
 			System.out.println("Sorry the item " + item.getName() + " is not in the inventory.");
 		}
 		return null;
+	}
+	
+	public boolean haveBrand(String itemName, String brandName) {
+		for(Item i : iList) {
+			if(i.getBrand().toLowerCase().equals(brandName.toLowerCase()) && (i.getName().toLowerCase() == itemName.toLowerCase())) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 }

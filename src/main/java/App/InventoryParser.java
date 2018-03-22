@@ -35,8 +35,9 @@ public class InventoryParser extends DefaultHandler {
 				itemName = atts.getValue("name");
 				String sprice = atts.getValue("price");
 				price = Double.parseDouble(sprice);
-				Item i = new Item(itemName, price);
-				iList.add(i);
+				String itemBrand = atts.getValue("brand");
+				Item i = new Item(itemName, price, itemBrand);
+				//iList.add(i);
 				newInv.addItem(i);
 				break;
 			default:

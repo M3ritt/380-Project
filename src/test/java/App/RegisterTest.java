@@ -34,32 +34,32 @@ public class RegisterTest {
 	@Test
 	public void testAddItem() {
 		Register r = new Register(in);
-		r.addItem("Peach", 12.00);
-		assertTrue(in.findItemByName("Peach").getName().equals("Peach"));
+		r.addItem("Peach", 12.00, "peach company");
+		assertTrue(in.findItemByName("Peach", "peach company").getName().equals("Peach"));
 	}
 	
 	@Test
 	public void testItemReturn() {
 		Register r = new Register(in);
-		r.itemReturn("Basketball");
-		assertEquals("Basketball", in.findItemByName("basketball").getName());
+		r.itemReturn("Basketball", "Wilson");
+		assertEquals("Basketball", in.findItemByName("basketball", "wilson").getName());
 	}
 	
 	@Test
 	public void testAddItemWithRemoveItem() {
 		Register r = new Register(in);
-		r.addItem("Sour Patch Kids", 4.99);
-		r.addItem("Sour Patch Kids", 4.99);
-		r.addItem("Sour Patch Kids", 4.99);
-		r.addItem("Sour Patch Kids", 4.99);
-		in.removeItemByName("Sour Patch Kids");
-		assertEquals("Sour Patch Kids", in.findItemByName("Sour Patch Kids").getName());
+		r.addItem("Sour Patch Kids", 4.99, "Allen Candy Company");
+		r.addItem("Sour Patch Kids", 4.99, "Allen Candy Company");
+		r.addItem("Sour Patch Kids", 4.99, "Allen Candy Company");
+		r.addItem("Sour Patch Kids", 4.99, "Allen Candy Company");
+		in.removeItemByName("Sour Patch Kids", "Allen Candy Company");
+		assertEquals("Sour Patch Kids", in.findItemByName("Sour Patch Kids", "Allen Candy Company").getName());
 	}
 	
 	@Test
 	public void testChangeItemPrice() {
 		Register r = new Register(in);
-		r.changeItemPrice("Basketball", 19.99);
-		assertEquals(19.99, in.findItemByName("Basketball").getPrice(), .01);
+		r.changeItemPrice("Basketball", 19.99, "wilson");
+		assertEquals(19.99, in.findItemByName("Basketball", "wilson").getPrice(), .01);
 	}
 }

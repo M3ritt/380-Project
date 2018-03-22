@@ -40,19 +40,20 @@ public class InventoryTest {
 	
 	@Test
 	public void testFindItemByName() {
-		Item i = in.findItemByName("basketball");
+		Item i = in.findItemByName("basketball", "wilson");
 		assertEquals("Basketball", i.getName());
 	}
 	
 	@Test(expected = NullPointerException.class)
 	public void failTestFindItemByName() {
-			Item i = in.findItemByName("yemen");
+			Item i = in.findItemByName("yemen", "company");
 			i.getName();
 	}
+	
 	@Test
 	public void testGetCount() {
-		Item i = new Item("string", 1.99);
-		Item j = new Item("straw", 2.99);
+		Item i = new Item("string", 1.99, "string company");
+		Item j = new Item("straw", 2.99, "straw company");
 		in.addItem(i);
 		in.addItem(j);
 		try {
@@ -64,26 +65,25 @@ public class InventoryTest {
 		}
 		
 	}
+	
 	//In Inventory
-	//Errors when searched for item is null ----------------------------------------
 	@Test
 	public void testRemoveItemByName() {
-		in.removeItemByName("basketball");
-		assertEquals("Basketball", in.findItemByName("basketball").getName());
+		in.removeItemByName("basketball", "wilson");
+		assertEquals("Basketball", in.findItemByName("basketball", "wilson").getName());
 	}
 	
 	//In Inventory
-	//Errors when searched for item is null ----------------------------------------
 	@Test
 	public void testGet() {
-		Item i = in.findItemByName("Basketball");
+		Item i = in.findItemByName("Basketball", "wilson");
 		assertEquals(i, in.get(i));
 	}
 	
 	//In Item
 	@Test
 	public void testIncrementAmount() {
-		Item i = in.findItemByName("Basketball");
+		Item i = in.findItemByName("Basketball", "wilson");
 		i.incrementAmount();
 		assertEquals(i.getAmount(), 8);
 	}
@@ -91,7 +91,7 @@ public class InventoryTest {
 	//In Item
 	@Test
 	public void testDecrementAmount() {
-		Item i = in.findItemByName("Basketball");
+		Item i = in.findItemByName("Basketball", "wilson");
 		i.decreaseAmount();
 		assertEquals(i.getAmount(), 6);
 	}
@@ -99,22 +99,22 @@ public class InventoryTest {
 	//In Item
 	@Test
 	public void testGetPrice() {
-		Item i = in.findItemByName("Basketball");
+		Item i = in.findItemByName("Basketball", "wilson");
 		assertEquals(i.getPrice(), 12.99 , .001);
 	}
 	
 	//In Item
 	@Test
 	public void testSetPrice() {
-		Item i = in.findItemByName("Basketball");
-		i.setPrice(12.32);
+		Item i = in.findItemByName("Basketball", "wilson");
+		i.setPrice(12.32, "wilson");
 		assertEquals(i.getPrice(), 12.32, .001);
 	}
 	
 	@Test
 	public void testAddItem() {
-		Item i = new Item("Soccer Shorts", 12.99);
-		Item i1 = new Item("1234", 10.99);
+		Item i = new Item("Soccer Shorts", 12.99, "adidas");
+		Item i1 = new Item("1234", 10.99, "number company");
 		in.addItem(i);
 		in.addItem(i1);
 		assertTrue(in.checkItemByName("Soccer Shorts"));
