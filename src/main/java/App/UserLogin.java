@@ -45,14 +45,13 @@ public class UserLogin {
 		User loginUser;
 		System.out.println("Enter your username, or press enter to exit. ");
 		String potentialUserName = sc.nextLine();
-		while(!(potentialUserName.equals("/n")) || userAccess == false) {
+		while(!(potentialUserName.equals("/n")) || (userAccess == false)) {
 			if(existsUserByName(potentialUserName) == true) {
 				loginUser = findUserByName(potentialUserName);
 				System.out.println("Please enter your password");
 				String potentialPassword = sc.nextLine();
 				if(loginUser.getPassword().equals(potentialPassword)) {
 					userAccess = true;
-					potentialUserName = "/n";
 				}
 			} else {
 				System.out.println("This is not a valid username.");

@@ -2,6 +2,8 @@ package App;
 
 import static org.junit.Assert.*;
 import java.util.Scanner;
+
+import org.junit.Ignore;
 import org.junit.Test;
 import App.*;
 
@@ -15,8 +17,8 @@ public class UserLoginTest {
 		assertTrue(ul.existsUserByName("Taddy Mason"));
 	}
 	
-	/*
-	@Test
+	
+	@Test @Ignore
 	public void testLogin() {
 		ul = new UserLogin();
 		ul.addUser(new User("Taddy Mason", "password"));
@@ -24,7 +26,7 @@ public class UserLoginTest {
 		assertTrue(ul.getUserAccess());
 	}
 
-	@Test
+	@Test @Ignore
 	public void testNewUserSetup() {
 		ul = new UserLogin();
 		User u = new User("Taddy Mason", "password");
@@ -32,12 +34,12 @@ public class UserLoginTest {
 		assertTrue(ul.existsUserByName("Taddy Mason"));
 	}
 	
-	@Test
+	@Test @Ignore
 	public void testNewUserThenLogin() {
 		ul = new UserLogin();
 		ul.newUserSetup("Taddy Mason", "password", "password");
 		ul.login("Taddy Mason", "password");
 		assertTrue(ul.getUserAccess());
 	}
-	*/
+	
 }
