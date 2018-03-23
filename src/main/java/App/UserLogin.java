@@ -35,8 +35,23 @@ public class UserLogin {
 		System.out.print("Enter the password again. ");
 		if(firstEnteredPass.equals(sc.nextLine()))
 			uList.add(new User(createdUName, firstEnteredPass));
-		//else
-			//newUserSetup();
+		else {
+			System.out.println("Passwords do not match try again!");
+			newUserSetup(createdUName);
+		}
+	}
+	
+	public void newUserSetup(String alreadyCreatedUName) {
+		//Create the User object if passwords don't match
+		System.out.print("Enter a password. ");
+		String firstEnteredPass = sc.nextLine();
+		System.out.print("Enter the password again. ");
+		if(firstEnteredPass.equals(sc.nextLine()))
+			uList.add(new User(alreadyCreatedUName, firstEnteredPass));
+		else {
+			System.out.println("Passwords do not match try again!");
+			newUserSetup(alreadyCreatedUName);
+		}
 	}
 
 	public void login() {
@@ -45,7 +60,7 @@ public class UserLogin {
 		User loginUser;
 		System.out.println("Enter your username, or press enter to exit. ");
 		String potentialUserName = sc.nextLine();
-		while(!(potentialUserName.equals("/n")) || (userAccess == false)) {
+		while(!(potentialUserName.equals("/n")) && (userAccess == false)) {
 			if(existsUserByName(potentialUserName) == true) {
 				loginUser = findUserByName(potentialUserName);
 				System.out.println("Please enter your password");
@@ -53,8 +68,10 @@ public class UserLogin {
 				if(loginUser.getPassword().equals(potentialPassword)) {
 					userAccess = true;
 				}
-			} else {
+			} else if(!(potentialUserName.equals("/n"))) {
 				System.out.println("This is not a valid username.");
+				System.out.println("Enter your username, or press enter to exit. ");
+				potentialUserName = sc.nextLine();
 			}
 		}
 	}
