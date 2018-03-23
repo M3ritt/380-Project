@@ -2,7 +2,7 @@ package App;
 
 import static org.junit.Assert.*;
 import java.util.Scanner;
-
+import java.io.ByteArrayInputStream;
 import org.junit.Ignore;
 import org.junit.Test;
 import App.*;
@@ -17,33 +17,60 @@ public class UserLoginTest {
 		assertTrue(ul.existsUserByName("Taddy Mason"));
 	}
 	
-	
-	@Test @Ignore
+	@Test
+	public void testCallToArms() {
+		ul = new UserLogin();
+		String data = "yes\n" + "user\n" + "password\n" + "password\n" + "user\n" + "password\n";
+		System.setIn(new ByteArrayInputStream(data.getBytes()));
+		Scanner sc = new Scanner(System.in);
+		ul.callToArms();
+		assertTrue(ul.existsUserByName("user"));
+		assertTrue(ul.getUserAccess());
+	}
+			
+	@Test
 	public void testLogin() {
 		ul = new UserLogin();
 		ul.addUser(new User("Taddy Mason", "password"));
-//		ul.login("Taddy Mason", "password");
-		ul.login();
+		String stuff = "Taddy Mason\n" +"password\n";
+		System.setIn(new ByteArrayInputStream(stuff.getBytes()));
+		Scanner sc = new Scanner(System.in);
+		ul.login(sc);
 		assertTrue(ul.getUserAccess());
 	}
 
-	@Test @Ignore
+	@Test
 	public void testNewUserSetup() {
 		ul = new UserLogin();
 		User u = new User("Taddy Mason", "password");
-//		ul.newUserSetup("Taddy Mason", "password", "password");
-		ul.newUserSetup();
+		String j = "Taddy Mason\n" + "password\n" + "password\n";
+		System.setIn(new ByteArrayInputStream(j.getBytes()));
+		Scanner sc = new Scanner(System.in);
+		ul.newUserSetup(sc);
 		assertTrue(ul.existsUserByName("Taddy Mason"));
 	}
 	
-	@Test @Ignore
+	@Test
 	public void testNewUserThenLogin() {
 		ul = new UserLogin();
-//		ul.newUserSetup("Taddy Mason", "password", "password");
-//		ul.login("Taddy Mason", "password");
-		ul.newUserSetup();
-		ul.login();
+		String k = "Taddy Mason\n" + "password\n" + "password\n" + "Taddy Mason\n" + "password\n";
+		System.setIn(new ByteArrayInputStream(k.getBytes()));
+		Scanner sc = new Scanner(System.in);
+		ul.newUserSetup(sc);
+		ul.login(sc);
 		assertTrue(ul.getUserAccess());
+	}
+	
+	@Test
+	public void testLimitOfCallToArms() {
+		ul = new UserLogin();
+		String data = "yes\n" + "user\n" + "password\n" + 
+					  "password\n" + "user\n" + "o\n" +
+					  "o\n" + "o\n" + "o\n";
+		System.setIn(new ByteArrayInputStream(data.getBytes()));
+		Scanner sc = new Scanner(System.in);
+		ul.callToArms();
+		assertFalse(ul.getUserAccess());
 	}
 	
 }

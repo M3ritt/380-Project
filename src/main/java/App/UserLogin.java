@@ -11,22 +11,39 @@ public class UserLogin {
 	private boolean userAccess;
 	
 	public UserLogin() {
-		sc = new Scanner(System.in);
+		//sc = new Scanner(System.in);
 		userAccess = false;
 		uList = new ArrayList<>();
 	}
 	
 	public void callToArms() {
 		System.out.println("New User?");
+		sc = new Scanner(System.in);
 		String userStatus = sc.nextLine();
-		if(userStatus.equalsIgnoreCase("Yes") || userStatus.equalsIgnoreCase("Y")) {
-			newUserSetup();
-			login();
-		} else
-			login();
+		if(userStatus.equalsIgnoreCase("No") || userStatus.equalsIgnoreCase("N")) {
+			login(sc);
+		} else if(userStatus.equalsIgnoreCase("Yes") || userStatus.equalsIgnoreCase("Y")) {
+			newUserSetup(sc);
+			login(sc);
+		} else {
+			callToArms(sc);
+		}
 	}
 	
-	public void newUserSetup() {
+	public void callToArms(Scanner sc) {
+		System.out.println("New User?");
+		String userStatus = sc.nextLine();
+		if(userStatus.equalsIgnoreCase("No") || userStatus.equalsIgnoreCase("N")) {
+			login(sc);
+		} else if(userStatus.equalsIgnoreCase("Yes") || userStatus.equalsIgnoreCase("Y")) {
+			newUserSetup(sc);
+			login(sc);
+		} else {
+			callToArms(sc);
+		}
+	}
+	
+	public void newUserSetup(Scanner sc) {
 		//Create the User object
 		System.out.print("Enter a username. ");
 		String createdUName = sc.nextLine();
@@ -37,11 +54,11 @@ public class UserLogin {
 			uList.add(new User(createdUName, firstEnteredPass));
 		else {
 			System.out.println("Passwords do not match try again!");
-			newUserSetup(createdUName);
+			newUserSetup(createdUName, sc);
 		}
 	}
 	
-	public void newUserSetup(String alreadyCreatedUName) {
+	public void newUserSetup(String alreadyCreatedUName, Scanner sc) {
 		//Create the User object if passwords don't match
 		System.out.print("Enter a password. ");
 		String firstEnteredPass = sc.nextLine();
@@ -50,30 +67,40 @@ public class UserLogin {
 			uList.add(new User(alreadyCreatedUName, firstEnteredPass));
 		else {
 			System.out.println("Passwords do not match try again!");
-			newUserSetup(alreadyCreatedUName);
+			newUserSetup(alreadyCreatedUName, sc);
 		}
 	}
 
-	public void login() {
+	public void login(Scanner sc) {
 		//Call the database the users are saved in
 		//Compare to see if this is a valid user
 		User loginUser;
 		System.out.println("Enter your username, or press enter to exit. ");
 		String potentialUserName = sc.nextLine();
-		while(!(potentialUserName.equals("/n")) && (userAccess == false)) {
+		int tries = 0;
+		while(!(potentialUserName.equals("")) && (userAccess == false)) {
 			if(existsUserByName(potentialUserName) == true) {
 				loginUser = findUserByName(potentialUserName);
 				System.out.println("Please enter your password");
 				String potentialPassword = sc.nextLine();
 				if(loginUser.getPassword().equals(potentialPassword)) {
 					userAccess = true;
+				} else if(tries < 3) {
+					System.out.println("Not the correct password. You have " + (3 - tries) + " tries remaining");
+					tries++;
+				} else {
+					break;
 				}
-			} else if(!(potentialUserName.equals("/n"))) {
+			} else if(!(potentialUserName.equals(""))) {
 				System.out.println("This is not a valid username.");
 				System.out.println("Enter your username, or press enter to exit. ");
 				potentialUserName = sc.nextLine();
+			} else {
+				callToArms();
 			}
 		}
+		if(potentialUserName.equals(""))
+			callToArms(sc);
 	}
 	
 	public boolean existsUserByName(String findIfExists) {
@@ -98,5 +125,9 @@ public class UserLogin {
 	
 	public boolean getUserAccess() {
 		return userAccess;
+	}
+	
+	public Scanner getScanner() {
+		return sc;
 	}
 }
