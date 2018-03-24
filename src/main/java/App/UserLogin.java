@@ -26,6 +26,7 @@ public class UserLogin {
 			newUserSetup(sc);
 			login(sc);
 		} else {
+			System.out.println("Not a valid answer.");
 			callToArms(sc);
 		}
 	}
@@ -89,6 +90,7 @@ public class UserLogin {
 					System.out.println("Not the correct password. You have " + (3 - tries) + " tries remaining");
 					tries++;
 				} else {
+					System.out.println("You have been locked out.");
 					break;
 				}
 			} else if(!(potentialUserName.equals(""))) {
