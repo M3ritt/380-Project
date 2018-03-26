@@ -17,7 +17,7 @@ public class UserLogin {
 	}
 	
 	public void callToArms() {
-		System.out.println("New User?");
+		System.out.println("New User? Or press enter to exit.");
 		sc = new Scanner(System.in);
 		String userStatus = sc.nextLine();
 		if(userStatus.equalsIgnoreCase("No") || userStatus.equalsIgnoreCase("N")) {
@@ -25,6 +25,8 @@ public class UserLogin {
 		} else if(userStatus.equalsIgnoreCase("Yes") || userStatus.equalsIgnoreCase("Y")) {
 			newUserSetup(sc);
 			login(sc);
+		} else if(userStatus.equals("")) {
+			return;
 		} else {
 			System.out.println("Not a valid answer.");
 			callToArms(sc);
@@ -32,13 +34,15 @@ public class UserLogin {
 	}
 	
 	public void callToArms(Scanner sc) {
-		System.out.println("New User?");
+		System.out.println("New User? Or press enter to exit.");
 		String userStatus = sc.nextLine();
 		if(userStatus.equalsIgnoreCase("No") || userStatus.equalsIgnoreCase("N")) {
 			login(sc);
 		} else if(userStatus.equalsIgnoreCase("Yes") || userStatus.equalsIgnoreCase("Y")) {
 			newUserSetup(sc);
 			login(sc);
+		} else if(userStatus.equals("")) {
+			return;
 		} else {
 			callToArms(sc);
 		}
@@ -131,5 +135,14 @@ public class UserLogin {
 	
 	public Scanner getScanner() {
 		return sc;
+	}
+	
+	public void setUserList(ArrayList<User> ul) {
+		this.uList = ul;
+	}
+
+	public void writeToXML() {
+		UserXMLWriter uxmlw = new UserXMLWriter();
+		uxmlw.write(this.uList);
 	}
 }

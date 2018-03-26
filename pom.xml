@@ -38,6 +38,26 @@
           		<target>1.8</target>
         		</configuration>
     </plugin>
+    <plugin>
+       <groupId>org.apache.maven.plugins</groupId>
+       <artifactId>maven-clean-plugin</artifactId>
+       <version>3.0.0</version>
+       <configuration>
+        <excludeDefaultDirectories>true</excludeDefaultDirectories>
+          <filesets>
+            <fileset>
+                <directory>target</directory>
+                <includes>
+                    <include>**</include>
+                </includes>
+                <excludes>
+                    <exclude>users.xml</exclude>
+                    <exclude>InventoryFile.xml</exclude>
+                </excludes>
+            </fileset>
+        </filesets>
+      </configuration>
+    </plugin>
   </plugins>
 </build>
 </project>

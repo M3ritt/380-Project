@@ -20,26 +20,34 @@ public class Main{
 	public static void main(String[] args){
         Inventory invt;
         Register reg;
-        ArrayList<User> uList = new ArrayList<>();
+        UserLogin ul = new UserLogin();
 
         SAXParserFactory spf = SAXParserFactory.newInstance();
         String fileName = "InventoryFile.xml";
         
-        try{
+        try {
             InputStream xmlInput = new FileInputStream(fileName);
             SAXParser saxParser = spf.newSAXParser();
             InventoryParser ixmlp = new InventoryParser();
             saxParser.parse(xmlInput, ixmlp);
             invt = ixmlp.getInvt();
-        }
-        catch(SAXException|ParserConfigurationException|IOException e){
+            
+            //SAXParserFactory spf = SAXParserFactory.newInstance();
+    			String fileName2 = "users.xml";
+    			InputStream xmlInput2 = new FileInputStream(fileName2);
+    			InventoryParser ixmlp2 = new InventoryParser();
+			saxParser.parse(xmlInput2, ixmlp2);
+
+			System.out.println(ixmlp2.getUserList().size());
+			ul.setUserList(ixmlp2.getUserList());
+        } catch(SAXException|ParserConfigurationException|IOException e) {
             e.printStackTrace();
             invt = null;
         }
         
         //Login the user to check their level of access
-        UserLogin ul = new UserLogin();
         ul.callToArms();
+        ul.writeToXML();
         
         if(ul.getUserAccess()) {
         		reg = new Register(invt);
