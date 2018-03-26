@@ -1,26 +1,56 @@
 package App;
 
 import static org.junit.Assert.*;
+
+import java.util.ArrayList;
 import java.util.Scanner;
+
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+
 import java.io.ByteArrayInputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.xml.sax.SAXException;
+
 import App.*;
 
 public class UserLoginTest {
 	UserLogin ul;
+	ArrayList<User> uList;
+	@Before
+	public void setUp() {
+		SAXParserFactory spf = SAXParserFactory.newInstance();
+		String fileName = "users.xml";
+    		try {
+    			SAXParser saxParser = spf.newSAXParser();        
+			InputStream xmlInput = new FileInputStream(fileName);
+			InventoryParser ixmlp = new InventoryParser();
+			saxParser.parse(xmlInput, ixmlp);
+			uList = ixmlp.getUserList();
+    		} catch(SAXException|ParserConfigurationException|IOException e) {
+    			uList = null;
+    			e.printStackTrace();
+    		}
+	}	
 	
 	@Test
 	public void testExistsUserByName() {
-		ul = new UserLogin();
+		ul = new UserLogin(uList);
 		ul.addUser(new User("Taddy Mason", "password"));
 		assertTrue(ul.existsUserByName("Taddy Mason"));
 	}
 	
 	@Test
 	public void testCallToArms() {
-		ul = new UserLogin();
-		String data = "yes\n" + "user\n" + "password\n" + "password\n" + "user\n" + "password\n";
+		ul = new UserLogin(uList);
+		String data = "yes\n" + "poser\n" + "password\n" + "password\n" + "poser\n" + "password\n";
 		System.setIn(new ByteArrayInputStream(data.getBytes()));
 		Scanner sc = new Scanner(System.in);
 		ul.callToArms();
@@ -30,7 +60,7 @@ public class UserLoginTest {
 			
 	@Test
 	public void testLogin() {
-		ul = new UserLogin();
+		ul = new UserLogin(uList);
 		ul.addUser(new User("Taddy Mason", "password"));
 		String stuff = "Taddy Mason\n" +"password\n";
 		System.setIn(new ByteArrayInputStream(stuff.getBytes()));
@@ -41,7 +71,7 @@ public class UserLoginTest {
 
 	@Test
 	public void testNewUserSetup() {
-		ul = new UserLogin();
+		ul = new UserLogin(uList);
 		User u = new User("Taddy Mason", "password");
 		String j = "Taddy Mason\n" + "password\n" + "password\n";
 		System.setIn(new ByteArrayInputStream(j.getBytes()));
@@ -52,7 +82,7 @@ public class UserLoginTest {
 	
 	@Test
 	public void testNewUserThenLogin() {
-		ul = new UserLogin();
+		ul = new UserLogin(uList);
 		String k = "Taddy Mason\n" + "password\n" + "password\n" + "Taddy Mason\n" + "password\n";
 		System.setIn(new ByteArrayInputStream(k.getBytes()));
 		Scanner sc = new Scanner(System.in);
@@ -63,7 +93,7 @@ public class UserLoginTest {
 	
 	@Test
 	public void testLimitOfCallToArms() {
-		ul = new UserLogin();
+		ul = new UserLogin(uList);
 		String data = "yes\n" + "user\n" + "password\n" + 
 					  "password\n" + "user\n" + "o\n" +
 					  "o\n" + "o\n" + "o\n";
@@ -71,6 +101,16 @@ public class UserLoginTest {
 		Scanner sc = new Scanner(System.in);
 		ul.callToArms();
 		assertFalse(ul.getUserAccess());
+	}
+	
+	@Test @Ignore
+	public void testExitstingUserInCallToArms() {
+		ul = new UserLogin(uList);
+		String data = "no\n" + "user\n" + "pass\n";
+	System.setIn(new ByteArrayInputStream(data.getBytes()));
+	Scanner sc = new Scanner(System.in);
+	ul.callToArms();
+	assertTrue(ul.getUserAccess());
 	}
 	
 }

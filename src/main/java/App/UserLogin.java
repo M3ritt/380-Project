@@ -16,6 +16,10 @@ public class UserLogin {
 		uList = new ArrayList<>();
 	}
 	
+	public UserLogin(ArrayList<User> ul) {
+		this.uList = ul;
+	}
+	
 	public void callToArms() {
 		System.out.println("New User? Or press enter to exit.");
 		sc = new Scanner(System.in);
