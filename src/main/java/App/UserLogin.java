@@ -147,6 +147,6 @@ public class UserLogin {
 
 	public void writeToXML() {
 		UserXMLWriter uxmlw = new UserXMLWriter();
-		uxmlw.write(this.uList);
+		uxmlw.writeForUsers(this.uList);
 	}
 }

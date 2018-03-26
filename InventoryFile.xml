@@ -1,27 +1,28 @@
-<xml version="1.0" encoding="UTF-8">
-	<item name="Rick Sanchez" price="8.99" brand="adult swim"/>
-	<item name="Basketball" price="12.99" brand="wilson"/>
-	<item name="Soccer ball" price="12.99" brand="wilson"/>
-	<item name="Tennis Racket" price="49.99" brand="wilson"/>
-	<item name="Bowling Ball" price="129.99" brand="Storm"/>
-	<item name="Basketball Hoop" price="249.99" brand="lifetime"/>
-	<item name="Basketball Shoes" price="179.99" brand="adidas"/>
-	<item name="Bowling Shoes" price="249.99" brand="Storm"/>
-	<item name="Tennis Ball" price=".99" brand="wilson"/>
-	<item name="Tennis Ball(Set of 3)" price="9.99" brand="wilson"/>
-	<item name="Golf Balls" price="49.99" brand="cleveland"/>
-	<item name="Golf club Set" price="499.99" brand="cleveland"/>
-	<item name="Basketball" price="12.99" brand="wilson"/>	
-	<item name="Basketball" price="12.99" brand="wilson"/>	
-	<item name="Basketball" price="12.99" brand="wilson"/>	
-	<item name="Basketball" price="12.99" brand="wilson"/>	
-	<item name="Basketball" price="12.99" brand="wilson"/>	
-	<item name="Basketball" price="12.99" brand="wilson"/>	
-	<item name="Tennis Racket" price="49.99" brand="wilson"/>
-	<item name="Tennis Racket" price="49.99" brand="wilson"/>
-	<item name="Soccer ball" price="12.99" brand="wilson"/>
-	<item name="Soccer ball" price="12.99" brand="wilson"/>
-	<item name="Rick Sanchez" price="8.99" brand="adult swim"/>
-	<item name="Soccer ball" price="12.99" brand="wilson"/>
-	<item name="Rick Sanchez" price="8.99" brand="adult swim"/>
-</xml>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Items>
+    <item brand="adult swim" name="Rick Sanchez" price="8.99"/>
+    <item brand="adult swim" name="Rick Sanchez" price="8.99"/>
+    <item brand="adult swim" name="Rick Sanchez" price="8.99"/>
+    <item brand="wilson" name="Basketball" price="12.99"/>
+    <item brand="wilson" name="Basketball" price="12.99"/>
+    <item brand="wilson" name="Basketball" price="12.99"/>
+    <item brand="wilson" name="Basketball" price="12.99"/>
+    <item brand="wilson" name="Basketball" price="12.99"/>
+    <item brand="wilson" name="Basketball" price="12.99"/>
+    <item brand="wilson" name="Basketball" price="12.99"/>
+    <item brand="wilson" name="Soccer ball" price="12.99"/>
+    <item brand="wilson" name="Soccer ball" price="12.99"/>
+    <item brand="wilson" name="Soccer ball" price="12.99"/>
+    <item brand="wilson" name="Soccer ball" price="12.99"/>
+    <item brand="wilson" name="Tennis Racket" price="49.99"/>
+    <item brand="wilson" name="Tennis Racket" price="49.99"/>
+    <item brand="wilson" name="Tennis Racket" price="49.99"/>
+    <item brand="Storm" name="Bowling Ball" price="129.99"/>
+    <item brand="lifetime" name="Basketball Hoop" price="249.99"/>
+    <item brand="adidas" name="Basketball Shoes" price="179.99"/>
+    <item brand="Storm" name="Bowling Shoes" price="249.99"/>
+    <item brand="wilson" name="Tennis Ball" price="0.99"/>
+    <item brand="wilson" name="Tennis Ball(Set of 3)" price="9.99"/>
+    <item brand="cleveland" name="Golf Balls" price="49.99"/>
+    <item brand="cleveland" name="Golf club Set" price="499.99"/>
+</Items>

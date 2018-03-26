@@ -93,4 +93,7 @@ public class Inventory {
 		return false;
 	}
 	
+	public ArrayList<Item> getInventory() {
+		return this.iList;
+	}
 }

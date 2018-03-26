@@ -106,6 +106,7 @@ public class Main{
         			System.out.println("What would you like to do?");
         			command = sc.nextLine();
         		}
+        		reg.writeToXML();
         } else {
         		System.out.println("Not a valid user.");
         }

@@ -165,5 +165,9 @@ public class Register {
 	public void setTaxRate(int taxRate) {
 		this.taxRate = taxRate;
 	}
-
+	
+	public void writeToXML() {
+		UserXMLWriter uxmlw = new UserXMLWriter();
+		uxmlw.writeForInventory(inventory.getInventory());
+	}
 }
