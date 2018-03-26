@@ -20,7 +20,7 @@ public class Main{
 	public static void main(String[] args){
         Inventory invt;
         Register reg;
-        UserLogin ul = new UserLogin();
+        UserLogin ul;
 
         SAXParserFactory spf = SAXParserFactory.newInstance();
         String fileName = "InventoryFile.xml";
@@ -39,9 +39,11 @@ public class Main{
 			saxParser.parse(xmlInput2, ixmlp2);
 
 			System.out.println(ixmlp2.getUserList().size());
-			ul.setUserList(ixmlp2.getUserList());
+			//ul.setUserList(ixmlp2.getUserList());
+			ul = new UserLogin(ixmlp2.getUserList());
         } catch(SAXException|ParserConfigurationException|IOException e) {
             e.printStackTrace();
+            ul = new UserLogin();
             invt = null;
         }
         
