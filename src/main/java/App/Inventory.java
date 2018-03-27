@@ -93,6 +93,18 @@ public class Inventory {
 		return false;
 	}
 	
+	public void findItems(String itemName) {
+		boolean hasItem = false;
+		for(Item i : iList) {
+			if(itemName.toLowerCase().equals(i.getName().toLowerCase()) && (i.getAmount()>0)) {
+				System.out.println(i);
+				hasItem = true;
+			}	
+		}
+		if(hasItem == false)
+				System.out.println("We do not have any: "+itemName+ " .");
+	}
+	
 	public ArrayList<Item> getInventory() {
 		return this.iList;
 	}

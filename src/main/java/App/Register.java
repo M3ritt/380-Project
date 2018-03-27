@@ -95,6 +95,10 @@ public class Register {
 	public void checkInventory() {
 		inventory.getItems();
 	}
+	
+	public void findItems(String name) {
+		inventory.findItems(name);
+	}
 
 	public void itemReturn(String eName, String brandName) {
 		Item itemTemp = new Item(eName, 0.0d, brandName);

@@ -48,7 +48,8 @@ public class Main{
         }
         
         //Login the user to check their level of access
-        ul.callToArms();
+//        ul.callToArms();
+        ul.login(sc);
         ul.writeToXML();
         
         if(ul.getUserAccess()) {
@@ -59,6 +60,20 @@ public class Main{
         
         		while(!(command.equalsIgnoreCase("exit"))) {
         			switch(command) {
+        				//should make it only for manager
+        			 	case "add user":
+        			 		ul.addOneUser(sc);
+        			 		ul.writeToXML();
+        			 		break;
+        			 	//should make it only for manager
+        			 	case "remove user":
+        			 		ul.removeOneUser(sc);
+        			 		ul.writeToXML();
+        			 		break;
+        			 	//should make it only for manager	
+        			 	case "see users":
+        			 		ul.getUsers();
+        			 		break;
         				case "add item":
         					System.out.print("Please enter the item you would like to add: ");
         					String enteredName = sc.nextLine();
@@ -79,6 +94,11 @@ public class Main{
         					break;
         				case "inventory":
         					reg.checkInventory();
+        					break;
+        				case "find item":
+        					System.out.println("Please enter the item to be found: ");
+        					String itemToFind = sc.nextLine();
+        					reg.findItems(itemToFind);
         					break;
         				case "remove item":
         					System.out.print("Enter the name of the item you want to remove: ");
