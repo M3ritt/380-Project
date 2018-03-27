@@ -54,7 +54,7 @@ public class UserLoginTest {
 		System.setIn(new ByteArrayInputStream(data.getBytes()));
 		Scanner sc = new Scanner(System.in);
 		ul.callToArms();
-		assertTrue(ul.existsUserByName("user"));
+		assertTrue(ul.existsUserByName("manager"));
 		assertTrue(ul.getUserAccess());
 	}
 			
@@ -78,6 +78,28 @@ public class UserLoginTest {
 		Scanner sc = new Scanner(System.in);
 		ul.newUserSetup(sc);
 		assertTrue(ul.existsUserByName("Taddy Mason"));
+	}
+	
+	@Test
+	public void testAddOneUser() {
+		ul = new UserLogin(uList);
+		User u = new User("Taddy Mason", "password");
+		String j = "Taddy Mason\n" + "password\n" + "password\n";
+		System.setIn(new ByteArrayInputStream(j.getBytes()));
+		Scanner sc = new Scanner(System.in);
+		ul.addOneUser(sc);
+		assertTrue(ul.existsUserByName("Taddy Mason"));
+	}
+	
+	public void testRemoveOneUser() {
+		ul = new UserLogin(uList);
+		User u = new User("Taddy Mason", "password");
+		String j = "Taddy Mason\n" + "y";
+		System.setIn(new ByteArrayInputStream(j.getBytes()));
+		Scanner sc = new Scanner (System.in);
+		ul.removeOneUser(sc);
+		assertFalse(ul.existsUserByName("Taddy Mason"));
+		assertTrue(ul.existsUserByName("manager"));
 	}
 	
 	@Test

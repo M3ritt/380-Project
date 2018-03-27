@@ -36,4 +36,9 @@ public class User {
 	public void userSale(double sale) {
 		this.salesTotal += sale;
 	}
+	
+	@Override
+	public String toString() {
+		return "User: "+getUserName() + " with the password: "+getPassword();
+	}
 }

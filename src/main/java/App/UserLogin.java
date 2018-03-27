@@ -9,17 +9,17 @@ public class UserLogin {
 	private Scanner sc;
 	private ArrayList<User> uList;
 	private boolean userAccess;
-	
+
 	public UserLogin() {
 		//sc = new Scanner(System.in);
 		userAccess = false;
 		uList = new ArrayList<>();
 	}
-	
+
 	public UserLogin(ArrayList<User> ul) {
 		this.uList = ul;
 	}
-	
+
 	public void callToArms() {
 		System.out.println("New User? Or press enter to exit.");
 		sc = new Scanner(System.in);
@@ -31,12 +31,14 @@ public class UserLogin {
 			login(sc);
 		} else if(userStatus.equals("")) {
 			return;
+		}else if(userStatus.equalsIgnoreCase("No") || userStatus.equalsIgnoreCase("N")) {
+			login(sc);
 		} else {
 			System.out.println("Not a valid answer.");
 			callToArms(sc);
 		}
 	}
-	
+
 	public void callToArms(Scanner sc) {
 		System.out.println("New User? Or press enter to exit.");
 		String userStatus = sc.nextLine();
@@ -51,7 +53,49 @@ public class UserLogin {
 			callToArms(sc);
 		}
 	}
-	
+
+	public void addOneUser(Scanner sc) {
+		boolean validName = false;
+		System.out.print("Enter a username. ");
+		String createdUName = sc.nextLine();
+		for(User u:uList) {
+			if(createdUName.toLowerCase().equals(u.getUserName().toLowerCase()))
+				validName = false;
+			else {
+				validName = true;
+			}
+		}
+		if(validName == true) {
+			System.out.print("Enter a password. ");
+			String firstEnteredPass = sc.nextLine();
+			System.out.print("Enter the password again. ");
+			if(firstEnteredPass.equals(sc.nextLine())) 
+				uList.add(new User(createdUName, firstEnteredPass));
+			else {
+				System.out.println("Passwords do not match try again!");
+				newUserSetup(createdUName, sc);
+			}
+		}else
+			System.out.println("That username is already used.");
+	}
+
+	public void removeOneUser(Scanner sc) {
+		String userState = "";
+		System.out.println("Enter a username to be removed: ");
+		String removedName = sc.nextLine();
+		if(existsUserByName(removedName)) {
+			System.out.println("Do you wish to remove: "+removedName+ " ?");
+			userState = sc.nextLine();			
+			if(userState.equalsIgnoreCase("Yes") || userState.equalsIgnoreCase("Y")) {
+				User removed = findUserByName(removedName);
+				uList.remove(removed);
+				System.out.println(removedName + " was removed.");
+			} else 
+				System.out.println(removedName+ " was not removed.");
+		}else 
+			System.out.println(removedName + " is not the system.");
+	}
+
 	public void newUserSetup(Scanner sc) {
 		//Create the User object
 		System.out.print("Enter a username. ");
@@ -66,7 +110,7 @@ public class UserLogin {
 			newUserSetup(createdUName, sc);
 		}
 	}
-	
+
 	public void newUserSetup(String alreadyCreatedUName, Scanner sc) {
 		//Create the User object if passwords don't match
 		System.out.print("Enter a password. ");
@@ -112,35 +156,41 @@ public class UserLogin {
 		if(potentialUserName.equals(""))
 			callToArms(sc);
 	}
-	
+
 	public boolean existsUserByName(String findIfExists) {
 		for(User u:uList) {
-			if(u.getUserName().equals(findIfExists))
+			if(u.getUserName().toLowerCase().equals(findIfExists.toLowerCase()))
 				return true;
 		}
 		return false;
 	}
-	
+
 	public User findUserByName(String userNameToFindUser) {
 		for(User u:uList) {
-			if(u.getUserName().equals(userNameToFindUser))
+			if(u.getUserName().toLowerCase().equals(userNameToFindUser.toLowerCase()))
 				return u;
 		}
 		return null;
 	}
-	
+
+	public void getUsers() {
+		for(User u:uList) {
+			System.out.println(u);
+		}
+	}
+
 	public void addUser(User u) {
 		uList.add(u);
 	}
-	
+
 	public boolean getUserAccess() {
 		return userAccess;
 	}
-	
+
 	public Scanner getScanner() {
 		return sc;
 	}
-	
+
 	public void setUserList(ArrayList<User> ul) {
 		this.uList = ul;
 	}
