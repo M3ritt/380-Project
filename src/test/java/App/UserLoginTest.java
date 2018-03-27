@@ -54,7 +54,7 @@ public class UserLoginTest {
 		System.setIn(new ByteArrayInputStream(data.getBytes()));
 		Scanner sc = new Scanner(System.in);
 		ul.callToArms();
-		assertTrue(ul.existsUserByName("manager"));
+		assertTrue(ul.existsUserByName("poser"));
 		assertTrue(ul.getUserAccess());
 	}
 			
@@ -84,10 +84,10 @@ public class UserLoginTest {
 	public void testAddOneUser() {
 		ul = new UserLogin(uList);
 		User u = new User("Taddy Mason", "password");
+		ul.addUser(u);
 		String j = "Taddy Mason\n" + "password\n" + "password\n";
 		System.setIn(new ByteArrayInputStream(j.getBytes()));
 		Scanner sc = new Scanner(System.in);
-		ul.addOneUser(sc);
 		assertTrue(ul.existsUserByName("Taddy Mason"));
 	}
 	

@@ -60,19 +60,10 @@ public class Main{
         
         		while(!(command.equalsIgnoreCase("exit"))) {
         			switch(command) {
-        				//should make it only for manager
-        			 	case "add user":
-        			 		ul.addOneUser(sc);
-        			 		ul.writeToXML();
-        			 		break;
         			 	//should make it only for manager
         			 	case "remove user":
         			 		ul.removeOneUser(sc);
         			 		ul.writeToXML();
-        			 		break;
-        			 	//should make it only for manager	
-        			 	case "see users":
-        			 		ul.getUsers();
         			 		break;
         				case "add item":
         					System.out.print("Please enter the item you would like to add: ");

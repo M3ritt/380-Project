@@ -1,5 +1,5 @@
 package App;
-
+//Please don't mess with this if you don't know how it works...
 import java.util.ArrayList;
 import java.util.Scanner;
 public class UserLogin {
@@ -52,31 +52,6 @@ public class UserLogin {
 		} else {
 			callToArms(sc);
 		}
-	}
-
-	public void addOneUser(Scanner sc) {
-		boolean validName = false;
-		System.out.print("Enter a username. ");
-		String createdUName = sc.nextLine();
-		for(User u:uList) {
-			if(createdUName.toLowerCase().equals(u.getUserName().toLowerCase()))
-				validName = false;
-			else {
-				validName = true;
-			}
-		}
-		if(validName == true) {
-			System.out.print("Enter a password. ");
-			String firstEnteredPass = sc.nextLine();
-			System.out.print("Enter the password again. ");
-			if(firstEnteredPass.equals(sc.nextLine())) 
-				uList.add(new User(createdUName, firstEnteredPass));
-			else {
-				System.out.println("Passwords do not match try again!");
-				newUserSetup(createdUName, sc);
-			}
-		}else
-			System.out.println("That username is already used.");
 	}
 
 	public void removeOneUser(Scanner sc) {
