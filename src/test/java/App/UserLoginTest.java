@@ -129,10 +129,10 @@ public class UserLoginTest {
 	public void testExitstingUserInCallToArms() {
 		ul = new UserLogin(uList);
 		String data = "no\n" + "user\n" + "pass\n";
-	System.setIn(new ByteArrayInputStream(data.getBytes()));
-	Scanner sc = new Scanner(System.in);
-	ul.callToArms();
-	assertTrue(ul.getUserAccess());
+		System.setIn(new ByteArrayInputStream(data.getBytes()));
+		Scanner sc = new Scanner(System.in);
+		ul.callToArms();
+		assertTrue(ul.getUserAccess());
 	}
 	
 }

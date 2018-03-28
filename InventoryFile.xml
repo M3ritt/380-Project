@@ -9,7 +9,6 @@
     <item brand="wilson" name="Basketball" price="12.99"/>
     <item brand="wilson" name="Basketball" price="12.99"/>
     <item brand="wilson" name="Basketball" price="12.99"/>
-    <item brand="wilson" name="Basketball" price="12.99"/>
     <item brand="wilson" name="Soccer ball" price="12.99"/>
     <item brand="wilson" name="Soccer ball" price="12.99"/>
     <item brand="wilson" name="Soccer ball" price="12.99"/>
@@ -23,6 +22,7 @@
     <item brand="Storm" name="Bowling Shoes" price="249.99"/>
     <item brand="wilson" name="Tennis Ball" price="0.99"/>
     <item brand="wilson" name="Tennis Ball(Set of 3)" price="9.99"/>
-    <item brand="cleveland" name="Golf Balls" price="49.99"/>
     <item brand="cleveland" name="Golf club Set" price="499.99"/>
+    <item brand="cleveland" name="Golf Balls" price="49.99"/>
+    <item brand="wilson" name="Basketball" price="12.99"/>
 </Items>

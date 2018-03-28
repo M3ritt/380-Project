@@ -38,8 +38,6 @@ public class Main{
     			InventoryParser ixmlp2 = new InventoryParser();
 			saxParser.parse(xmlInput2, ixmlp2);
 
-			System.out.println(ixmlp2.getUserList().size());
-			//ul.setUserList(ixmlp2.getUserList());
 			ul = new UserLogin(ixmlp2.getUserList());
         } catch(SAXException|ParserConfigurationException|IOException e) {
             e.printStackTrace();

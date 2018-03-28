@@ -7,7 +7,6 @@ public class Inventory {
 	//Generic for items
 	private ArrayList<Item> iList;
 	private int count;
-	private Item temp;
 	
 	public Inventory(ArrayList<Item> iList) {
 		this.iList = iList;
@@ -72,7 +71,7 @@ public class Inventory {
 	public Item get(Item item) {
 		if(iList.contains(item) == true) {
 			for(int i = 0; i <= iList.size(); i++) {
-				temp = iList.get(i);
+				Item temp = iList.get(i);
 				if(temp.getName().equals(item.getName())) {
 					return temp;
 				}
@@ -86,7 +85,7 @@ public class Inventory {
 	
 	public boolean haveBrand(String itemName, String brandName) {
 		for(Item i : iList) {
-			if(i.getBrand().toLowerCase().equals(brandName.toLowerCase()) && (i.getName().toLowerCase() == itemName.toLowerCase())) {
+			if(i.getBrand().equalsIgnoreCase(brandName) && (i.getName().equalsIgnoreCase(itemName))) {
 				return true;
 			}
 		}
@@ -96,7 +95,7 @@ public class Inventory {
 	public void findItems(String itemName) {
 		boolean hasItem = false;
 		for(Item i : iList) {
-			if(itemName.toLowerCase().equals(i.getName().toLowerCase()) && (i.getAmount()>0)) {
+			if(itemName.equalsIgnoreCase(i.getName()) && (i.getAmount() > 0)) {
 				System.out.println(i);
 				hasItem = true;
 			}	

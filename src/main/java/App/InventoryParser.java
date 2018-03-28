@@ -47,7 +47,6 @@ public class InventoryParser extends DefaultHandler {
 			uNam = atts.getValue("username");
 			User u = new User(uNam, pass);
 			uList.add(u);
-			System.out.println("This worked");
 		default:
 			break;
 		}

@@ -31,8 +31,6 @@ public class UserLogin {
 			login(sc);
 		} else if(userStatus.equals("")) {
 			return;
-		}else if(userStatus.equalsIgnoreCase("No") || userStatus.equalsIgnoreCase("N")) {
-			login(sc);
 		} else {
 			System.out.println("Not a valid answer.");
 			callToArms(sc);
@@ -107,7 +105,7 @@ public class UserLogin {
 		String potentialUserName = sc.nextLine();
 		int tries = 0;
 		while(!(potentialUserName.equals("")) && (userAccess == false)) {
-			if(existsUserByName(potentialUserName) == true) {
+			if(existsUserByName(potentialUserName)) {
 				loginUser = findUserByName(potentialUserName);
 				System.out.println("Please enter your password");
 				String potentialPassword = sc.nextLine();
