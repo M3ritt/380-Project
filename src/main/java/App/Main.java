@@ -77,7 +77,7 @@ public class Main{
 				case "change price":
 					System.out.print("Please enter the item to change the price: ");
 					String changedName = sc.nextLine();
-					System.out.println("Please enter the brand of the item: ");
+					System.out.print("Please enter the brand of the item: ");
 					String changedBrand = sc.nextLine();
 					System.out.print("Please enter the new price for the item: ");
 					Double changedPrice = Double.parseDouble(sc.nextLine());        				
@@ -87,14 +87,14 @@ public class Main{
 					reg.checkInventory();
 					break;
 				case "find item":
-					System.out.println("Please enter the item to be found: ");
+					System.out.print("Please enter the item to be found: ");
 					String itemToFind = sc.nextLine();
 					reg.findItems(itemToFind);
 					break;
 				case "remove item":
 					System.out.print("Enter the name of the item you want to remove: ");
 					String eItem = sc.nextLine();
-					System.out.println("Enter the name of the brand of the item: ");
+					System.out.print("Enter the name of the brand of the item: ");
 					String eBrand = sc.nextLine();
 					//invt.removeItemByName(eItem, eBrand);
 					reg.removeItem(eItem, eBrand);
@@ -102,7 +102,7 @@ public class Main{
 				case "return item":
 					System.out.print("Please enter an item to return: ");
 					String tempName = sc.nextLine();
-					System.out.println("Please enter the brand of the item: ");
+					System.out.print("Please enter the brand of the item: ");
 					String itemBrand = sc.nextLine();
 					reg.itemReturn(tempName, itemBrand);
 					break;
@@ -113,11 +113,11 @@ public class Main{
 				//I don't plan to keep the member parts here and will work on members more,  
 				//just wanted to get it started
 				case "add member":
-					System.out.println("What is the members name(first and last): ");
+					System.out.print("What is the members name(first and last): ");
 					String mName = sc.nextLine();
-					System.out.println("What is the members address: ");
+					System.out.print("What is the members address: ");
 					String mAddress = sc.nextLine();				
-					System.out.println("What is the phone number?");
+					System.out.print("What is the phone number?");
 					String number = sc.nextLine();
 					Member newMember = new Member(mName, mAddress, number, Member.level.BRONZE);
 					newMember.setPhoneNumber(number);
@@ -127,7 +127,7 @@ public class Main{
 					ml.seeMembers();
 					break;
 				case "search member":
-					System.out.println("What is the phone number?");
+					System.out.print("What is the phone number?");
 					String possibleNumber = sc.nextLine();
 					Member currentBuyer = ml.findMemberByPhoneNumber(possibleNumber);
 					if(currentBuyer != null) 
@@ -139,7 +139,7 @@ public class Main{
 					System.out.println("Cannot " + command);
 					break;
 				}
-				System.out.println("What would you like to do?");
+				System.out.print("What would you like to do?");
 				command = sc.nextLine();
 			}
 			reg.writeToXML();
