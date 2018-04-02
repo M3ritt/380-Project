@@ -76,35 +76,35 @@ public class Main{
 					break;
 				case "change price":
 					System.out.print("Please enter the item to change the price: ");
-					String changedName = sc.nextLine();
+					enteredName = sc.nextLine();
 					System.out.print("Please enter the brand of the item: ");
-					String changedBrand = sc.nextLine();
+					brandName = sc.nextLine();
 					System.out.print("Please enter the new price for the item: ");
-					Double changedPrice = Double.parseDouble(sc.nextLine());        				
-					reg.changeItemPrice(changedName, changedPrice, changedBrand);
+					centeredDouble = Double.parseDouble(sc.nextLine());        				
+					reg.changeItemPrice(enteredName, enteredDouble, brandName);
 					break;
 				case "inventory":
 					reg.checkInventory();
 					break;
 				case "find item":
 					System.out.print("Please enter the item to be found: ");
-					String itemToFind = sc.nextLine();
-					reg.findItems(itemToFind);
+					enteredName = sc.nextLine();
+					reg.findItems(enteredName);
 					break;
 				case "remove item":
 					System.out.print("Enter the name of the item you want to remove: ");
-					String eItem = sc.nextLine();
+					enteredName = sc.nextLine();
 					System.out.print("Enter the name of the brand of the item: ");
-					String eBrand = sc.nextLine();
+					brandName = sc.nextLine();
 					//invt.removeItemByName(eItem, eBrand);
-					reg.removeItem(eItem, eBrand);
+					reg.removeItem(enteredName, brandName);
 					break;
 				case "return item":
 					System.out.print("Please enter an item to return: ");
-					String tempName = sc.nextLine();
+					enteredName = sc.nextLine();
 					System.out.print("Please enter the brand of the item: ");
-					String itemBrand = sc.nextLine();
-					reg.itemReturn(tempName, itemBrand);
+					brandName = sc.nextLine();
+					reg.itemReturn(enteredName, brandName);
 					break;
 				case "sale":
 					//This should be looped until there are no more items to add 
@@ -128,8 +128,8 @@ public class Main{
 					break;
 				case "search member":
 					System.out.print("What is the phone number?");
-					String possibleNumber = sc.nextLine();
-					Member currentBuyer = ml.findMemberByPhoneNumber(possibleNumber);
+					number = sc.nextLine();
+					Member currentBuyer = ml.findMemberByPhoneNumber(number);
 					if(currentBuyer != null) 
 						System.out.println(currentBuyer);
 					else

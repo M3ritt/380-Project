@@ -6,8 +6,6 @@ import java.text.DecimalFormat;
 
 public class Register {
 
-	//private Item itemTemp = new Item();
-	private ArrayList<Item> iList;
 	private Inventory inventory;
 	private double dailySalesTotal = 0;
 	private double saleTotal, amountGiven, changeDue, taxRate, newPrice;
@@ -103,9 +101,7 @@ public class Register {
 	public void itemReturn(String eName, String brandName) {
 		Item itemTemp = new Item(eName, 0.0d, brandName);
 		itemTemp = inventory.findItemByName(itemTemp.getName(), brandName);
-		if (itemTemp != null) {
-			//			System.out.print("Please enter the price of what is being returned: ");
-			//			itemTemp.setPrice(sc.nextDouble());	
+		if (itemTemp != null) {	
 			inventory.addItem(itemTemp);
 			changeDue = itemTemp.getPrice() * taxRate;
 			changeDue = Math.round(changeDue * 100);
