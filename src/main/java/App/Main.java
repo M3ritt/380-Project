@@ -14,9 +14,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main{
-
 	static Scanner sc = new Scanner(System.in);
-
+	
 	public static void main(String[] args){
 		Inventory invt;
 		Register reg;
@@ -80,7 +79,7 @@ public class Main{
 					System.out.print("Please enter the brand of the item: ");
 					brandName = sc.nextLine();
 					System.out.print("Please enter the new price for the item: ");
-					centeredDouble = Double.parseDouble(sc.nextLine());        				
+					enteredDouble = Double.parseDouble(sc.nextLine());        				
 					reg.changeItemPrice(enteredName, enteredDouble, brandName);
 					break;
 				case "inventory":
