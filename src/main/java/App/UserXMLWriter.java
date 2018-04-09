@@ -20,39 +20,39 @@ import java.util.ArrayList;
 public class UserXMLWriter {
 	public void writeForUsers(ArrayList<User> ul) {
 		try {
-			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-			Document doc = dBuilder.newDocument();
+			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+			DocumentBuilder db = dbf.newDocumentBuilder();
+			Document d = db.newDocument();
 
-			Element user = doc.createElement("Users");
-			doc.appendChild(user);
+			Element user = d.createElement("Users");
+			d.appendChild(user);
 
 			for(User u:ul) {
-				Element info = doc.createElement("user");
+				Element info = d.createElement("user");
 
-				Attr attr1 = doc.createAttribute("password");
+				Attr attr1 = d.createAttribute("password");
 				attr1.setValue(u.getPassword());
 				info.setAttributeNode(attr1);
 
-				Attr attr2 = doc.createAttribute("username");
+				Attr attr2 = d.createAttribute("username");
 				attr2.setValue(u.getUserName());
 				info.setAttributeNode(attr2);
 				user.appendChild(info);
 			}
 
 			// write the content into xml file
-			TransformerFactory transformerFactory = TransformerFactory.newInstance();
-			Transformer transformer = transformerFactory.newTransformer();
-			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-			transformer.setOutputProperty(OutputKeys.DOCTYPE_PUBLIC,"yes");
-			transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
-			DOMSource source = new DOMSource(doc);
+			TransformerFactory tf = TransformerFactory.newInstance();
+			Transformer t = tf.newTransformer();
+			t.setOutputProperty(OutputKeys.INDENT, "yes");
+			t.setOutputProperty(OutputKeys.DOCTYPE_PUBLIC,"yes");
+			t.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
+			DOMSource dsource = new DOMSource(d);
 			//To outside target/
-			StreamResult result = new StreamResult(new File("..//users.xml"));
-			transformer.transform(source, result);
+			StreamResult sresult = new StreamResult(new File("..//users.xml"));
+			t.transform(dsource, sresult);
 			//Inside target/
-			StreamResult result2 = new StreamResult(new File("users.xml"));
-			transformer.transform(source, result2);
+			StreamResult sresult2 = new StreamResult(new File("users.xml"));
+			t.transform(dsource, sresult2);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}	
@@ -60,12 +60,12 @@ public class UserXMLWriter {
 	
 	public void writeForInventory(ArrayList<Item> il) {
 		try {
-			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-			Document doc = dBuilder.newDocument();
+			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+			DocumentBuilder db = dbf.newDocumentBuilder();
+			Document d = db.newDocument();
 
-			Element item = doc.createElement("Items");
-			doc.appendChild(item);
+			Element item = d.createElement("Items");
+			d.appendChild(item);
 
 			for(Item i:il) {
 				//Create a counter so we keep the correct number of items in the inventory
@@ -73,20 +73,20 @@ public class UserXMLWriter {
 
 				while(counter < i.getAmount()) {
 					//Create the item element
-					Element info = doc.createElement("item");
+					Element info = d.createElement("item");
 
 					//Create the name att for the item
-					Attr attr1 = doc.createAttribute("name");
+					Attr attr1 = d.createAttribute("name");
 					attr1.setValue(i.getName());
 					info.setAttributeNode(attr1);
 
 					//Create the price att for the item
-					Attr attr2 = doc.createAttribute("price");
+					Attr attr2 = d.createAttribute("price");
 					attr2.setValue("" + i.getPrice());
 					info.setAttributeNode(attr2);
 
 					//Create the brand att for the item
-					Attr attr3 = doc.createAttribute("brand");
+					Attr attr3 = d.createAttribute("brand");
 					attr3.setValue(i.getBrand());
 					info.setAttributeNode(attr3);
 					item.appendChild(info);
@@ -97,20 +97,20 @@ public class UserXMLWriter {
 			}
 
 			//Write the content into xml file
-			TransformerFactory transformerFactory = TransformerFactory.newInstance();
-			Transformer transformer = transformerFactory.newTransformer();
-			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-			transformer.setOutputProperty(OutputKeys.DOCTYPE_PUBLIC,"yes");
-			transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
-			DOMSource source = new DOMSource(doc);
+			TransformerFactory tf = TransformerFactory.newInstance();
+			Transformer t = tf.newTransformer();
+			t.setOutputProperty(OutputKeys.INDENT, "yes");
+			t.setOutputProperty(OutputKeys.DOCTYPE_PUBLIC,"yes");
+			t.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
+			DOMSource dsource = new DOMSource(d);
 
 			//To outside target/
-			StreamResult result = new StreamResult(new File("..//InventoryFile.xml"));
-			transformer.transform(source, result);
+			StreamResult sresult = new StreamResult(new File("..//InventoryFile.xml"));
+			t.transform(dsource, sresult);
 
 			//Inside target/
-			StreamResult result2 = new StreamResult(new File("InventoryFile.xml"));
-			transformer.transform(source, result2);
+			StreamResult sresult2 = new StreamResult(new File("InventoryFile.xml"));
+			t.transform(dsource, sresult2);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}	
