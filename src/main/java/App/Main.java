@@ -46,8 +46,8 @@ public class Main{
 		}
 
 		//Login the user to check their level of access
-		//        ul.callToArms();
-		ul.login(sc);
+		ul.callToArms();
+		//ul.login(sc);
 		ul.writeToXML();
 
 		if(ul.getUserAccess()) {
