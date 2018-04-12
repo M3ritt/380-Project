@@ -11,10 +11,15 @@ public class Register {
 	private double saleTotal, amountGiven, changeDue, taxRate, newPrice;
 	private Scanner sc = new Scanner(System.in);
 	public DecimalFormat df = new DecimalFormat("#.##");
+	public enum Day { SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY }
+	Day currentDay;
+	Day previousDay;
+	
 
 	public Register(Inventory inventory) {
 		this.inventory = inventory;
 		this.taxRate = 1.08;
+		this.currentDay = Day.SUNDAY;
 	}
 
 	public void sale() {
@@ -116,6 +121,12 @@ public class Register {
 		//This method will take in an item and return the price.
 		Item i = inventory.findItemByName(eName, brandName);
 		return i.getPrice();
+	}
+	
+	public void endDay() {
+		
+		Day currentday
+		
 	}
 
 	public void dailyInventory() {
