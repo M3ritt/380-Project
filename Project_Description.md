@@ -7,7 +7,7 @@ Thomas Hanley,
 Josh Meritt.
 
 ### Project Description
-The system created will be an inventory and sales tool. The tool will have users which allow us to login and track individual sales. The tool will also allow for us to track inventory. It will allow us to input what inventory we have through commands built into the tool. We will be able to input a command to check and see general inventory as well as what is currently low on inventory. We want to be able to look at the inventory by the department type. The tool will also go through and give suggestions on what to order based on what is selling well, and current stock levels. The tool will be able to give daily and weekly reports of what is sold, overall sales, as well as individual users sale totals. If the system is shut down, the tool should have saved the information and be able to load if after turning the system on again. The tool will also allow for general editing of price of inventory so that changes may be made over time. The tool should allow different employees to have different levels of access in the inventory.
+The system created will be an inventory and sales tool. The tool will have users which allow us to login and track individual sales. The tool will also allow for us to track inventory. It will allow us to input what inventory we have through commands built into the tool. We will be able to input a command to check and see general inventory as well as what is currently low on inventory. We want to be able to look at the inventory by the department type. The tool will also go through and give suggestions on what to order based on what is selling well, and current stock levels. The tool will be able to give daily and weekly reports of what is sold, overall sales, as well as individual users sale totals. If the system is shut down, the tool should have saved the information and be able to load if after turning the system on again. The tool will also allow for general editing of price of inventory so that changes may be made over time. The tool should allow different employees to have different levels of access in the inventory. Another tool is the different level of memberships for customers. Every customer does not have to be a member but it is a choice and the more money a member spends, the greater the rewards are. The three levels of membership are: bronze, silver and gold with gold being the highest level and bronze being the lowest. The system keeps track of how much each member spends and moves them up in level once they hit the threshold for amount spent.  
 
 ### System Requirements
 #### Requirement Scale Priority:1-5 1-Highest, 5-Lowest
@@ -40,6 +40,12 @@ Requirement 13: P4 The system will be able to calculate the net profit of the in
 Requirement 14: P4 The system will allow different levels of access depending on your position in the company.
 
 Requirement 15: P2 The system will allow users to add and remove items manually.
+
+Requirement 16: P4 The system will have a members system.
+
+Requirement 17: P5 The system can add or delete members.
+
+Requirement 18: P5 The system will give different level of members better deals.
 
 
 ### User Stories
@@ -74,6 +80,9 @@ Time: 5
 User Story 10: As a cashier, I want to be able to cash people out so that I can make sales and keep my job. 
 Time: 4
 
+User Story 11: As a customer, I want to be able to become a member to get better deals. 
+Time: 4
+
 
 ## Traceability Matrix
 
@@ -89,18 +98,21 @@ Case 8: Return items
 Case 9: Log in
 Case 10: Levels of access for users
 Case 11: See Profits
+Case 12: Add or Delete Members
+Case 13: Change level of membership
 
-User Story|UC1|UC2|UC3|UC4|UC5|UC6|UC7|UC8|UC9|UC10|UC11|
-	1	  | X |   |   |   |   |   |   |   |   |    |    |
-	2	  |   | X |   |   |   |   | X |   |   |    |    |
-	3	  | X |   |   |   | X |   |   |   |   |    |    |
-	4	  | X |   |   | X | X |   | X |   |   |    |    |
-	5	  | X |   | X | X |   |   | X | X |   |    |    |
-	6	  |   |   |   |   |   |   |   |   |   |    | X  |
-	7	  |   | X |   |   |   | X | X |   | X | X  |    |
-	8	  |   |   |   |   |   |   |   |   |   | X  |    |
-	9	  |   | X |   |   |   |   |   |   | X | X  |    |
-	10	  |   | X |   |   |   |   | X |   | X |    |    |
+User Story|UC1|UC2|UC3|UC4|UC5|UC6|UC7|UC8|UC9|UC10|UC11|UC12|UC13|
+	1	  | X |   |   |   |   |   |   |   |   |    |    |	 |    |
+	2	  |   | X |   |   |   |   | X |   |   |    |    |    |    |
+	3	  | X |   |   |   | X |   |   |   |   |    |    |    |    |
+	4	  | X |   |   | X | X |   | X |   |   |    |    |    |    |
+	5	  | X |   | X | X |   |   | X | X |   |    |    |    |    |
+	6	  |   |   |   |   |   |   |   |   |   |    | X  |    |    |
+	7	  |   | X |   |   |   | X | X |   | X | X  |    |    |    |
+	8	  |   |   |   |   |   |   |   |   |   | X  |    |    |    |
+	9	  |   | X |   |   |   |   |   |   | X | X  |    |    |    |
+	10	  |   | X |   |   |   |   | X |   | X |    |    |    |    |
+	11    |   |   |   |   |   |   |   |   |   |    |    | X  |  X |
 
 Use Case 1, Load in Inventory:
 	Related User Stories: User Story 1, 3, 4, 5.
@@ -257,4 +269,29 @@ Use case 11: See profits
 	Flow of events for Main success scenario:
 		--> Manager must log in (UC9)
 		--> Manager can check weekly/daily sales totals due to access (UC10)
-	
+		
+Use case 12: Add members
+	Required Requirements: R16, R17
+	Initiating Actor: Cashier or Manager
+	Actor's goals: add a member
+	Participating Actor: Memberlist, Member
+	Preconditions:
+		- Member doesn't already exist
+		- Information for member is correct
+	Postconditions: Member is added
+	Flow of events for Main success scenario:
+		--> Customer is asked if they want to be a member and is asked information
+		<--information is entered and member is added
+
+Use case 13: Change level of membership
+	Required Requirements: R16, R18
+	Initiating Actor: Cashier or Manager
+	Actor's goals: change level of membership for a member
+	Participating Actor: Memberlist, Member
+	Preconditions: 
+		-Member exists
+		-Member is moving up to correct level
+	Postconditions: Level of membership was changed
+	Flow of events for Main success scenario:
+		--> Member spends enough money
+		<-- Membership level is changed
