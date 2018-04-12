@@ -7,19 +7,16 @@ import java.text.DecimalFormat;
 public class Register {
 
 	private Inventory inventory;
+	private MemberList mList;
 	private double dailySalesTotal = 0;
 	private double saleTotal, amountGiven, changeDue, taxRate, newPrice;
 	private Scanner sc = new Scanner(System.in);
 	public DecimalFormat df = new DecimalFormat("#.##");
-	public enum Day { SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY }
-	Day currentDay;
-	Day previousDay;
-	
 
-	public Register(Inventory inventory) {
+	public Register(Inventory inventory, MemberList mList) {
 		this.inventory = inventory;
+		this.mList = mList;
 		this.taxRate = 1.08;
-		this.currentDay = Day.SUNDAY;
 	}
 
 	public void sale() {
@@ -41,6 +38,36 @@ public class Register {
 				System.out.println(enteredName + " from "+ brandName+ " is not a valid item.");
 			}
 		} while(!(enteredName.equals("")));
+		System.out.println("Are you a current member?");
+		sc = new Scanner(System.in);
+		String userStatus = sc.nextLine();
+		if(userStatus.equalsIgnoreCase("No") || userStatus.equalsIgnoreCase("N")) {
+			doSale(saleCount);
+		} else if(userStatus.equalsIgnoreCase("Yes") || userStatus.equalsIgnoreCase("Y")) {
+			System.out.println("What is your phone number?");
+			String possibleNumber = sc.nextLine();
+			Member currentBuyer = mList.findMemberByPhoneNumber(possibleNumber);
+			if(currentBuyer != null) { 
+				if(currentBuyer.getLevelOfMembership().equals(Member.level.BRONZE)) {
+					saleTotal -= saleTotal*.01;
+					mList.findMemberByPhoneNumber(possibleNumber).addToSales(saleTotal * taxRate);
+					doSale(saleCount);
+				} else if(currentBuyer.getLevelOfMembership().equals(Member.level.SILVER)) {
+					saleTotal -= saleTotal*.02;
+					mList.findMemberByPhoneNumber(possibleNumber).addToSales(saleTotal * taxRate);
+					doSale(saleCount);
+				} else {
+					saleTotal -= saleTotal*.03;
+					mList.findMemberByPhoneNumber(possibleNumber).addToSales(saleTotal * taxRate);
+					doSale(saleCount);
+				}
+				mList.writeToXML();
+			} else
+				System.out.println("That number is not in our system.");
+		}
+	}
+
+	public void doSale(int saleCount) {
 		if(saleCount > 0) {
 			saleTotal = saleTotal * taxRate;
 			boolean qualified = false;
@@ -54,11 +81,11 @@ public class Register {
 				else
 					qualified = true;
 			}
-			changeDue = amountGiven - saleTotal;
-			System.out.println("Customer Change: " + df.format(changeDue) + ".");
-			//inventory.removeItemByName(itemTemp.getName());
-			saleTotal = amountGiven = changeDue = 0.0;
 		}
+		changeDue = amountGiven - saleTotal;
+		System.out.println("Customer Change: " + df.format(changeDue) + ".");
+		//inventory.removeItemByName(itemTemp.getName());
+		saleTotal = amountGiven = changeDue = 0.0;
 	}
 
 	public void addItem(String enteredName, Double enteredDouble, String brandName) {
@@ -98,7 +125,7 @@ public class Register {
 	public void checkInventory() {
 		inventory.getItems();
 	}
-	
+
 	public void findItems(String name) {
 		inventory.findItems(name);
 	}
@@ -121,12 +148,6 @@ public class Register {
 		//This method will take in an item and return the price.
 		Item i = inventory.findItemByName(eName, brandName);
 		return i.getPrice();
-	}
-	
-	public void endDay() {
-		
-		Day currentday
-		
 	}
 
 	public void dailyInventory() {
@@ -176,7 +197,7 @@ public class Register {
 	public void setTaxRate(int taxRate) {
 		this.taxRate = taxRate;
 	}
-	
+
 	public void writeToXML() {
 		UserXMLWriter uxmlw = new UserXMLWriter();
 		uxmlw.writeForInventory(inventory.getInventory());

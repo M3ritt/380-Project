@@ -17,13 +17,17 @@ import java.util.ArrayList;
 public class InventoryParser extends DefaultHandler {
 	private ArrayList<Item> iList;
 	private ArrayList<User> uList;
+	private ArrayList<Member> mList;
 	private double price;
 	private Inventory newInv;
-	private String itemName, pass, uNam;
+	private MemberList members;
+	private String itemName, pass, uNam, memName, address, phoneNumber, level, totalSpent;
 	public void startDocument() throws SAXException {
 		iList = new ArrayList<Item>();
 		uList = new ArrayList<>();
 		newInv = new Inventory(iList);
+		mList = new ArrayList<Member>();
+		members = new MemberList(mList);
 	}
 
 	public void startElement(String namespaceURI,
@@ -47,6 +51,22 @@ public class InventoryParser extends DefaultHandler {
 			uNam = atts.getValue("username");
 			User u = new User(uNam, pass);
 			uList.add(u);
+			break;
+		case "member":
+			memName = atts.getValue("memberName");
+			address = atts.getValue("address");
+			phoneNumber = atts.getValue("phoneNumber");
+			level = atts.getValue("level");
+			totalSpent = atts.getValue("totalSpent");
+			//int spent = 0;
+			double spent = Double.parseDouble(totalSpent);
+			if(level.equalsIgnoreCase("bronze"))
+				members.addMember(new Member(memName, address, phoneNumber, Member.level.BRONZE, spent));
+			else if(level.equalsIgnoreCase("silver"))
+				members.addMember(new Member(memName, address, phoneNumber, Member.level.SILVER, spent));
+			else 
+				members.addMember(new Member(memName, address, phoneNumber, Member.level.GOLD, spent));
+			break;
 		default:
 			break;
 		}
@@ -57,7 +77,8 @@ public class InventoryParser extends DefaultHandler {
 							 String qName) throws SAXException {
 		if(qName.equals("item")) {
 			newInv = new Inventory(iList);
-		}
+		} else if(qName.equals("member"))
+			members = new MemberList(mList);
 	}
 
 	public void endDocument() throws SAXException {}
@@ -69,4 +90,8 @@ public class InventoryParser extends DefaultHandler {
 	public ArrayList<User> getUserList() {
     		return this.uList;
     }
+	
+	public MemberList getMembers() {
+		return this.members;
+	}
 }

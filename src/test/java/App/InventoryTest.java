@@ -85,7 +85,7 @@ public class InventoryTest {
 	public void testIncrementAmount() {
 		Item i = in.findItemByName("Basketball", "wilson");
 		i.incrementAmount();
-		assertEquals(i.getAmount(), 8);
+		assertEquals(i.getAmount(), 6);
 	}
 	
 	//In Item
@@ -93,7 +93,7 @@ public class InventoryTest {
 	public void testDecrementAmount() {
 		Item i = in.findItemByName("Basketball", "wilson");
 		i.decreaseAmount();
-		assertEquals(i.getAmount(), 6);
+		assertEquals(i.getAmount(), 4);
 	}
 	
 	//In Item

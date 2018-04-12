@@ -16,16 +16,24 @@ import org.xml.sax.SAXException;
 
 public class RegisterTest {
 	private Inventory in;
+	private MemberList ml;
 	@Before
 	public void setUp() {
 		String fileName = "InventoryFile.xml";
 		SAXParserFactory spf = SAXParserFactory.newInstance();
+		String fileName2 = "MemberFile.xml";
 		try {
 			InputStream xmlInput = new FileInputStream(fileName);
 			SAXParser saxParser = spf.newSAXParser();
 			InventoryParser ixmlp = new InventoryParser();
 			saxParser.parse(xmlInput, ixmlp);
 			in = ixmlp.getInvt();
+			
+			InputStream xmlInput2 = new FileInputStream(fileName2);
+			SAXParser saxParser2 = spf.newSAXParser();
+			InventoryParser ixmlp2 = new InventoryParser();
+			saxParser2.parse(xmlInput2, ixmlp2);
+			ml = ixmlp.getMembers();
 		} catch(SAXException|ParserConfigurationException|IOException e) {
 			e.printStackTrace();
 		}
@@ -33,21 +41,21 @@ public class RegisterTest {
 	
 	@Test
 	public void testAddItem() {
-		Register r = new Register(in);
+		Register r = new Register(in, ml);
 		r.addItem("Peach", 12.00, "peach company");
 		assertTrue(in.findItemByName("Peach", "peach company").getName().equals("Peach"));
 	}
 	
 	@Test
 	public void testItemReturn() {
-		Register r = new Register(in);
+		Register r = new Register(in, ml);
 		r.itemReturn("Basketball", "Wilson");
 		assertEquals("Basketball", in.findItemByName("basketball", "wilson").getName());
 	}
 	
 	@Test
 	public void testAddItemWithRemoveItem() {
-		Register r = new Register(in);
+		Register r = new Register(in, ml);
 		r.addItem("Sour Patch Kids", 4.99, "Allen Candy Company");
 		r.addItem("Sour Patch Kids", 4.99, "Allen Candy Company");
 		r.addItem("Sour Patch Kids", 4.99, "Allen Candy Company");
@@ -58,7 +66,7 @@ public class RegisterTest {
 	
 	@Test
 	public void testChangeItemPrice() {
-		Register r = new Register(in);
+		Register r = new Register(in, ml);
 		r.changeItemPrice("Basketball", 19.99, "wilson");
 		assertEquals(19.99, in.findItemByName("Basketball", "wilson").getPrice(), .01);
 	}

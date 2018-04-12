@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Members>
+    <member address="123 Street" level="gold" memberName="Henry Michael" phoneNumber="123-456-7890" totalSpent="1000.0"/>
+    <member address="940 Allegro drive" level="silver" memberName="Joshua Meritt" phoneNumber="585-694-7177" totalSpent="186.87"/>
+</Members>

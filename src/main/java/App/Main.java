@@ -39,10 +39,17 @@ public class Main{
 			saxParser.parse(xmlInput2, ixmlp2);
 
 			ul = new UserLogin(ixmlp2.getUserList());
+			
+			String fileName3 = "MemberFile.xml";
+			InputStream xmlInput3 = new FileInputStream(fileName3);
+			InventoryParser ixmlp3 = new InventoryParser();
+			saxParser.parse(xmlInput3, ixmlp3);
+			ml = ixmlp3.getMembers();
 		} catch(SAXException|ParserConfigurationException|IOException e) {
 			e.printStackTrace();
 			ul = new UserLogin();
 			invt = null;
+			ml = null;
 		}
 
 		//Login the user to check their level of access
@@ -51,8 +58,8 @@ public class Main{
 		ul.writeToXML();
 
 		if(ul.getUserAccess()) {
-			reg = new Register(invt);
-			ml = new MemberList(new ArrayList<Member>());
+			reg = new Register(invt, ml);
+			//ml = new MemberList(new ArrayList<Member>());
 			System.out.print("What would you like to do? ");
 			String command = sc.nextLine();
 			command = command.toLowerCase();
@@ -118,9 +125,10 @@ public class Main{
 					String mAddress = sc.nextLine();				
 					System.out.print("What is the phone number?");
 					String number = sc.nextLine();
-					Member newMember = new Member(mName, mAddress, number, Member.level.BRONZE);
+					Member newMember = new Member(mName, mAddress, number, Member.level.BRONZE, 0);
 					newMember.setPhoneNumber(number);
 					ml.addMember(newMember);
+					ml.writeToXML();
 					break;
 				case "see members":
 					ml.seeMembers();
@@ -129,9 +137,9 @@ public class Main{
 					System.out.print("What is the phone number?");
 					number = sc.nextLine();
 					Member currentBuyer = ml.findMemberByPhoneNumber(number);
-					if(currentBuyer != null) 
+					if(currentBuyer != null) {
 						System.out.println(currentBuyer);
-					else
+					} else
 						System.out.println("That number is not in our system.");
 					break;
 				default:

@@ -115,4 +115,62 @@ public class UserXMLWriter {
 			e.printStackTrace();
 		}	
 	}
+	
+	public void writeForMembers(ArrayList<Member> ml) {
+		try {
+			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+			DocumentBuilder db = dbf.newDocumentBuilder();
+			Document d = db.newDocument();
+
+			Element user = d.createElement("Members");
+			d.appendChild(user);
+
+			for(Member m: ml) {
+				Element info = d.createElement("member");
+
+				Attr attr1 = d.createAttribute("memberName");
+				attr1.setValue(m.getName());
+				info.setAttributeNode(attr1);
+
+				Attr attr2 = d.createAttribute("address");
+				attr2.setValue(m.getAddress());
+				info.setAttributeNode(attr2);
+				
+				
+				Attr attr3 = d.createAttribute("phoneNumber");
+				attr3.setValue(m.getPhoneNumber());
+				info.setAttributeNode(attr3);
+				
+				Attr attr4 = d.createAttribute("level");
+				if(m.getLevelOfMembership().equals(Member.level.BRONZE))
+					attr4.setValue("bronze");
+				else if(m.getLevelOfMembership().equals(Member.level.SILVER))
+					attr4.setValue("silver");
+				else 
+					attr4.setValue("gold");
+				info.setAttributeNode(attr4);
+				
+				Attr attr5 = d.createAttribute("totalSpent");
+				attr5.setValue(Double.toString(m.getAmountSpent()));
+				info.setAttributeNode(attr5);
+				user.appendChild(info);
+			}
+
+			// write the content into xml file
+			TransformerFactory tf = TransformerFactory.newInstance();
+			Transformer t = tf.newTransformer();
+			t.setOutputProperty(OutputKeys.INDENT, "yes");
+			t.setOutputProperty(OutputKeys.DOCTYPE_PUBLIC,"yes");
+			t.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
+			DOMSource dsource = new DOMSource(d);
+			//To outside target/
+			StreamResult sresult = new StreamResult(new File("..//MemberFile.xml"));
+			t.transform(dsource, sresult);
+			//Inside target/
+			StreamResult sresult2 = new StreamResult(new File("MemberFile.xml"));
+			t.transform(dsource, sresult2);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+    }
 }
