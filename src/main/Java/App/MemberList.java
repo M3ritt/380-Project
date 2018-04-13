@@ -22,8 +22,15 @@ public class MemberList {
 		else {
 			mList.add(newMember);
 			count++;
-			System.out.println(newMember.getName()+ " was added!");
+//			System.out.println(newMember.getName()+ " was added!");
 		}
+	}
+	
+	public void removeMember(Member removedMember) {
+		if(existsMember(removedMember))
+			mList.remove(removedMember);
+		else 
+			System.out.println(removedMember+ " is not a member.");
 	}
 
 	public boolean existsMember(Member newMember) {
@@ -53,7 +60,7 @@ public class MemberList {
 	}
 
 	public void seeMembers() {
-		if(getCount() < 1)
+		if(getCount() == 0)
 			System.out.println("We have no members.");
 		else {
 
@@ -61,5 +68,10 @@ public class MemberList {
 				System.out.println(m);
 			}
 		}
+	}
+	
+	public void writeToXML() {
+		UserXMLWriter uxmlw = new UserXMLWriter();
+		uxmlw.writeForMembers(mList);
 	}
 }
