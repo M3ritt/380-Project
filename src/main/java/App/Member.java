@@ -68,10 +68,11 @@ public class Member {
 		checkIfChangeOfMembership();
 	}
 	
+	//Can easily change amount for moving up levels
 	public void checkIfChangeOfMembership() {
-		if(totalAmountSpent > 100 && totalAmountSpent < 1000) {
+		if(totalAmountSpent > 1000 && totalAmountSpent < 10000) {
 			setState(level.SILVER);
-		} else if (totalAmountSpent > 1000) {
+		} else if (totalAmountSpent > 10000) {
 			setState(level.GOLD);
 		}
 	}
