@@ -49,15 +49,15 @@ public class Register {
 			Member currentBuyer = mList.findMemberByPhoneNumber(possibleNumber);
 			if(currentBuyer != null) { 
 				if(currentBuyer.getLevelOfMembership().equals(Member.level.BRONZE)) {
-					saleTotal -= saleTotal*.01;
+					saleTotal -= saleTotal * currentBuyer.getDiscount();
 					mList.findMemberByPhoneNumber(possibleNumber).addToSales(saleTotal * taxRate);
 					doSale(saleCount);
 				} else if(currentBuyer.getLevelOfMembership().equals(Member.level.SILVER)) {
-					saleTotal -= saleTotal*.02;
+					saleTotal -= saleTotal * currentBuyer.getDiscount();
 					mList.findMemberByPhoneNumber(possibleNumber).addToSales(saleTotal * taxRate);
 					doSale(saleCount);
 				} else {
-					saleTotal -= saleTotal*.03;
+					saleTotal -= saleTotal * currentBuyer.getDiscount();
 					mList.findMemberByPhoneNumber(possibleNumber).addToSales(saleTotal * taxRate);
 					doSale(saleCount);
 				}

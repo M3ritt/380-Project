@@ -60,9 +60,9 @@ public class InventoryParser extends DefaultHandler {
 			totalSpent = atts.getValue("totalSpent");
 			//int spent = 0;
 			double spent = Double.parseDouble(totalSpent);
-			if(level.equalsIgnoreCase("bronze"))
+			if(level.equalsIgnoreCase("bronze")) {
 				members.addMember(new Member(memName, address, phoneNumber, Member.level.BRONZE, spent));
-			else if(level.equalsIgnoreCase("silver"))
+			} else if(level.equalsIgnoreCase("silver"))
 				members.addMember(new Member(memName, address, phoneNumber, Member.level.SILVER, spent));
 			else 
 				members.addMember(new Member(memName, address, phoneNumber, Member.level.GOLD, spent));

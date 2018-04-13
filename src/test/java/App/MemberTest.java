@@ -9,20 +9,20 @@ public class MemberTest {
 
 	@Test
 	public void testSetName() {
-		m.setName("Josh");
-		assertEquals("Josh",m.getName());
+		m.setName("Henry");
+		assertEquals("Henry",m.getName());
 	}
 	
 	@Test
 	public void testSetAddress() {
-		m.setAddress("123 Street");
-		assertEquals("123 Street", m.getAddress());
+		m.setAddress("1234 Street");
+		assertEquals("1234 Street", m.getAddress());
 	}
 	
 	@Test
 	public void testSetPhoneNumber() {
-		m.setPhoneNumber("1234567890");
-		assertEquals("123-456-7890", m.getPhoneNumber());
+		m.setPhoneNumber("1234567891");
+		assertEquals("123-456-7891", m.getPhoneNumber());
 	}
 	
 	@Test
@@ -35,6 +35,15 @@ public class MemberTest {
 	public void testGetAmountSpent() {
 		m.addToSales(100);
 		assertEquals(100, m.getAmountSpent(), .001);
+	}
+	
+	@Test
+	public void testGetDiscount() {
+		assertEquals(.01, m.getDiscount(), .001);
+		m.setState(Member.level.SILVER);
+		assertEquals(.02, m.getDiscount(), .001);
+		m.setState(Member.level.GOLD);
+		assertEquals(.03, m.getDiscount(), .001);
 	}
 
 }

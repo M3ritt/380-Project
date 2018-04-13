@@ -76,14 +76,26 @@ public class Member {
 		}
 	}
 	
+	//rounds it to two decimal places
 	public double round(double value) {
 	    BigDecimal rounded = new BigDecimal(value);
 	    rounded = rounded.setScale(2, RoundingMode.HALF_UP);
 	    return rounded.doubleValue();
 	}
 	
+	//members can see how close to moving up
 	public void checkAmountSpent() {
 		System.out.println(df.format(this.totalAmountSpent));
+	}
+	
+	//Can easily change amount of discount for different levels
+	public double getDiscount() {
+		if(getLevelOfMembership().equals(Member.level.BRONZE)) {
+			return .01;
+		} else if(getLevelOfMembership().equals(Member.level.SILVER)) {
+			return .02;
+		} else 
+			return .03;
 	}
 	
 	@Override
