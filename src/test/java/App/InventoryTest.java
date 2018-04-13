@@ -41,7 +41,9 @@ public class InventoryTest {
 	@Test
 	public void testFindItemByName() {
 		Item i = in.findItemByName("basketball", "wilson");
+		Item i1 = in.findItemByName("basketball", "Wilson");
 		assertEquals("Basketball", i.getName());
+		assertEquals("Basketball", i1.getName());
 	}
 	
 	@Test(expected = NullPointerException.class)
@@ -117,14 +119,16 @@ public class InventoryTest {
 		Item i1 = new Item("1234", 10.99, "number company");
 		in.addItem(i);
 		in.addItem(i1);
-		assertTrue(in.checkItemByName("Soccer Shorts"));
-		assertTrue(in.checkItemByName("1234"));
-		assertFalse(in.checkItemByName("Hammer"));
+		assertTrue(in.checkItemByName("Soccer Shorts", "adidas"));
+		assertTrue(in.checkItemByName("1234", "number company"));
+		assertFalse(in.checkItemByName("Hammer", "construction company"));
 	}
 	
 	@Test
 	public void testCheckItemByName() {
-		assertTrue(in.checkItemByName("Basketball"));
-		assertFalse(in.checkItemByName("0"));
+		assertTrue(in.checkItemByName("Basketball","wilson"));
+		assertTrue(in.checkItemByName("Basketball", "Wilson"));
+		assertTrue(in.checkItemByName("basketball", "wilson"));
+		assertFalse(in.checkItemByName("0", "Zero"));
 	}
 }

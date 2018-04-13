@@ -28,7 +28,7 @@ public class Register {
 			enteredName = sc.nextLine();
 			System.out.println("Please enter the brand of the item: ");
 			brandName = sc.nextLine();
-			if(inventory.checkItemByName(enteredName) && inventory.findItemByName(enteredName, brandName).getAmount() > 0){
+			if(inventory.checkItemByName(enteredName, brandName) && inventory.findItemByName(enteredName, brandName).getAmount() > 0){
 				System.out.println(enteredName +" from " +brandName+ " was removed from the inventory.");
 				dailySalesTotal += inventory.findItemByName(enteredName, brandName).getPrice();
 				saleTotal += inventory.findItemByName(enteredName, brandName).getPrice();
@@ -89,19 +89,9 @@ public class Register {
 	}
 
 	public void addItem(String enteredName, Double enteredDouble, String brandName) {
-		Item newItem = inventory.findItemByName(enteredName, brandName);
-		if(newItem == null) {
-			newItem = new Item(enteredName, enteredDouble, brandName);
-			inventory.addItem(newItem);
-		} else {
-			if(newItem.getPrice() == enteredDouble) {
-				newItem.incrementAmount();
-			} else {
-				System.out.println("The price entered was different than our price.");
-				System.out.println("We added to our inventory but kept our original price.");
-				newItem.incrementAmount();
-			}
-		}
+		Item i = new Item (enteredName, enteredDouble, brandName);
+		if(i != null)
+			inventory.addItem(i);
 	}
 
 	public void removeItem(String enteredName, String enteredBrand) {
