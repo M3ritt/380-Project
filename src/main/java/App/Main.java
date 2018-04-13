@@ -151,6 +151,18 @@ public class Main{
 					} else
 						System.out.println("That number is not in our system.");
 					break;
+				case "end day":
+					System.out.println("WARNING! This will clear all current sale totals and move to the next day");
+					System.out.print("Are you sure you want to end the day? ");
+					String input = sc.nextLine();
+					input = input.toLowerCase();
+					if (input.equals("yes")) {
+						System.out.println("Ending " + reg.currentDay.toString().toLowerCase() + " and beggining " + reg.currentDay.getNext().toString().toLowerCase() + ".");
+						reg.endDay();
+					}
+					else 
+						System.out.println("Day has not been ended.");
+					break;
 				default:
 					System.out.println("Cannot " + command);
 					break;

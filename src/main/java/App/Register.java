@@ -9,9 +9,16 @@ public class Register {
 	private Inventory inventory;
 	private MemberList mList;
 	private double dailySalesTotal = 0;
+	private double weeklySalesTotal = 0;
 	private double saleTotal, amountGiven, changeDue, taxRate, newPrice;
 	private Scanner sc = new Scanner(System.in);
 	public DecimalFormat df = new DecimalFormat("#.##");
+	public enum Day { SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY;
+		public Day getNext() {
+			return values()[(ordinal()+1) % values().length];
+		}
+	}
+	Day currentDay;
 
 	public Register(Inventory inventory, MemberList mList) {
 		this.inventory = inventory;
@@ -193,5 +200,13 @@ public class Register {
 	public void writeToXML() {
 		UserXMLWriter uxmlw = new UserXMLWriter();
 		uxmlw.writeForInventory(inventory.getInventory());
+	}
+	
+	public void endDay() {
+		
+		weeklySaleTotal += dailySalesTotal;
+		dailySalesTotal = 0;
+		currentDay = currentDay.getNext();
+		
 	}
 }
