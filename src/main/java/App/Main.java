@@ -15,7 +15,7 @@ import java.util.Scanner;
 
 public class Main{
 	static Scanner sc = new Scanner(System.in);
-	
+
 	public static void main(String[] args){
 		Inventory invt;
 		Register reg;
@@ -39,7 +39,7 @@ public class Main{
 			saxParser.parse(xmlInput2, ixmlp2);
 
 			ul = new UserLogin(ixmlp2.getUserList());
-			
+
 			String fileName3 = "MemberFile.xml";
 			InputStream xmlInput3 = new FileInputStream(fileName3);
 			InventoryParser ixmlp3 = new InventoryParser();
@@ -74,8 +74,13 @@ public class Main{
 				case "add item":
 					System.out.print("Please enter the item you would like to add: ");
 					String enteredName = sc.nextLine();
+					double enteredDouble = 0;
 					System.out.print("Please enter the price of the item: ");
-					Double enteredDouble = Double.parseDouble(sc.nextLine());
+					while(!sc.hasNextDouble()) {
+						System.out.println("Invalid input. Please enter the price of the item:");
+						sc.nextLine();
+					}
+					enteredDouble = Double.parseDouble(sc.nextLine());
 					System.out.println("Please enter the brand of the item: ");
 					String brandName = sc.nextLine();
 					reg.addItem(enteredName, enteredDouble, brandName);
@@ -86,6 +91,10 @@ public class Main{
 					System.out.print("Please enter the brand of the item: ");
 					brandName = sc.nextLine();
 					System.out.print("Please enter the new price for the item: ");
+					while(!sc.hasNextDouble()) {
+						System.out.println("Invalid input. Please enter the price of the item:");
+						sc.nextLine();
+					}
 					enteredDouble = Double.parseDouble(sc.nextLine());        				
 					reg.changeItemPrice(enteredName, enteredDouble, brandName);
 					break;
@@ -116,8 +125,8 @@ public class Main{
 					//This should be looped until there are no more items to add 
 					reg.sale();
 					break;
-				//I don't plan to keep the member parts here and will work on members more,  
-				//just wanted to get it started
+					//I don't plan to keep the member parts here and will work on members more,  
+					//just wanted to get it started
 				case "add member":
 					System.out.print("What is the members name(first and last): ");
 					String mName = sc.nextLine();

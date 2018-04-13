@@ -26,6 +26,8 @@ public class Register {
 		do {
 			System.out.print("Please enter the item to remove, or press enter to leave: ");
 			enteredName = sc.nextLine();
+			if(enteredName.equals(""))
+				break;
 			System.out.println("Please enter the brand of the item: ");
 			brandName = sc.nextLine();
 			if(inventory.checkItemByName(enteredName, brandName) && inventory.findItemByName(enteredName, brandName).getAmount() > 0){
@@ -106,8 +108,8 @@ public class Register {
 	public void changeItemPrice(String enteredName, Double enteredDouble, String brandName) {
 		Item itemTemp = inventory.findItemByName(enteredName, brandName);
 		if(itemTemp != null) {
-			if(itemTemp.getBrand().equals(brandName))
-				itemTemp.setPrice(enteredDouble, brandName);
+			//if(itemTemp.getBrand().equalsIgnoreCase(brandName))
+			itemTemp.setPrice(enteredDouble, brandName);
 		} else 
 			System.out.println("We do not have that item in our inventory.");
 	}

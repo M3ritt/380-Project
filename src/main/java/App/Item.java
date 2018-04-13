@@ -1,5 +1,8 @@
 package App;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 public class Item {
 	private String itemName;
 	private double price;
@@ -47,16 +50,23 @@ public class Item {
 	}
 
 	public double getPrice() {
-		return this.price;
+		return round(this.price);
 	}
 
 	public void setPrice(double newPrice, String brand) {
-		this.price = newPrice;
+		this.price = round(newPrice);
+	}
+	
+	//rounds to two decimal places
+	public double round(double value) {
+	    BigDecimal rounded = new BigDecimal(value);
+	    rounded = rounded.setScale(2, RoundingMode.HALF_UP);
+	    return rounded.doubleValue();
 	}
 
 	@Override
 	public String toString() {
 		//return "Amount of item: "+this.getAmount() + " Item: "+ this.itemName + " Price: " + this.price + ".";
-		return this.amount +"x "+this.itemName + "(s)"+ " from the company: "+ this.brandName+" with a price of: "+this.price;
+		return this.amount +"x "+this.itemName + "(s)"+ " from the company: "+ this.brandName+" with a price of: "+round(this.price);
 	}
 }
