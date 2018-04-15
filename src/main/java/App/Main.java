@@ -171,7 +171,9 @@ public class Main{
 				command = sc.nextLine();
 			}
 			reg.writeToXML();
-		} else {
+		} 
+		
+		else {
 			System.out.println("Not a valid user.");
 		}
 	}

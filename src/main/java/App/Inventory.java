@@ -1,7 +1,7 @@
 package App;
 
-
 import java.util.ArrayList;
+
 public class Inventory {
 	//Some data structure to save the items... some type of array?
 	//Generic for items

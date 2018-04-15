@@ -6,7 +6,7 @@ import java.text.DecimalFormat;
 
 public class Register {
 
-	private Inventory inventory;
+	private Inventory inventory, openingInvetory, currentInventory;
 	private MemberList mList;
 	private double dailySalesTotal = 0;
 	private double weeklySalesTotal = 0;
@@ -24,6 +24,8 @@ public class Register {
 		this.inventory = inventory;
 		this.mList = mList;
 		this.taxRate = 1.08;
+		this.currentInventory = inventory;
+		this.currentDay = Day.SUNDAY;
 	}
 
 	public void sale() {
@@ -204,7 +206,7 @@ public class Register {
 	
 	public void endDay() {
 		
-		weeklySaleTotal += dailySalesTotal;
+		weeklySalesTotal += dailySalesTotal;
 		dailySalesTotal = 0;
 		currentDay = currentDay.getNext();
 		
