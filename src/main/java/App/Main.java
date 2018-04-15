@@ -163,6 +163,12 @@ public class Main{
 					else 
 						System.out.println("Day has not been ended.");
 					break;
+				case "daily inventory":
+					System.out.println(reg.dailyInventory());
+					break;
+				case "daily report":
+					System.out.println(reg.dailyReport());
+					break;
 				default:
 					System.out.println("Cannot " + command);
 					break;

@@ -6,8 +6,9 @@ import java.text.DecimalFormat;
 
 public class Register {
 
-	private Inventory inventory, openingInvetory, currentInventory;
+	private Inventory inventory, openingInventory, currentInventory;
 	private MemberList mList;
+	private String retVal = "";
 	private double dailySalesTotal = 0;
 	private double weeklySalesTotal = 0;
 	private double saleTotal, amountGiven, changeDue, taxRate, newPrice;
@@ -24,7 +25,7 @@ public class Register {
 		this.inventory = inventory;
 		this.mList = mList;
 		this.taxRate = 1.08;
-		this.currentInventory = inventory;
+		this.openingInventory = inventory;
 		this.currentDay = Day.SUNDAY;
 	}
 
@@ -151,24 +152,50 @@ public class Register {
 		return i.getPrice();
 	}
 
-	public void dailyInventory() {
-		//This will go through and get the inventory for each item at the end of the day
+	public String dailyInventory() {
+		
+		retVal = "";
+		currentInventory = this.inventory;
+		
+		ArrayList<Item> currentList = currentInventory.getInventory();
+		ArrayList<Item> openingList = openingInventory.getInventory();
+		
+		for (Item i : openingList) {
+			
+			for (Item j : currentList) {
+				
+				if (j.equals(i)) {
+					
+					int tempCount = i.getAmount() - j.getAmount();
+					retVal += "Sold " + tempCount + " " + j.getName() + ". \n";
+					
+				}
+				
+			}
+			
+		}
+		
+		return retVal;
+		
 	}
 
 	public void weeklyInventory() {
 		//This will check the inventory at the end of the week
 	}
 
-	public void dailySalesTotals() {
-		System.out.println(dailySalesTotal);
-	}
-
 	public void weeklySalesTotals() {
 		//This will get the weekly sales totals
 	}
 
-	public void dailyReport() {
+	public String dailyReport() {
 		//This will give daily report for sales, inventory, total tax, and user metrics
+		retVal = "";
+		retVal += "Daily Sale Total: " + getDailySalesString() + ". \n";
+		retVal += "Daily Inventory: \n";
+		retVal += dailyInventory();
+		
+		return retVal;
+		
 	}
 
 	public void weeklyReport() {
@@ -177,6 +204,10 @@ public class Register {
 
 	public double getDailySalesTotal() {
 		return dailySalesTotal;
+	}
+	
+	public String getDailySalesString() {
+		return Double.toString(dailySalesTotal);
 	}
 
 	public void setDailySalesTotal(double dailySalesTotal) {
