@@ -46,14 +46,19 @@
         <excludeDefaultDirectories>true</excludeDefaultDirectories>
           <filesets>
             <fileset>
+			<excludes>
+                    <exclude>users.xml</exclude>
+                    <exclude>InventoryFile.xml</exclude>
+					<exclude>MemberFile.xml</exclude>
+                </excludes>
                 <directory>target</directory>
                 <includes>
-                    <include>**</include>
+                    <include>***</include>
                 </includes>
                 <excludes>
                     <exclude>users.xml</exclude>
                     <exclude>InventoryFile.xml</exclude>
-                    <exclude>MemberFile.xml</exclude>
+					<exclude>MemberFile.xml</exclude>
                 </excludes>
             </fileset>
         </filesets>
