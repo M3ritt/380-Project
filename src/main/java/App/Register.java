@@ -14,6 +14,7 @@ public class Register {
 	private double saleTotal, amountGiven, changeDue, taxRate, newPrice;
 	private Scanner sc = new Scanner(System.in);
 	public DecimalFormat df = new DecimalFormat("#.##");
+	ArrayList<Item> openingList;
 	public enum Day { SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY;
 		public Day getNext() {
 			return values()[(ordinal()+1) % values().length];
@@ -25,7 +26,8 @@ public class Register {
 		this.inventory = inventory;
 		this.mList = mList;
 		this.taxRate = 1.08;
-		this.openingInventory = inventory;
+		ArrayList<Item> openingList = inventory.getInventory();
+		openingInventory = new Inventory(openingList);
 		this.currentDay = Day.SUNDAY;
 	}
 
@@ -155,20 +157,27 @@ public class Register {
 	public String dailyInventory() {
 		
 		retVal = "";
-		currentInventory = this.inventory;
+		currentInventory = inventory;
 		
 		ArrayList<Item> currentList = currentInventory.getInventory();
-		ArrayList<Item> openingList = openingInventory.getInventory();
+		ArrayList<Item> oList = openingInventory.getInventory();
+		//openingInventory.getItems();
+		//currentInventory.getItems();
 		
-		for (Item i : openingList) {
+		for (Item i : oList) {
+			
+			int iCount = i.getAmount();
 			
 			for (Item j : currentList) {
 				
-				if (j.equals(i)) {
+				int jCount = j.getAmount();
+				
+				if (j.getName().equals(i.getName())) {
 					
-					int tempCount = i.getAmount() - j.getAmount();
+					int tempCount = iCount - jCount;
 					retVal += "Sold " + tempCount + " " + j.getName() + ". \n";
-					
+					tempCount = 0;
+					break;
 				}
 				
 			}

@@ -176,7 +176,7 @@ public class Main{
 				System.out.print("What would you like to do?");
 				command = sc.nextLine();
 			}
-			reg.writeToXML();
+			//reg.writeToXML();
 		} 
 		
 		else {
