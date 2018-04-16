@@ -21,7 +21,7 @@ public class InventoryParser extends DefaultHandler {
 	private double price;
 	private Inventory newInv;
 	private MemberList members;
-	private String itemName, pass, uNam, memName, address, phoneNumber, level, totalSpent;
+	private String itemName, pass, uNam, memName, address, phoneNumber, level, totalSpent, uAccess;
 	public void startDocument() throws SAXException {
 		iList = new ArrayList<Item>();
 		uList = new ArrayList<>();
@@ -31,12 +31,12 @@ public class InventoryParser extends DefaultHandler {
 	}
 
 	public void startElement(String namespaceURI,
-							 String localName,
-							 String qName,
-							 Attributes atts) throws SAXException {
-		
+			String localName,
+			String qName,
+			Attributes atts) throws SAXException {
+
 		switch(qName.toLowerCase()) {
-			
+
 		case "item":
 			itemName = atts.getValue("name");
 			String sprice = atts.getValue("price");
@@ -47,9 +47,14 @@ public class InventoryParser extends DefaultHandler {
 			newInv.addItem(i);
 			break;
 		case "user":
+			User u;
 			pass = atts.getValue("password");
 			uNam = atts.getValue("username");
-			User u = new User(uNam, pass);
+			uAccess = atts.getValue("accessLevel");
+			if(uAccess.equalsIgnoreCase("manager"))
+				u = new User(uNam, pass, User.access.MANAGER);
+			else 
+				u = new User(uNam, pass, User.access.CASHIER);
 			uList.add(u);
 			break;
 		case "member":
@@ -73,8 +78,8 @@ public class InventoryParser extends DefaultHandler {
 	}
 
 	public void endElement(String namespaceURI,
-							 String localName,
-							 String qName) throws SAXException {
+			String localName,
+			String qName) throws SAXException {
 		if(qName.equals("item")) {
 			newInv = new Inventory(iList);
 		} else if(qName.equals("member"))
@@ -86,11 +91,11 @@ public class InventoryParser extends DefaultHandler {
 	public Inventory getInvt() {
 		return this.newInv;
 	}
-	
+
 	public ArrayList<User> getUserList() {
-    		return this.uList;
-    }
-	
+		return this.uList;
+	}
+
 	public MemberList getMembers() {
 		return this.members;
 	}

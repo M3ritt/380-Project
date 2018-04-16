@@ -37,6 +37,13 @@ public class UserXMLWriter {
 				Attr attr2 = d.createAttribute("username");
 				attr2.setValue(u.getUserName());
 				info.setAttributeNode(attr2);
+				
+				Attr attr3 = d.createAttribute("accessLevel");
+				if(u.getAccessLevel() == User.access.MANAGER)
+					attr3.setValue("manager");
+				else
+					attr3.setValue("cashier");
+				info.setAttributeNode(attr3);
 				user.appendChild(info);
 			}
 

@@ -43,7 +43,7 @@ public class UserLoginTest {
 	@Test
 	public void testExistsUserByName() {
 		ul = new UserLogin(uList);
-		ul.addUser(new User("Taddy Mason", "password"));
+		ul.addUser(new User("Taddy Mason", "password", User.access.CASHIER));
 		assertTrue(ul.existsUserByName("Taddy Mason"));
 	}
 	
@@ -61,7 +61,7 @@ public class UserLoginTest {
 	@Test
 	public void testLogin() {
 		ul = new UserLogin(uList);
-		ul.addUser(new User("Taddy Mason", "password"));
+		ul.addUser(new User("Taddy Mason", "password", User.access.CASHIER));
 		String stuff = "Taddy Mason\n" +"password\n";
 		System.setIn(new ByteArrayInputStream(stuff.getBytes()));
 		Scanner sc = new Scanner(System.in);
@@ -72,7 +72,7 @@ public class UserLoginTest {
 	@Test
 	public void testNewUserSetup() {
 		ul = new UserLogin(uList);
-		User u = new User("Taddy Mason", "password");
+		User u = new User("Taddy Mason", "password", User.access.CASHIER);
 		String j = "Taddy Mason\n" + "password\n" + "password\n";
 		System.setIn(new ByteArrayInputStream(j.getBytes()));
 		Scanner sc = new Scanner(System.in);
@@ -83,7 +83,7 @@ public class UserLoginTest {
 	@Test
 	public void testAddOneUser() {
 		ul = new UserLogin(uList);
-		User u = new User("Taddy Mason", "password");
+		User u = new User("Taddy Mason", "password", User.access.CASHIER);
 		ul.addUser(u);
 		String j = "Taddy Mason\n" + "password\n" + "password\n";
 		System.setIn(new ByteArrayInputStream(j.getBytes()));
@@ -93,7 +93,7 @@ public class UserLoginTest {
 	
 	public void testRemoveOneUser() {
 		ul = new UserLogin(uList);
-		User u = new User("Taddy Mason", "password");
+		User u = new User("Taddy Mason", "password", User.access.CASHIER);
 		String j = "Taddy Mason\n" + "y";
 		System.setIn(new ByteArrayInputStream(j.getBytes()));
 		Scanner sc = new Scanner (System.in);

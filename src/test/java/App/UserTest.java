@@ -9,20 +9,20 @@ public class UserTest {
 	
 	@Test
 	public void testSetUserPassword() {
-		User u = new User("Josh", "");
+		User u = new User("Josh", "", User.access.CASHIER);
 		u.setPassword("Password321");
 		assertEquals("Password321", u.getPassword());
 	}
 	
 	@Test
 	public void testGetUserPassword() {
-		User u = new User("Josh", "Bet");
+		User u = new User("Josh", "Bet", User.access.CASHIER);
 		assertEquals(u.getPassword(), "Bet");
 	}
 	
 	@Test
 	public void testUserSale() {
-		u = new User("Jerry", "1234");
+		u = new User("Jerry", "1234", User.access.CASHIER);
 		u.userSale(20.00);
 		u.userSale(30.50);
 		assertEquals(50.50, u.getSalesTotal(), 0.001);
@@ -30,7 +30,7 @@ public class UserTest {
 	
 	@Test
 	public void testUserSaleTwo() {
-		u = new User("Jerry", "1234");
+		u = new User("Jerry", "1234", User.access.CASHIER);
 		u.userSale(20.00);
 		u.userSale(-30.50);
 		try {
@@ -44,9 +44,9 @@ public class UserTest {
 	
 	@Test
 	public void testGetUserName() {
-		User u = new User("Jon", "a");
-		User u1 = new User("1234", "a");
-		User u2 = new User("Jon Doe", "a");
+		User u = new User("Jon", "a", User.access.CASHIER);
+		User u1 = new User("1234", "a", User.access.CASHIER);
+		User u2 = new User("Jon Doe", "a", User.access.CASHIER);
 		
 		assertEquals("Jon", u.getUserName());
 		assertEquals("1234", u1.getUserName());

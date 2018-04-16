@@ -9,6 +9,7 @@ public class UserLogin {
 	private Scanner sc;
 	private ArrayList<User> uList;
 	private boolean userAccess;
+	private User currentUser;
 
 	public UserLogin() {
 		//sc = new Scanner(System.in);
@@ -19,8 +20,14 @@ public class UserLogin {
 	public UserLogin(ArrayList<User> ul) {
 		this.uList = ul;
 	}
+	
+	public User getCurrentUser() {
+		return this.currentUser;
+	}
 
 	public void callToArms() {
+		this.currentUser = null;
+		this.userAccess = false;
 		System.out.println("New User? Or press enter to exit.");
 		sc = new Scanner(System.in);
 		String userStatus = sc.nextLine();
@@ -77,7 +84,7 @@ public class UserLogin {
 		String firstEnteredPass = sc.nextLine();
 		System.out.print("Enter the password again. ");
 		if(firstEnteredPass.equals(sc.nextLine()))
-			uList.add(new User(createdUName, firstEnteredPass));
+			uList.add(new User(createdUName, firstEnteredPass, User.access.CASHIER));
 		else {
 			System.out.println("Passwords do not match try again!");
 			newUserSetup(createdUName, sc);
@@ -90,7 +97,7 @@ public class UserLogin {
 		String firstEnteredPass = sc.nextLine();
 		System.out.print("Enter the password again. ");
 		if(firstEnteredPass.equals(sc.nextLine()))
-			uList.add(new User(alreadyCreatedUName, firstEnteredPass));
+			uList.add(new User(alreadyCreatedUName, firstEnteredPass, User.access.CASHIER));
 		else {
 			System.out.println("Passwords do not match try again!");
 			newUserSetup(alreadyCreatedUName, sc);
@@ -110,6 +117,7 @@ public class UserLogin {
 				System.out.println("Please enter your password");
 				String potentialPassword = sc.nextLine();
 				if(loginUser.getPassword().equals(potentialPassword)) {
+					this.currentUser = loginUser;
 					userAccess = true;
 				} else if(tries < 3) {
 					System.out.println("Not the correct password. You have " + (3 - tries) + " tries remaining");

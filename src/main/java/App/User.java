@@ -3,14 +3,28 @@ package App;
 public class User {
 	private String userName, password;
 	private double salesTotal;
+	private access level;
 
 	public User() {
 		this.userName = this.password = "";
 	}
 
-	public User(String userName, String password) {
+	public User(String userName, String password, access level) {
 		this.userName = userName;
 		this.password = password;
+		this.level = level;
+	}
+	
+	public enum access{
+		CASHIER, MANAGER
+	}
+	
+	public void setAccessLevel(access level) {
+		this.level = level;
+	}
+	
+	public access getAccessLevel() {
+		return this.level;
 	}
 
 	public double getSalesTotal() {

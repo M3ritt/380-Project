@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Users>
-    <user password="pass" username="user"/>
-    <user password="n" username="y"/>
+    <user accessLevel="manager" password="pass" username="user"/>
+    <user accessLevel="cashier" password="n" username="y"/>
 </Users>
