@@ -6,7 +6,7 @@ import java.text.DecimalFormat;
 
 public class Register {
 
-	private Inventory inventory, openingInventory, currentInventory;
+	private Inventory inventory, currentInventory;
 	private MemberList mList;
 	private String retVal = "";
 	private double dailySalesTotal = 0;
@@ -26,8 +26,6 @@ public class Register {
 		this.inventory = inventory;
 		this.mList = mList;
 		this.taxRate = 1.08;
-		ArrayList<Item> openingList = inventory.getInventory();
-		openingInventory = new Inventory(openingList);
 		this.currentDay = Day.SUNDAY;
 	}
 
@@ -159,29 +157,11 @@ public class Register {
 		retVal = "";
 		currentInventory = inventory;
 		
-		ArrayList<Item> currentList = currentInventory.getInventory();
-		ArrayList<Item> oList = openingInventory.getInventory();
-		//openingInventory.getItems();
-		//currentInventory.getItems();
 		
-		for (Item i : oList) {
-			
-			int iCount = i.getAmount();
-			
-			for (Item j : currentList) {
-				
-				int jCount = j.getAmount();
-				
-				if (j.getName().equals(i.getName())) {
-					
-					int tempCount = iCount - jCount;
-					retVal += "Sold " + tempCount + " " + j.getName() + ". \n";
-					tempCount = 0;
-					break;
-				}
-				
-			}
-			
+		for (Item i : inventory.soldList) {
+		
+			retVal += "Sold " + i.getAmount() + " " + i.getName() + ". \n";	
+
 		}
 		
 		return retVal;
