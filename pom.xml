@@ -53,6 +53,7 @@
                 <excludes>
                     <exclude>users.xml</exclude>
                     <exclude>InventoryFile.xml</exclude>
+                    <exclude>MemberFile.xml</exclude>
                 </excludes>
             </fileset>
         </filesets>
