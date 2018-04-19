@@ -36,6 +36,7 @@ public class Runner {
 
 	public void decision(User current) {
 		Scanner sc  = new Scanner(System.in);
+		System.out.println();
 		System.out.println("Register, Other, Manager, log off?");
 		String decision = sc.nextLine().toLowerCase();
 		while(!decision.equalsIgnoreCase("exit")) {
@@ -61,6 +62,7 @@ public class Runner {
 			System.out.println("Register, Other, Manager or log off?");
 			decision = sc.nextLine().toLowerCase();
 		}
+		System.out.println();
 		System.exit(0);
 	}
 
@@ -71,6 +73,12 @@ public class Runner {
 		String command = sc.nextLine().toLowerCase();
 		while(!command.equalsIgnoreCase("exit")) {
 			switch(command) {
+			case "help":
+				System.out.println("inventory: prints out the current inventory." + "\n" +
+						"find item: finds a desired item." +"\n"+ 
+						"return item: can return an item." + "\n" +
+						"sale: can do a sale.");
+				break;
 			case "inventory":
 				reg.checkInventory();
 				break;
@@ -93,6 +101,7 @@ public class Runner {
 				System.out.println("Cannot: "+command);
 				break;
 			}
+			System.out.println();
 			System.out.println("What would you like to do?");
 			command = sc.nextLine();
 		}
@@ -103,11 +112,17 @@ public class Runner {
 	}
 
 	public void otherStuff(User current) {
+		System.out.println();
 		Scanner sc = new Scanner(System.in);
 		System.out.println("What would you like to do?");
 		String command = sc.nextLine().toLowerCase();
 		while(!command.equalsIgnoreCase("exit")) {
 			switch(command) {
+			case "help":
+				System.out.println("add member: adds a member."+ "\n" +
+						"see members: can see all members." + "\n" + 
+						"search member: searches for a member from specific phone number.");
+				break;
 			case "add member":
 				System.out.print("What is the members name(first and last): ");
 				String mName = sc.nextLine();
@@ -136,6 +151,7 @@ public class Runner {
 				System.out.println("Cannot: "+command);
 				break;
 			}
+			System.out.println();
 			System.out.println("What would you like to do?");
 			command = sc.nextLine();
 		}
@@ -146,6 +162,7 @@ public class Runner {
 	}
 
 	public void managerStuff(User current) {
+		System.out.println();
 		String enteredName, brandName;
 		Double enteredDouble = 0.0;
 		Scanner sc = new Scanner(System.in);
@@ -153,6 +170,19 @@ public class Runner {
 		String command = sc.nextLine().toLowerCase();
 		while(!command.equalsIgnoreCase("exit")) {
 			switch(command) {
+			case "help":
+				System.out.println("add member: adds a member."+ "\n" +
+						"see members: can see all members." + "\n" + 
+						"search member: searches for a member from specific phone number." + "\n"+
+						"remove user: removes a user." + "\n" + 
+						"remove member: removes a member based on phone number." + "\n" +
+						"add item: adds an item to the inventory." + "\n" +
+						"change price: changes the price of an item." + "\n" + 
+						"remove item: removes an item from the inventory." + "\n"+
+						"end day: ends current day." + "\n" +
+						"daily inventory: gets the inventory of the day." + "\n"+
+						"daily report: gets the number of items sold that day.");
+				break;
 			case "remove user":
 				ul.removeOneUser(sc);
 				ul.writeToXML();
@@ -250,6 +280,7 @@ public class Runner {
 				System.out.println("Cannot: "+command);
 				break;
 			}
+			System.out.println();
 			System.out.print("What would you like to do?");
 			command = sc.nextLine();
 		}
