@@ -3,15 +3,11 @@ package App;
 import java.util.Scanner;
 
 public class Runner {
+	private Register reg;
+	private UserLogin ul;
+	private MemberList ml;
 
-	Inventory invt;
-	Register reg;
-	UserLogin ul;
-	MemberList ml;
-	User current;
-
-	public Runner(Inventory invt, Register reg, UserLogin ul, MemberList ml) {
-		this.invt = invt;
+	public Runner(Register reg, UserLogin ul, MemberList ml) {
 		this.reg = reg;
 		this.ul = ul;
 		this.ml = ml;
@@ -19,16 +15,15 @@ public class Runner {
 
 	public void getIntoSystem() {
 		ul.callToArms();
-		ul.writeToXML();
 
 		User u = ul.getCurrentUser();
 
 		if(ul.getUserAccess()) {
-			reg = new Register(invt, ml);
-			Runner r = new Runner(invt, reg, ul, ml);
-			//ml = new MemberList(new ArrayList<Member>());
-			r.decision(u);
+			decision(u);
 		} else if(u == null) {
+			ul.writeToXML();
+			reg.writeToXML();
+			ml.writeToXML();
 			System.exit(0);
 		} else 
 			System.out.println("Not a valid User.");
@@ -37,7 +32,7 @@ public class Runner {
 	public void decision(User current) {
 		Scanner sc  = new Scanner(System.in);
 		System.out.println();
-		System.out.println("Register, Other, Manager, log off?");
+		System.out.println("Register, Other, Manager, log off, or exit?");
 		String decision = sc.nextLine().toLowerCase();
 		while(!decision.equalsIgnoreCase("exit")) {
 			switch(decision) {
@@ -63,6 +58,9 @@ public class Runner {
 			decision = sc.nextLine().toLowerCase();
 		}
 		System.out.println();
+		ul.writeToXML();
+		reg.writeToXML();
+		ml.writeToXML();
 		System.exit(0);
 	}
 
@@ -106,8 +104,6 @@ public class Runner {
 			command = sc.nextLine();
 		}
 		reg.writeToXML();
-		ul.writeToXML();
-		ml.writeToXML();
 		decision(current);
 	}
 
@@ -133,7 +129,6 @@ public class Runner {
 				Member newMember = new Member(mName, mAddress, number, Member.level.BRONZE, 0);
 				newMember.setPhoneNumber(number);
 				ml.addMember(newMember);
-				ml.writeToXML();
 				break;
 			case "see members":
 				ml.seeMembers();
@@ -155,8 +150,6 @@ public class Runner {
 			System.out.println("What would you like to do?");
 			command = sc.nextLine();
 		}
-		reg.writeToXML();
-		ul.writeToXML();
 		ml.writeToXML();
 		decision(current);
 	}
@@ -185,7 +178,6 @@ public class Runner {
 				break;
 			case "remove user":
 				ul.removeOneUser(sc);
-				ul.writeToXML();
 				break;
 			case "remove member":
 				System.out.println("What is the phone number of the member?");
@@ -198,7 +190,6 @@ public class Runner {
 					ml.removeMember(removeMember);
 				} else
 					System.out.println(removeMember.getName() + " was not removed.");
-				ml.writeToXML();
 				break;
 			case "add item":
 				System.out.print("Please enter the item you would like to add: ");
@@ -231,7 +222,6 @@ public class Runner {
 				enteredName = sc.nextLine();
 				System.out.print("Enter the name of the brand of the item: ");
 				brandName = sc.nextLine();
-				//invt.removeItemByName(eItem, eBrand);
 				reg.removeItem(enteredName, brandName);
 				break;
 			case "end day":
@@ -262,7 +252,6 @@ public class Runner {
 				Member newMember = new Member(mName, mAddress, number, Member.level.BRONZE, 0);
 				newMember.setPhoneNumber(number);
 				ml.addMember(newMember);
-				ml.writeToXML();
 				break;
 			case "see members":
 				ml.seeMembers();
@@ -284,9 +273,10 @@ public class Runner {
 			System.out.print("What would you like to do?");
 			command = sc.nextLine();
 		}
-		reg.writeToXML();
+		//Manager can add users/members/items so all 3 are needed.
 		ul.writeToXML();
 		ml.writeToXML();
+		reg.writeToXML();
 		decision(current);
 	}
 }
