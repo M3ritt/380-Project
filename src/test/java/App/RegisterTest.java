@@ -70,4 +70,16 @@ public class RegisterTest {
 		r.changeItemPrice("Basketball", 19.99, "wilson");
 		assertEquals(19.99, in.findItemByName("Basketball", "wilson").getPrice(), .01);
 	}
+	
+	@Test
+	public void testDailyInventory() {
+		Register r = new Register(in, ml);
+		Item temp1 = new Item("basketball", 15, "wilson");
+		Item temp2 = new Item("soccerball", 15, "wilson");
+		in.soldList.add(temp1);
+		in.soldList.add(temp2);
+		assertTrue(r.dailyInventory().contains("basketball"));
+		assertTrue(r.dailyInventory().contains("soccerball"));
+		
+	}
 }
