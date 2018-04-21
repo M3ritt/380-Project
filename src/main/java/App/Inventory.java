@@ -6,7 +6,8 @@ public class Inventory {
 	//Some data structure to save the items... some type of array?
 	//Generic for items
 	private ArrayList<Item> iList;
-	public ArrayList<Item> soldList;
+	public ArrayList<Item> soldList = new ArrayList<Item>();
+	public ArrayList<Item> weeklySoldList = new ArrayList<Item>();
 	private int count;
 
 	public Inventory(ArrayList<Item> iList) {
@@ -23,16 +24,21 @@ public class Inventory {
 	//adds a new item to the inventory
 	public void addItem(Item newItem){
 		if(checkItemByName(newItem.getName(), newItem.getBrand()) && 
-				(newItem.getPrice() == findItemByName(newItem.getName(), newItem.getBrand()).getPrice())){
+				(newItem.getPrice() == findItemByName(newItem.getName(), newItem.getBrand()).getPrice()))
+		{
 			findItemByName(newItem.getName(), newItem.getBrand()).incrementAmount();
+			Item tempItem = new Item(newItem.getName(), newItem.getPrice(), newItem.getBrand());
 			count++;
-		}else if(checkItemByName(newItem.getName(), newItem.getBrand()) && 
-				(newItem.getPrice() != findItemByName(newItem.getName(), newItem.getBrand()).getPrice())) {
+		}
+		else if(checkItemByName(newItem.getName(), newItem.getBrand()) && 
+				(newItem.getPrice() != findItemByName(newItem.getName(), newItem.getBrand()).getPrice())) 
+		{
 			System.out.println("That price does not match what we have in our system");
 			System.out.println("We are adding the item but with the original price.");
 			findItemByName(newItem.getName(), newItem.getBrand()).incrementAmount();
 			count++;
-		} else {
+		} 
+		else {
 			iList.add(count, newItem);
 			count++;
 			get(newItem).incrementAmount();
@@ -44,6 +50,7 @@ public class Inventory {
 		if(checkItemByName(itemName, brandName) == true) {
 			Item tempItem = new Item(itemName, 0.00, brandName);
 			soldList.add(tempItem);
+			weeklySoldList.add(tempItem);
 			tempItem.incrementAmount();
 			findItemByName(itemName, brandName).decreaseAmount();
 			count--;

@@ -14,10 +14,10 @@ public class Register {
 	private double saleTotal, amountGiven, changeDue, taxRate, newPrice;
 	private Scanner sc = new Scanner(System.in);
 	public DecimalFormat df = new DecimalFormat("#.##");
-	ArrayList<Item> openingList;
 	public enum Day { SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY;
 		public Day getNext() {
 			return values()[(ordinal()+1) % values().length];
+			
 		}
 	}
 	Day currentDay;
@@ -155,9 +155,7 @@ public class Register {
 	public String dailyInventory() {
 		
 		retVal = "";
-		currentInventory = inventory;
-		
-		
+			
 		for (Item i : inventory.soldList) {
 		
 			retVal += "Sold " + i.getAmount() + " " + i.getName() + ". \n";	
@@ -168,16 +166,27 @@ public class Register {
 		
 	}
 
-	public void weeklyInventory() {
-		//This will check the inventory at the end of the week
+	public String weeklyInventory() {
+		
+		retVal = "";
+		for (Item i : inventory.weeklySoldList) {
+			
+			retVal += "Sold" + i.getAmount() + " " + i.getName() + ". \n";
+			
+		}
+		
+		return retVal;
+		
 	}
 
-	public void weeklySalesTotals() {
-		//This will get the weekly sales totals
+	public String weeklySalesTotals() {
+		
+		return "" + weeklySalesTotal;
+		
 	}
 
 	public String dailyReport() {
-		//This will give daily report for sales, inventory, total tax, and user metrics
+		
 		retVal = "";
 		retVal += "Daily Sale Total: " + getDailySalesString() + ". \n";
 		retVal += "Daily Inventory: \n";
@@ -187,8 +196,13 @@ public class Register {
 		
 	}
 
-	public void weeklyReport() {
-		//This will give the weekly report for sales, inventory, total tax, and user metrics.
+	public String weeklyReport() {
+		
+		retVal = "";
+		retVal += "Weekly Sale Total: " + weeklySalesTotal + ". \n";
+		
+		return retVal;
+		
 	}
 
 	public double getDailySalesTotal() {
@@ -218,6 +232,10 @@ public class Register {
 	public void setTaxRate(int taxRate) {
 		this.taxRate = taxRate;
 	}
+	
+	public String getCurrentDay() {
+		return currentDay.toString();
+	}
 
 	public void writeToXML() {
 		UserXMLWriter uxmlw = new UserXMLWriter();
@@ -226,8 +244,16 @@ public class Register {
 	
 	public void endDay() {
 		
+		if (currentDay.equals(Day.SUNDAY)) {
+			weeklySalesTotal = 0;
+			dailySalesTotal = 0;
+		}
+		
+		else {
 		weeklySalesTotal += dailySalesTotal;
 		dailySalesTotal = 0;
+		}
+		
 		currentDay = currentDay.getNext();
 		
 	}
