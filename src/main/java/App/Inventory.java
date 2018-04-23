@@ -49,9 +49,16 @@ public class Inventory {
 	public void removeItemByName(String itemName, String brandName) {
 		if(checkItemByName(itemName, brandName) == true) {
 			Item tempItem = new Item(itemName, 0.00, brandName);
-			soldList.add(tempItem);
-			weeklySoldList.add(tempItem);
-			tempItem.incrementAmount();
+			int index = soldList.indexOf(tempItem);
+			if (index != -1) {
+				tempItem = soldList.get(index);
+				tempItem.incrementAmount();
+			}
+			else {
+				soldList.add(tempItem);
+				weeklySoldList.add(tempItem);
+				tempItem.incrementAmount();
+			}
 			findItemByName(itemName, brandName).decreaseAmount();
 			count--;
 			System.out.println(itemName + " from: "+brandName+ " was removed.");

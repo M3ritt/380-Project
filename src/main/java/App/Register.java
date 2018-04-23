@@ -46,6 +46,8 @@ public class Register {
 				saleTotal += inventory.findItemByName(enteredName, brandName).getPrice();
 				u.userSale(inventory.findItemByName(enteredName, brandName).getPrice());
 				inventory.removeItemByName(enteredName, brandName);
+				if (checkLowInventory(enteredName, brandName) == true)
+					System.out.println("Warning: Running low on " + enteredName + " only two or less left.");
 				saleCount++;
 			} else if(!(enteredName.equals(""))){
 				System.out.println(enteredName + " from "+ brandName+ " is not a valid item.");
@@ -172,7 +174,7 @@ public class Register {
 		retVal = "";
 		for (Item i : inventory.weeklySoldList) {
 			
-			retVal += "Sold" + i.getAmount() + " " + i.getName() + ". \n";
+			retVal += "Sold " + i.getAmount() + " " + i.getName() + ". \n";
 			
 		}
 		
@@ -237,6 +239,17 @@ public class Register {
 	public String getCurrentDay() {
 		return currentDay.toString();
 	}
+	
+	public boolean checkLowInventory(String itemName, String brandName) {
+			
+		Item tempItem = inventory.findItemByName(itemName, brandName);
+			
+		if (tempItem.getAmount() <= 2)
+			return true;
+		else
+			return false;
+			
+			}
 
 	public void writeToXML() {
 		UserXMLWriter uxmlw = new UserXMLWriter();
@@ -245,7 +258,7 @@ public class Register {
 	
 	public void endDay() {
 		
-		if (currentDay.equals(Day.SUNDAY)) {
+		if (currentDay.equals(Day.SATURDAY)) {
 			weeklySalesTotal = 0;
 			dailySalesTotal = 0;
 		}

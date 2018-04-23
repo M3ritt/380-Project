@@ -242,6 +242,9 @@ public class Runner {
 			case "weekly inventory":
 				System.out.println(reg.weeklyInventory());
 				break;
+			case "weekly report":
+				System.out.println(reg.weeklyReport());
+				break;
 			case "daily report":
 				System.out.println(reg.dailyReport());
 				break;

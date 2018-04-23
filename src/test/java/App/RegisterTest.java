@@ -82,4 +82,21 @@ public class RegisterTest {
 		assertTrue(r.dailyInventory().contains("soccerball"));
 		
 	}
+	
+	@Test
+	public void testEndDay() {
+		Register r = new Register(in, ml);
+		r.endDay();
+		assertEquals("MONDAY", r.getCurrentDay());
+			
+	}
+	
+	@Test
+	public void testCheckLowInventory() {		
+		Register r = new Register(in, ml);
+		r.addItem("Curling Broom", 59.99, "Curlers'r'us");
+		r.addItem("Curling Broom", 59.99, "Curlers'r'us");
+		assertTrue(r.checkLowInventory("curling broom", "curlers'r'us"));
+			
+	}
 }
