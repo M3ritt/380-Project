@@ -18,7 +18,8 @@ public class InventoryParser extends DefaultHandler {
 	private ArrayList<Item> iList;
 	private ArrayList<User> uList;
 	private ArrayList<Member> mList;
-	private double price;
+	private double price, sales;
+	private int nLogin;
 	private Inventory newInv;
 	private MemberList members;
 	private String itemName, pass, uNam, memName, address, phoneNumber, level, totalSpent, uAccess;
@@ -51,10 +52,15 @@ public class InventoryParser extends DefaultHandler {
 			pass = atts.getValue("password");
 			uNam = atts.getValue("username");
 			uAccess = atts.getValue("accessLevel");
+			String spouse = atts.getValue("loginTimes");
+			nLogin = Integer.parseInt(spouse);
+			String yowse = atts.getValue("sales");
+			sales = Double.parseDouble(yowse);
 			if(uAccess.equalsIgnoreCase("manager"))
-				u = new User(uNam, pass, User.access.MANAGER);
+				u = new User(uNam, pass, sales, User.access.MANAGER, nLogin);
 			else 
-				u = new User(uNam, pass, User.access.CASHIER);
+				u = new User(uNam, pass, sales, User.access.CASHIER, nLogin);
+			
 			uList.add(u);
 			break;
 		case "member":

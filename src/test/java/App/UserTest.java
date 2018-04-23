@@ -53,5 +53,11 @@ public class UserTest {
 		assertEquals("Jon Doe", u2.getUserName());
 		
 	}
-	
+	@Test
+	public void testUserTotal() {
+		User u = new User("J", "a", 0.00, User.access.CASHIER, 0);
+		u.addLoginTime();
+		u.userSale(2.99);
+		assertEquals(2.99, u.showSalesTotal(), 0);
+	}
 }

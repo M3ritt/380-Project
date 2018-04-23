@@ -29,7 +29,7 @@ public class Register {
 		this.currentDay = Day.SUNDAY;
 	}
 
-	public void sale() {
+	public void sale(User u) {
 		String enteredName;
 		String brandName;
 		int saleCount = 0;
@@ -44,6 +44,7 @@ public class Register {
 				System.out.println(enteredName +" from " +brandName+ " was removed from the inventory.");
 				dailySalesTotal += inventory.findItemByName(enteredName, brandName).getPrice();
 				saleTotal += inventory.findItemByName(enteredName, brandName).getPrice();
+				u.userSale(inventory.findItemByName(enteredName, brandName).getPrice());
 				inventory.removeItemByName(enteredName, brandName);
 				saleCount++;
 			} else if(!(enteredName.equals(""))){

@@ -26,7 +26,7 @@ public class UserLogin {
 	}
 
 	public void callToArms() {
-		this.currentUser = null;
+		this.currentUser = new User();
 		this.userAccess = false;
 		System.out.println("New User? Or press enter to exit.");
 		sc = new Scanner(System.in);
@@ -84,7 +84,7 @@ public class UserLogin {
 		String firstEnteredPass = sc.nextLine();
 		System.out.print("Enter the password again. ");
 		if(firstEnteredPass.equals(sc.nextLine()))
-			uList.add(new User(createdUName, firstEnteredPass, User.access.CASHIER));
+			uList.add(new User(createdUName, firstEnteredPass, 0.00, User.access.CASHIER, 0));
 		else {
 			System.out.println("Passwords do not match try again!");
 			newUserSetup(createdUName, sc);
@@ -97,7 +97,7 @@ public class UserLogin {
 		String firstEnteredPass = sc.nextLine();
 		System.out.print("Enter the password again. ");
 		if(firstEnteredPass.equals(sc.nextLine()))
-			uList.add(new User(alreadyCreatedUName, firstEnteredPass, User.access.CASHIER));
+			uList.add(new User(alreadyCreatedUName, firstEnteredPass, 0.00, User.access.CASHIER, 0));
 		else {
 			System.out.println("Passwords do not match try again!");
 			newUserSetup(alreadyCreatedUName, sc);
@@ -118,6 +118,7 @@ public class UserLogin {
 				String potentialPassword = sc.nextLine();
 				if(loginUser.getPassword().equals(potentialPassword)) {
 					this.currentUser = loginUser;
+					this.currentUser.addLoginTime();
 					userAccess = true;
 				} else if(tries < 3) {
 					System.out.println("Not the correct password. You have " + (3 - tries) + " tries remaining");
@@ -176,6 +177,12 @@ public class UserLogin {
 		this.uList = ul;
 	}
 
+	public void displayEmployeeStats() {
+		for(User u:uList) {
+			System.out.println(u.showDailySalesAverage());
+		}
+	}
+	
 	public void writeToXML() {
 		UserXMLWriter uxmlw = new UserXMLWriter();
 		uxmlw.writeForUsers(this.uList);

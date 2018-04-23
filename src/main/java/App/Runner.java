@@ -93,7 +93,7 @@ public class Runner {
 				reg.itemReturn(enteredName, brandName);
 				break;
 			case "sale":
-				reg.sale();
+				reg.sale(current);
 				break;
 			default:
 				System.out.println("Cannot: "+command);
