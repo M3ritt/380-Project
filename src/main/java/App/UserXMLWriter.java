@@ -38,12 +38,20 @@ public class UserXMLWriter {
 				attr2.setValue(u.getUserName());
 				info.setAttributeNode(attr2);
 				
-				Attr attr3 = d.createAttribute("accessLevel");
-				if(u.getAccessLevel() == User.access.MANAGER)
-					attr3.setValue("manager");
-				else
-					attr3.setValue("cashier");
+				Attr attr3 = d.createAttribute("loginTimes");
+				attr3.setValue("" + u.getLoginTimes());
 				info.setAttributeNode(attr3);
+				
+				Attr attr4 = d.createAttribute("accessLevel");
+				if(u.getAccessLevel() == User.access.MANAGER)
+					attr4.setValue("manager");
+				else
+					attr4.setValue("cashier");
+				info.setAttributeNode(attr4);
+				
+				Attr attr5 = d.createAttribute("sales");
+				attr5.setValue("" + u.getSalesTotal());
+				info.setAttributeNode(attr5);
 				user.appendChild(info);
 			}
 

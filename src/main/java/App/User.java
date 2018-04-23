@@ -71,6 +71,9 @@ public class User {
 		return salesTotal;
 	}
 
+	public int getLoginTimes() {
+		return this.timesLoggedIn;
+	}
 	@Override
 	public String toString() {
 		return "User: "+getUserName() + " with the password: "+getPassword();
