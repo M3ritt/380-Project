@@ -21,9 +21,9 @@ public class Runner {
 		if(ul.getUserAccess()) {
 			decision(u);
 		} else if(u == null) {
-			ul.writeToXML();
-			reg.writeToXML();
-			ml.writeToXML();
+			//ul.writeToXML();
+			//reg.writeToXML();
+			//ml.writeToXML();
 			System.exit(0);
 		} else 
 			System.out.println("Not a valid User.");
@@ -58,9 +58,9 @@ public class Runner {
 			decision = sc.nextLine().toLowerCase();
 		}
 		System.out.println();
-		ul.writeToXML();
-		reg.writeToXML();
-		ml.writeToXML();
+		//ul.writeToXML();
+		//reg.writeToXML();
+		//ml.writeToXML();
 		System.exit(0);
 	}
 
@@ -103,7 +103,7 @@ public class Runner {
 			System.out.println("What would you like to do?");
 			command = sc.nextLine();
 		}
-		reg.writeToXML();
+		//reg.writeToXML();
 		decision(current);
 	}
 
@@ -150,7 +150,7 @@ public class Runner {
 			System.out.println("What would you like to do?");
 			command = sc.nextLine();
 		}
-		ml.writeToXML();
+		//ml.writeToXML();
 		decision(current);
 	}
 
@@ -280,9 +280,9 @@ public class Runner {
 			command = sc.nextLine();
 		}
 		//Manager can add users/members/items so all 3 are needed.
-		ul.writeToXML();
-		ml.writeToXML();
-		reg.writeToXML();
+		//ul.writeToXML();
+		//ml.writeToXML();
+		//reg.writeToXML();
 		decision(current);
 	}
 }

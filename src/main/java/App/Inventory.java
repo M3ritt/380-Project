@@ -6,13 +6,10 @@ public class Inventory {
 	//Some data structure to save the items... some type of array?
 	//Generic for items
 	private ArrayList<Item> iList;
-	public ArrayList<Item> soldList = new ArrayList<Item>();
-	public ArrayList<Item> weeklySoldList = new ArrayList<Item>();
 	private int count;
 
 	public Inventory(ArrayList<Item> iList) {
 		this.iList = iList;
-		soldList = new ArrayList<Item>();
 		count = iList.size();
 	}
 
@@ -27,7 +24,6 @@ public class Inventory {
 				(newItem.getPrice() == findItemByName(newItem.getName(), newItem.getBrand()).getPrice()))
 		{
 			findItemByName(newItem.getName(), newItem.getBrand()).incrementAmount();
-			Item tempItem = new Item(newItem.getName(), newItem.getPrice(), newItem.getBrand());
 			count++;
 		}
 		else if(checkItemByName(newItem.getName(), newItem.getBrand()) && 
@@ -48,17 +44,6 @@ public class Inventory {
 	//removes an item based on it's name
 	public void removeItemByName(String itemName, String brandName) {
 		if(checkItemByName(itemName, brandName) == true) {
-			Item tempItem = new Item(itemName, 0.00, brandName);
-			int index = soldList.indexOf(tempItem);
-			if (index != -1) {
-				tempItem = soldList.get(index);
-				tempItem.incrementAmount();
-			}
-			else {
-				soldList.add(tempItem);
-				weeklySoldList.add(tempItem);
-				tempItem.incrementAmount();
-			}
 			findItemByName(itemName, brandName).decreaseAmount();
 			count--;
 			System.out.println(itemName + " from: "+brandName+ " was removed.");

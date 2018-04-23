@@ -53,6 +53,7 @@ public class Main{
 		}
 		
 		reg = new Register(invt, ml);
+		reg.openRegister();
 		Runner r = new Runner(reg, ul, ml);
 		r.getIntoSystem();
 	}

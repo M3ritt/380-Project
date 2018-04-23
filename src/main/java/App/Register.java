@@ -6,7 +6,7 @@ import java.text.DecimalFormat;
 
 public class Register {
 
-	private Inventory inventory, currentInventory;
+	private Inventory inventory, startingInventory;
 	private MemberList mList;
 	private String retVal = "";
 	private double dailySalesTotal = 0;
@@ -76,7 +76,7 @@ public class Register {
 					mList.findMemberByPhoneNumber(possibleNumber).addToSales(saleTotal * taxRate);
 					doSale(saleCount);
 				}
-				mList.writeToXML();
+				//mList.writeToXML();
 			} else
 				System.out.println("That number is not in our system.");
 		}
@@ -158,10 +158,21 @@ public class Register {
 	public String dailyInventory() {
 		
 		retVal = "";
-			
-		for (Item i : inventory.soldList) {
 		
-			retVal += "Sold " + i.getAmount() + " " + i.getName() + ". \n";	
+		ArrayList<Item> startingList = startingInventory.getInventory();
+		ArrayList<Item> current = inventory.getInventory();
+		int tempCount;
+		
+		for (Item i : startingList) {
+		
+			for (Item j : current) {
+				
+				if (i.getName().equals(j.getName())){
+					tempCount = i.getAmount() - j.getAmount();
+					retVal += "Sold " + tempCount + " " + i.getName() + ". \n";	
+				}
+				
+			}
 
 		}
 		
@@ -171,12 +182,12 @@ public class Register {
 
 	public String weeklyInventory() {
 		
-		retVal = "";
+		/* retVal = "";
 		for (Item i : inventory.weeklySoldList) {
 			
 			retVal += "Sold " + i.getAmount() + " " + i.getName() + ". \n";
 			
-		}
+		}*/
 		
 		return retVal;
 		
@@ -249,7 +260,20 @@ public class Register {
 		else
 			return false;
 			
-			}
+		}
+	
+	public void openRegister() {
+		
+		ArrayList<Item> startingList = new ArrayList<Item>();
+		ArrayList<Item> tempList = inventory.getInventory();
+		for (Item i : tempList) {
+			Item tempItem = new Item(i.getName(), i.getPrice(), i.getBrand());
+			tempItem.setAmount(i.getAmount());
+			startingList.add(tempItem);
+		}
+		startingInventory = new Inventory(startingList);
+		
+	}
 
 	public void writeToXML() {
 		UserXMLWriter uxmlw = new UserXMLWriter();
@@ -269,6 +293,7 @@ public class Register {
 		}
 		
 		currentDay = currentDay.getNext();
+		openRegister();
 		
 	}
 }

@@ -12,6 +12,7 @@ import javax.xml.parsers.SAXParserFactory;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.Ignore;
 import org.xml.sax.SAXException;
 
 public class RegisterTest {
@@ -71,7 +72,7 @@ public class RegisterTest {
 		assertEquals(19.99, in.findItemByName("Basketball", "wilson").getPrice(), .01);
 	}
 	
-	@Test
+	@Test @Ignore
 	public void testDailyInventory() {
 		Register r = new Register(in, ml);
 		Item temp1 = new Item("basketball", 15, "wilson");
