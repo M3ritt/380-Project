@@ -271,6 +271,9 @@ public class Runner {
 				} else
 					System.out.println("That number is not in our system.");
 				break;
+			case "user stats":
+				ul.displayEmployeeStats();
+				break;
 			default:
 				System.out.println("Cannot: "+command);
 				break;

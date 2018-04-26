@@ -71,8 +71,8 @@ public class RegisterTest {
 		r.changeItemPrice("Basketball", 19.99, "wilson");
 		assertEquals(19.99, in.findItemByName("Basketball", "wilson").getPrice(), .01);
 	}
-	
-	@Test @Ignore
+	/*
+	@Ignore @Test
 	public void testDailyInventory() {
 		Register r = new Register(in, ml);
 		Item temp1 = new Item("basketball", 15, "wilson");
@@ -83,7 +83,7 @@ public class RegisterTest {
 		assertTrue(r.dailyInventory().contains("soccerball"));
 		
 	}
-	
+	*/
 	@Test
 	public void testEndDay() {
 		Register r = new Register(in, ml);
