@@ -282,16 +282,11 @@ public class Register {
 	
 	public void endDay() {
 		
-		if (currentDay.equals(Day.SATURDAY)) {
+		if (currentDay.equals(Day.SATURDAY))
 			weeklySalesTotal = 0;
-			dailySalesTotal = 0;
-		}
-		
-		else {
-		weeklySalesTotal += dailySalesTotal;
+		else 
+			weeklySalesTotal += dailySalesTotal;
 		dailySalesTotal = 0;
-		}
-		
 		currentDay = currentDay.getNext();
 		openRegister();
 		
