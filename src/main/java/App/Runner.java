@@ -14,28 +14,38 @@ public class Runner {
 	}
 
 	public void getIntoSystem() {
-		ul.callToArms();
+		User u = null;	
+		boolean entered = false;
 
-		User u = ul.getCurrentUser();
-
-		if(ul.getUserAccess()) {
-			decision(u);
-		} else if(u == null) {
-			//ul.writeToXML();
-			//reg.writeToXML();
-			//ml.writeToXML();
-			System.exit(0);
-		} else 
-			System.out.println("Not a valid User.");
+		do {
+			ul.callToArms();
+			u = ul.getCurrentUser();
+			if(ul.getUserAccess()) {
+				decision(u);
+				entered = true;
+			} else if(u.getAccessLevel() == null) {
+				//ul.writeToXML();
+				//reg.writeToXML();
+				//ml.writeToXML();
+				System.exit(0);
+			} else 
+				System.out.println("Not a valid User.");
+		}while(entered == false);
 	}
 
 	public void decision(User current) {
 		Scanner sc  = new Scanner(System.in);
 		System.out.println();
-		System.out.println("Register, Other, Manager, log off, or exit?");
+		System.out.println("Register, Other, Manager, see user, log off, or exit?");
 		String decision = sc.nextLine().toLowerCase();
 		while(!decision.equalsIgnoreCase("exit")) {
 			switch(decision) {
+			case "help":
+				System.out.println("register: all register tasks." + "\n" + 
+			"other: all membership tasks." + "manager: all tasks." + "\n" +
+						"see user: prints current user." + "\n"+
+			"log off: logs off for others to log in." + "\n" + "exit: shuts system down.");
+				break;
 			case "register":
 				registerStuff(current);
 				break;
@@ -48,13 +58,17 @@ public class Runner {
 				else
 					System.out.println("You do not have access");
 				break;
+			case "see user":
+				System.out.println(current);
+				break;
 			case "log off":
 				getIntoSystem();
 				break;
 			default:
 				System.out.println(decision + " is not a choice.");
 			}
-			System.out.println("Register, Other, Manager or log off?");
+			System.out.println();
+			System.out.println("Register, Other, Manager, see user, log off or exit?");
 			decision = sc.nextLine().toLowerCase();
 		}
 		System.out.println();

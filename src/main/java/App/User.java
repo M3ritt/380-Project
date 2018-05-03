@@ -76,6 +76,6 @@ public class User {
 	}
 	@Override
 	public String toString() {
-		return "User: "+getUserName() + " with the password: "+getPassword();
+		return "User: "+getUserName() + " with the password: "+getPassword() + " with access of: "+getAccessLevel();
 	}
 }
