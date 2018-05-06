@@ -137,6 +137,7 @@ public class Runner {
 		System.out.println("How would you like to manage members? type 'help' for options");
 		System.out.println();
 		String command = sc.nextLine().toLowerCase();
+		System.out.println();
 		while(!command.equalsIgnoreCase("exit")) {
 			switch(command) {
 			case "help":
@@ -189,6 +190,7 @@ public class Runner {
 		System.out.println("What would you like to do as a manager? type 'help' for options");
 		System.out.println();
 		String command = sc.nextLine().toLowerCase();
+		System.out.println();
 		while(!command.equalsIgnoreCase("exit")) {
 			switch(command) {
 			case "help":

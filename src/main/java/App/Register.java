@@ -17,7 +17,7 @@ public class Register {
 	public enum Day { SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY;
 		public Day getNext() {
 			return values()[(ordinal()+1) % values().length];
-			
+
 		}
 	}
 	Day currentDay;
@@ -88,7 +88,11 @@ public class Register {
 			boolean qualified = false;
 			while(qualified == false) {
 				System.out.println("Amount Due: " + df.format(saleTotal) + ".");
-				System.out.print("Amount taken: ");
+				System.out.println("Amount taken: ");
+				while(!sc.hasNextDouble()) {
+					System.out.println("Invalid input. Enter the amount taken.");
+					sc.nextLine();
+				}
 				amountGiven = Double.parseDouble(sc.nextLine());
 				if(amountGiven < saleTotal) {
 					System.out.println("Sorry not enough money try again.");
@@ -156,73 +160,73 @@ public class Register {
 	}
 
 	public String dailyInventory() {
-		
+
 		retVal = "";
-		
+
 		ArrayList<Item> startingList = startingInventory.getInventory();
 		ArrayList<Item> current = inventory.getInventory();
 		int tempCount;
-		
+
 		for (Item i : startingList) {
-		
+
 			for (Item j : current) {
-				
+
 				if (i.getName().equals(j.getName())){
 					tempCount = i.getAmount() - j.getAmount();
 					retVal += "Sold " + tempCount + " " + i.getName() + ". \n";	
 				}
-				
+
 			}
 
 		}
-		
+
 		return retVal;
-		
+
 	}
 
 	public String weeklyInventory() {
-		
+
 		/* retVal = "";
 		for (Item i : inventory.weeklySoldList) {
-			
+
 			retVal += "Sold " + i.getAmount() + " " + i.getName() + ". \n";
-			
+
 		}*/
-		
+
 		return retVal;
-		
+
 	}
 
 	public String weeklySalesTotals() {
-		
+
 		return "" + weeklySalesTotal;
-		
+
 	}
 
 	public String dailyReport() {
-		
+
 		retVal = "";
 		retVal += "Daily Sale Total: " + getDailySalesString() + ". \n";
 		retVal += "Daily Inventory: \n";
 		retVal += dailyInventory();
-		
+
 		return retVal;
-		
+
 	}
 
 	public String weeklyReport() {
-		
+
 		retVal = "";
 		retVal += "Weekly Sale Total: " + weeklySalesTotal + ". \n";
-		
+
 		return retVal;
-		
+
 	}
 
 	public double getDailySalesTotal() {
 		return dailySalesTotal;
 	}
-	
+
 	public String getDailySalesString() {
 		return Double.toString(dailySalesTotal);
 	}
@@ -246,24 +250,24 @@ public class Register {
 	public void setTaxRate(int taxRate) {
 		this.taxRate = taxRate;
 	}
-	
+
 	public String getCurrentDay() {
 		return currentDay.toString();
 	}
-	
+
 	public boolean checkLowInventory(String itemName, String brandName) {
-			
+
 		Item tempItem = inventory.findItemByName(itemName, brandName);
-			
+
 		if (tempItem.getAmount() <= 2)
 			return true;
 		else
 			return false;
-			
-		}
-	
+
+	}
+
 	public void openRegister() {
-		
+
 		ArrayList<Item> startingList = new ArrayList<Item>();
 		ArrayList<Item> tempList = inventory.getInventory();
 		for (Item i : tempList) {
@@ -272,16 +276,16 @@ public class Register {
 			startingList.add(tempItem);
 		}
 		startingInventory = new Inventory(startingList);
-		
+
 	}
 
 	public void writeToXML() {
 		UserXMLWriter uxmlw = new UserXMLWriter();
 		uxmlw.writeForInventory(inventory.getInventory());
 	}
-	
+
 	public void endDay() {
-		
+
 		if (currentDay.equals(Day.SATURDAY))
 			weeklySalesTotal = 0;
 		else 
@@ -289,6 +293,6 @@ public class Register {
 		dailySalesTotal = 0;
 		currentDay = currentDay.getNext();
 		openRegister();
-		
+
 	}
 }
