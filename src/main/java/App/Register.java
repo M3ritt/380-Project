@@ -33,6 +33,7 @@ public class Register {
 		String enteredName;
 		String brandName;
 		int saleCount = 0;
+		ArrayList<Item> removedItems = new ArrayList<Item>();
 		do {
 			System.out.print("Please enter the item to remove, or press enter to leave: ");
 			enteredName = sc.nextLine();
@@ -45,6 +46,7 @@ public class Register {
 				dailySalesTotal += inventory.findItemByName(enteredName, brandName).getPrice();
 				saleTotal += inventory.findItemByName(enteredName, brandName).getPrice();
 				u.userSale(inventory.findItemByName(enteredName, brandName).getPrice());
+				removedItems.add(inventory.findItemByName(enteredName, brandName));
 				inventory.removeItemByName(enteredName, brandName);
 				if (checkLowInventory(enteredName, brandName) == true)
 					System.out.println("Warning: Running low on " + enteredName + " only two or less left.");
@@ -52,6 +54,7 @@ public class Register {
 			} else if(!(enteredName.equals(""))){
 				System.out.println(enteredName + " from "+ brandName+ " is not a valid item.");
 			}
+			System.out.println();
 		} while(!(enteredName.equals("")));
 		System.out.println("Are you a current member?");
 		sc = new Scanner(System.in);
@@ -77,8 +80,21 @@ public class Register {
 					doSale(saleCount);
 				}
 				//mList.writeToXML();
-			} else
+			} else {
 				System.out.println("That number is not in our system.");
+				System.out.println("No purcahse was made.");
+				readdItems(removedItems, u);
+			}
+		}
+	}
+	
+	//If the user says they are a member it would get rid of the item without them purchasing it
+	public void readdItems(ArrayList<Item> items, User u) {
+		for(Item i : items) {
+			inventory.addItem(i);
+			dailySalesTotal -= i.getPrice();
+			u.userSale(i.getPrice() * -1);
+			saleTotal = amountGiven = changeDue = 0.0;
 		}
 	}
 

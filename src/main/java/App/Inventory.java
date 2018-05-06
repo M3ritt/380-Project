@@ -46,7 +46,7 @@ public class Inventory {
 		if(checkItemByName(itemName, brandName) == true) {
 			findItemByName(itemName, brandName).decreaseAmount();
 			count--;
-			System.out.println(itemName + " from: "+brandName+ " was removed.");
+			//System.out.println(itemName + " from: "+brandName+ " was removed.");
 		} else {
 			System.out.println("That item is not in the inventory.");
 		}
