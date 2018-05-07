@@ -24,9 +24,9 @@ public class Runner {
 				decision(u);
 				entered = true;
 			} else if(u.getAccessLevel() == null) {
-				//ul.writeToXML();
-				//reg.writeToXML();
-				//ml.writeToXML();
+				ul.writeToXML();
+				reg.writeToXML();
+				ml.writeToXML();
 				System.exit(0);
 			} else 
 				System.out.println("Not a valid User.");
@@ -76,9 +76,9 @@ public class Runner {
 			decision = sc.nextLine().toLowerCase();
 		}
 		System.out.println();
-		//ul.writeToXML();
-		//reg.writeToXML();
-		//ml.writeToXML();
+		ul.writeToXML();
+		reg.writeToXML();
+		ml.writeToXML();
 		System.exit(0);
 	}
 
@@ -121,7 +121,7 @@ public class Runner {
 			System.out.println("What would you like to do in the Register? Type 'help' for options");
 			command = sc.nextLine().toLowerCase();
 		}
-		//reg.writeToXML();
+		reg.writeToXML();
 		decision(current);
 	}
 
@@ -167,7 +167,7 @@ public class Runner {
 			System.out.println("How would you like to manage members? Type 'help' for options");
 			command = sc.nextLine().toLowerCase();
 		}
-		//ml.writeToXML();
+		ml.writeToXML();
 		decision(current);
 	}
 
@@ -299,10 +299,10 @@ public class Runner {
 			System.out.println("What would you like to do as a manager? Type 'help' for options");
 			command = sc.nextLine().toLowerCase();
 		}
-		//Manager can add users/members/items so all 3 are needed.
-		//ul.writeToXML();
-		//ml.writeToXML();
-		//reg.writeToXML();
+
+		ul.writeToXML();
+		ml.writeToXML();
+		reg.writeToXML();
 		decision(current);
 	}
 }
