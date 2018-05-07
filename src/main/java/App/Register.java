@@ -9,6 +9,7 @@ public class Register {
 	private Inventory inventory, startingInventory;
 	private MemberList mList;
 	private String retVal = "";
+	private String weeklyReport;
 	private double dailySalesTotal = 0;
 	private double weeklySalesTotal = 0;
 	private double saleTotal, amountGiven, changeDue, taxRate, newPrice;
@@ -19,6 +20,7 @@ public class Register {
 			return values()[(ordinal()+1) % values().length];
 
 		}
+		String report;
 	}
 	Day currentDay;
 
@@ -202,14 +204,7 @@ public class Register {
 
 	public String weeklyInventory() {
 
-		/* retVal = "";
-		for (Item i : inventory.weeklySoldList) {
-
-			retVal += "Sold " + i.getAmount() + " " + i.getName() + ". \n";
-
-		}*/
-
-		return retVal;
+		return weeklyReport;
 
 	}
 
@@ -222,8 +217,8 @@ public class Register {
 	public String dailyReport() {
 
 		retVal = "";
-		retVal += "Daily Sale Total: " + getDailySalesString() + ". \n";
-		retVal += "Daily Inventory: \n";
+		retVal += currentDay.toString() + " " + "Daily Sale Total: " + getDailySalesString() + ". \n";
+		retVal += currentDay.toString() + " " + "Daily Inventory: \n";
 		retVal += dailyInventory();
 
 		return retVal;
@@ -234,6 +229,7 @@ public class Register {
 
 		retVal = "";
 		retVal += "Weekly Sale Total: " + weeklySalesTotal + ". \n";
+		retVal += weeklyReport;
 
 		return retVal;
 
@@ -303,12 +299,14 @@ public class Register {
 	public void endDay() {
 		
 		System.out.println(dailyReport());
+		currentDay.report = dailyReport();
 
 		if (currentDay.equals(Day.SATURDAY))
 			weeklySalesTotal = 0;
 		else 
 			weeklySalesTotal += dailySalesTotal;
 		dailySalesTotal = 0;
+		weeklyReport += currentDay.report;
 		currentDay = currentDay.getNext();
 		openRegister();
 
