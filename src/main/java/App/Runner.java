@@ -191,9 +191,9 @@ public class Runner {
 						"User Stats: Shows the average sales of each user by times logged in.\n" +
 						"End Day: Ends the current day.\n" +
 						"Daily Inventory: Gets todays inventory.\n"+
-						"Daily Report: Gets the number of items sold that day.\n" + 
+						"Daily Report: Gets the number of items sold that day.\n" +
 						"Weekly Inventory: Gets the inventory for each day. \n" +
-						"Weekly Report: Gets the sales total and inventory for the week. \n"
+						"Weekly Report: Gets the sales total and inventory for the week. \n" +
 						"Exit: Exits manager section.\n");
 				break;
 			case "remove user":

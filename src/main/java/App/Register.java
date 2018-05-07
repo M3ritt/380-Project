@@ -301,8 +301,10 @@ public class Register {
 		System.out.println(dailyReport());
 		currentDay.report = dailyReport();
 
-		if (currentDay.equals(Day.SATURDAY))
+		if (currentDay.equals(Day.SATURDAY)) {
 			weeklySalesTotal = 0;
+			weeklyReport = ""; 
+			}
 		else 
 			weeklySalesTotal += dailySalesTotal;
 		dailySalesTotal = 0;
