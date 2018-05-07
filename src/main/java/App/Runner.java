@@ -35,18 +35,19 @@ public class Runner {
 
 	public void decision(User current) {
 		Scanner sc  = new Scanner(System.in);
-		System.out.print("What type of action would you like?" + "\n" + ""
-				+ "Options are:\n" + "Register, Manage Members, Manager, Help, Log Off or Shut Down?");
+		System.out.println("What would you like to do?\n" + 
+						   "Options are:\n" + 
+						   "Register, Manage Members, Manager, See User, Help, Log Off or Shut Down.");
 		String decision = sc.nextLine().toLowerCase();
 		while(!decision.equalsIgnoreCase("shut down")) {
 			switch(decision) {
 			case "help":
-				System.out.print("Register: User opens the register.\n" + 
+				System.out.println("Register: User opens the register.\n" + 
 						"Manage Members: Allows user to access membership tasks.\n" +
 						"Manager: User can access the manager commands.\n" +
-						"See User: prints current user." + "\n"+
-						"Log Off: logs off for others to log in.\n" + 
-						"Exit: shuts system down.");
+						"See User: Prints current user.\n" +
+						"Log Off: Logs the current user off.\n" + 
+						"Shut Down: Close down the system.\n");
 				break;
 			case "register":
 				registerStuff(current);
@@ -61,7 +62,8 @@ public class Runner {
 					System.out.println("You do not have access");
 				break;
 			case "see user":
-				System.out.println(current);
+				System.out.println("User: " + current.getUserName() +
+								  " With the access level of : " + current.getAccessLevel());
 				break;
 			case "log off":
 				getIntoSystem();
@@ -69,10 +71,8 @@ public class Runner {
 			default:
 				System.out.println(decision + " is not a choice.");
 			}
-			System.out.println();
 			System.out.println("What would you like to do?\n" +
-							   "Options are:\n" + "Register, Manage Members, Manager, Log Off or Shut Down.");
-			System.out.println();
+							 "Options are:\n" + "Register, Manage Members, Manager, Help, Log Off or Shut Down.");
 			decision = sc.nextLine().toLowerCase();
 		}
 		System.out.println();
@@ -85,16 +85,16 @@ public class Runner {
 	public void registerStuff(User current) {
 		String enteredName, brandName;
 		Scanner sc = new Scanner(System.in);
-		System.out.println("What would you like to do in the Register? type 'help' for options");
+		System.out.println("What would you like to do in the Register? Type 'help' for options");
 		String command = sc.nextLine().toLowerCase();
-		System.out.println();
 		while(!command.equalsIgnoreCase("exit")) {
 			switch(command) {
 			case "help":
-				System.out.println("inventory: prints out the current inventory." + "\n" +
-						"find item: finds a desired item." +"\n"+ 
-						"return item: can return an item." + "\n" +
-						"sale: can do a sale." + "\n" + "exit: goes back to different types of actions");
+				System.out.println("Inventory: This prints out the current inventory.\n" +
+						"Find Item: Finds the specified item.\n"+ 
+						"Return Item: Takes the item being returned if it is valid.\n" +
+						"Sale: Check the customer out.\n" +
+						"Exit: Exits the register.\n");
 				break;
 			case "inventory":
 				reg.checkInventory();
@@ -118,8 +118,8 @@ public class Runner {
 				System.out.println("Cannot: "+command);
 				break;
 			}
-			System.out.println("What would you like to do in the Register? type 'help' for options");
-			command = sc.nextLine();
+			System.out.println("What would you like to do in the Register? Type 'help' for options");
+			command = sc.nextLine().toLowerCase();
 		}
 		//reg.writeToXML();
 		decision(current);
@@ -132,17 +132,17 @@ public class Runner {
 		while(!command.equalsIgnoreCase("exit")) {
 			switch(command) {
 			case "help":
-				System.out.print("Add Member: Adds a member."+ "\n" +
-						"see members: can see all members." + "\n" + 
-						"search member: searches for a member from specific phone number."
-						+ "\n" + "exit: goes back to different types of actions");
+				System.out.println("Add Member: Adds a member.\n" +
+						"See Members: User can see all members.\n" + 
+						"Search Member: User searches for a member based on the member's phone number.\n" +
+						"Exit: Exits the Members section.\n");
 				break;
 			case "add member":
-				System.out.print("What is the members name(first and last): ");
+				System.out.print("What is the members full name: ");
 				String mName = sc.nextLine();
 				System.out.print("What is the members address: ");
 				String mAddress = sc.nextLine();				
-				System.out.print("What is the phone number?");
+				System.out.print("What is the phone number: ");
 				String number = sc.nextLine();
 				Member newMember = new Member(mName, mAddress, number, Member.level.BRONZE, 0);
 				newMember.setPhoneNumber(number);
@@ -152,20 +152,20 @@ public class Runner {
 				ml.seeMembers();
 				break;
 			case "search member":
-				System.out.print("What is the phone number?");
+				System.out.print("What is the member's phone number: ");
 				number = sc.nextLine();
 				Member currentBuyer = ml.findMemberByPhoneNumber(number);
 				if(currentBuyer != null) {
 					System.out.println(currentBuyer);
 				} else
-					System.out.println("That number is not in our system.");
+					System.out.println("No member with that phone number.");
 				break;
 			default:
 				System.out.println("Cannot: "+command);
 				break;
 			}
-			System.out.println("How would you like to manage members? type 'help' for options");
-			command = sc.nextLine();
+			System.out.println("How would you like to manage members? Type 'help' for options");
+			command = sc.nextLine().toLowerCase();
 		}
 		//ml.writeToXML();
 		decision(current);
@@ -175,7 +175,7 @@ public class Runner {
 		String enteredName, brandName;
 		Double enteredDouble = 0.0;
 		Scanner sc = new Scanner(System.in);
-		System.out.println("What would you like to do as a manager? type 'help' for options");
+		System.out.println("What would you like to do as a manager? Type 'help' for options");
 		String command = sc.nextLine().toLowerCase();
 		while(!command.equalsIgnoreCase("exit")) {
 			switch(command) {
@@ -191,7 +191,7 @@ public class Runner {
 						"End Day: Ends the current day.\n" +
 						"Daily Inventory: Gets todays inventory.\n"+
 						"Daily Report: Gets the number of items sold that day.\n" + 
-						"Exit: Exits manager section.");
+						"Exit: Exits manager section.\n");
 				break;
 			case "remove user":
 				ul.removeOneUser(sc);
@@ -213,7 +213,7 @@ public class Runner {
 				enteredName = sc.nextLine();
 				System.out.print("Please enter the price of the item: ");
 				while(!sc.hasNextDouble()) {
-					System.out.println("Invalid input. Please enter the price of the item:");
+					System.out.println("Invalid input. Please enter the price of the item: ");
 					sc.nextLine();
 				}
 				enteredDouble = Double.parseDouble(sc.nextLine());
@@ -228,7 +228,7 @@ public class Runner {
 				brandName = sc.nextLine();
 				System.out.print("Please enter the new price for the item: ");
 				while(!sc.hasNextDouble()) {
-					System.out.println("Invalid input. Please enter the price of the item:");
+					System.out.println("Invalid input. Please enter the price of the item: ");
 					sc.nextLine();
 				}
 				enteredDouble = Double.parseDouble(sc.nextLine());        				
@@ -266,11 +266,11 @@ public class Runner {
 				System.out.println(reg.dailyReport());
 				break;
 			case "add member":
-				System.out.print("What is the members name(first and last): ");
+				System.out.print("What is the members full name: ");
 				String mName = sc.nextLine();
 				System.out.print("What is the members address: ");
 				String mAddress = sc.nextLine();				
-				System.out.print("What is the phone number?");
+				System.out.print("What is the phone number: ");
 				String number = sc.nextLine();
 				Member newMember = new Member(mName, mAddress, number, Member.level.BRONZE, 0);
 				newMember.setPhoneNumber(number);
@@ -295,8 +295,8 @@ public class Runner {
 				System.out.println("Cannot: "+command);
 				break;
 			}
-			System.out.print("What would you like to do as a manager? type 'help' for options");
-			command = sc.nextLine();
+			System.out.println("What would you like to do as a manager? Type 'help' for options");
+			command = sc.nextLine().toLowerCase();
 		}
 		//Manager can add users/members/items so all 3 are needed.
 		//ul.writeToXML();

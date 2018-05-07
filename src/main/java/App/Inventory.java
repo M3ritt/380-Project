@@ -102,7 +102,7 @@ public class Inventory {
 			}	
 		}
 		if(hasItem == false)
-			System.out.println("We do not have any: "+itemName+ " .");
+			System.out.println("We do not have any: "+itemName+ ".");
 	}
 
 	public ArrayList<Item> getInventory() {
