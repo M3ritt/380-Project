@@ -18,7 +18,6 @@ public class Runner {
 		boolean entered = false;
 
 		do {
-			System.out.println();
 			ul.callToArms();
 			u = ul.getCurrentUser();
 			if(ul.getUserAccess()) {
@@ -36,18 +35,16 @@ public class Runner {
 
 	public void decision(User current) {
 		Scanner sc  = new Scanner(System.in);
-		System.out.println();
 		System.out.println("What type of action would you like?" + "\n" + ""
-				+ "Options are: " + "\n" + "Register, Manage members, Manager, log off or shut down?");
-		System.out.println();
+				+ "Options are: " + "\n" + "Register, Manage Members, Manager, Log Off or Shut Down?");
 		String decision = sc.nextLine().toLowerCase();
 		while(!decision.equalsIgnoreCase("shut down")) {
 			switch(decision) {
 			case "help":
-				System.out.println("register: all register tasks." + "\n" + 
-			"other: all membership tasks." + "manager: all tasks." + "\n" +
-						"see user: prints current user." + "\n"+
-			"log off: logs off for others to log in." + "\n" + "exit: shuts system down.");
+				System.out.println("Register: all register tasks." + "\n" + 
+			"Other: all membership tasks." + "Manager: all tasks." + "\n" +
+						"See User: prints current user." + "\n"+
+			"Log Off: logs off for others to log in." + "\n" + "Exit: shuts system down.");
 				break;
 			case "register":
 				registerStuff(current);
@@ -71,8 +68,8 @@ public class Runner {
 				System.out.println(decision + " is not a choice.");
 			}
 			System.out.println();
-			System.out.println("What type of action would you like?" + "\n" + ""
-					+ "Options are: " + "\n" + "Register, Manage members, Manager, log off or shut down?");
+			System.out.println("What would you like to do?\n" +
+							   "Options are:\n" + "Register, Manage Members, Manager, Log Off or Shut Down.");
 			System.out.println();
 			decision = sc.nextLine().toLowerCase();
 		}
@@ -86,9 +83,7 @@ public class Runner {
 	public void registerStuff(User current) {
 		String enteredName, brandName;
 		Scanner sc = new Scanner(System.in);
-		System.out.println();
 		System.out.println("What would you like to do in the Register? type 'help' for options");
-		System.out.println();
 		String command = sc.nextLine().toLowerCase();
 		System.out.println();
 		while(!command.equalsIgnoreCase("exit")) {
@@ -121,23 +116,17 @@ public class Runner {
 				System.out.println("Cannot: "+command);
 				break;
 			}
-			System.out.println();
 			System.out.println("What would you like to do in the Register? type 'help' for options");
-			System.out.println();
 			command = sc.nextLine();
-			System.out.println();
 		}
 		//reg.writeToXML();
 		decision(current);
 	}
 
 	public void otherStuff(User current) {
-		System.out.println();
 		Scanner sc = new Scanner(System.in);
 		System.out.println("How would you like to manage members? type 'help' for options");
-		System.out.println();
 		String command = sc.nextLine().toLowerCase();
-		System.out.println();
 		while(!command.equalsIgnoreCase("exit")) {
 			switch(command) {
 			case "help":
@@ -173,9 +162,7 @@ public class Runner {
 				System.out.println("Cannot: "+command);
 				break;
 			}
-			System.out.println();
 			System.out.println("How would you like to manage members? type 'help' for options");
-			System.out.println();
 			command = sc.nextLine();
 		}
 		//ml.writeToXML();
@@ -183,14 +170,11 @@ public class Runner {
 	}
 
 	public void managerStuff(User current) {
-		System.out.println();
 		String enteredName, brandName;
 		Double enteredDouble = 0.0;
 		Scanner sc = new Scanner(System.in);
 		System.out.println("What would you like to do as a manager? type 'help' for options");
-		System.out.println();
 		String command = sc.nextLine().toLowerCase();
-		System.out.println();
 		while(!command.equalsIgnoreCase("exit")) {
 			switch(command) {
 			case "help":
@@ -309,9 +293,7 @@ public class Runner {
 				System.out.println("Cannot: "+command);
 				break;
 			}
-			System.out.println();
 			System.out.print("What would you like to do as a manager? type 'help' for options");
-			System.out.println();
 			command = sc.nextLine();
 		}
 		//Manager can add users/members/items so all 3 are needed.
