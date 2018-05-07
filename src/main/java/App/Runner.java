@@ -35,16 +35,18 @@ public class Runner {
 
 	public void decision(User current) {
 		Scanner sc  = new Scanner(System.in);
-		System.out.println("What type of action would you like?" + "\n" + ""
-				+ "Options are: " + "\n" + "Register, Manage Members, Manager, Log Off or Shut Down?");
+		System.out.print("What type of action would you like?" + "\n" + ""
+				+ "Options are:\n" + "Register, Manage Members, Manager, Help, Log Off or Shut Down?");
 		String decision = sc.nextLine().toLowerCase();
 		while(!decision.equalsIgnoreCase("shut down")) {
 			switch(decision) {
 			case "help":
-				System.out.println("Register: all register tasks." + "\n" + 
-			"Other: all membership tasks." + "Manager: all tasks." + "\n" +
+				System.out.print("Register: User opens the register.\n" + 
+						"Manage Members: Allows user to access membership tasks.\n" +
+						"Manager: User can access the manager commands.\n" +
 						"See User: prints current user." + "\n"+
-			"Log Off: logs off for others to log in." + "\n" + "Exit: shuts system down.");
+						"Log Off: logs off for others to log in.\n" + 
+						"Exit: shuts system down.");
 				break;
 			case "register":
 				registerStuff(current);
@@ -125,12 +127,12 @@ public class Runner {
 
 	public void otherStuff(User current) {
 		Scanner sc = new Scanner(System.in);
-		System.out.println("How would you like to manage members? type 'help' for options");
+		System.out.println("How would you like to manage members? Type 'help' for options");
 		String command = sc.nextLine().toLowerCase();
 		while(!command.equalsIgnoreCase("exit")) {
 			switch(command) {
 			case "help":
-				System.out.println("add member: adds a member."+ "\n" +
+				System.out.print("Add Member: Adds a member."+ "\n" +
 						"see members: can see all members." + "\n" + 
 						"search member: searches for a member from specific phone number."
 						+ "\n" + "exit: goes back to different types of actions");
@@ -178,18 +180,18 @@ public class Runner {
 		while(!command.equalsIgnoreCase("exit")) {
 			switch(command) {
 			case "help":
-				System.out.println("add member: adds a member."+ "\n" +
-						"see members: can see all members." + "\n" + 
-						"search member: searches for a member from specific phone number." + "\n"+
-						"remove user: removes a user." + "\n" + 
-						"remove member: removes a member based on phone number." + "\n" +
-						"add item: adds an item to the inventory." + "\n" +
-						"change price: changes the price of an item." + "\n" + 
-						"remove item: removes an item from the inventory." + "\n"+
-						"end day: ends current day." + "\n" +
-						"daily inventory: gets the inventory of the day." + "\n"+
-						"daily report: gets the number of items sold that day."
-						+ "\n" + "exit: goes back to different types of actions");
+				System.out.print("Add Member: Adds a member to the system.\n" +
+						"See Members: User can see all members.\n" + 
+						"Search Member: User searches for a member based on the member's phone number.\n"+
+						"Remove User: Removes a user.\n" + 
+						"Remove Member: Removes a member based on phone number.\n" +
+						"Add Item: Adds an item to the inventory.\n" +
+						"Change Price: Changes the price of an item.\n" + 
+						"Remove Item: Removes an item from the inventory.\n"+
+						"End Day: Ends the current day.\n" +
+						"Daily Inventory: Gets todays inventory.\n"+
+						"Daily Report: Gets the number of items sold that day.\n" + 
+						"Exit: Exits manager section.");
 				break;
 			case "remove user":
 				ul.removeOneUser(sc);
