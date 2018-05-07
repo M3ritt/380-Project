@@ -200,7 +200,7 @@ public class Runner {
 				System.out.println("What is the phone number of the member?");
 				String removeNumber = sc.nextLine();
 				Member removeMember = ml.findMemberByPhoneNumber(removeNumber);
-				System.out.println("Remove "+removeMember.getName() + " ?");
+				System.out.println("Remove "+removeMember.getName() + "?");
 				String yesOrNo = sc.nextLine();
 				if(yesOrNo.equalsIgnoreCase("yes") || yesOrNo.equalsIgnoreCase("y")) {				
 					System.out.println(removeMember.getName() + " is being removed.");
@@ -242,7 +242,7 @@ public class Runner {
 				reg.removeItem(enteredName, brandName);
 				break;
 			case "end day":
-				System.out.println("WARNING! This will clear all current sale totals and move to the next day");
+				System.out.println("WARNING! This will clear all current sale totals and move to the next day.");
 				System.out.print("Are you sure you want to end the day? ");
 				String input = sc.nextLine();
 				input = input.toLowerCase();

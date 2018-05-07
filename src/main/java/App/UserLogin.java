@@ -1,5 +1,4 @@
 package App;
-//Please don't mess with this if you don't know how it works...
 import java.util.ArrayList;
 import java.util.Scanner;
 public class UserLogin {

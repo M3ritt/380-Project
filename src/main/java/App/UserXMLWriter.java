@@ -55,7 +55,7 @@ public class UserXMLWriter {
 				user.appendChild(info);
 			}
 
-			// write the content into xml file
+			//Write above to xml file
 			TransformerFactory tf = TransformerFactory.newInstance();
 			Transformer t = tf.newTransformer();
 			t.setOutputProperty(OutputKeys.INDENT, "yes");
@@ -111,7 +111,7 @@ public class UserXMLWriter {
 				}
 			}
 
-			//Write the content into xml file
+			//Write above to xml file
 			TransformerFactory tf = TransformerFactory.newInstance();
 			Transformer t = tf.newTransformer();
 			t.setOutputProperty(OutputKeys.INDENT, "yes");
@@ -171,7 +171,7 @@ public class UserXMLWriter {
 				user.appendChild(info);
 			}
 
-			// write the content into xml file
+			//Write above to xml file
 			TransformerFactory tf = TransformerFactory.newInstance();
 			Transformer t = tf.newTransformer();
 			t.setOutputProperty(OutputKeys.INDENT, "yes");
