@@ -301,6 +301,8 @@ public class Register {
 	}
 
 	public void endDay() {
+		
+		System.out.println(dailyReport());
 
 		if (currentDay.equals(Day.SATURDAY))
 			weeklySalesTotal = 0;
