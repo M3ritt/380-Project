@@ -178,7 +178,7 @@ public class UserLogin {
 
 	public void displayEmployeeStats() {
 		for(User u:uList) {
-			System.out.println(u.showDailySalesAverage());
+			System.out.println(u.getUserName() + ": " + u.showDailySalesAverage());
 		}
 	}
 	

@@ -188,6 +188,7 @@ public class Runner {
 						"Add Item: Adds an item to the inventory.\n" +
 						"Change Price: Changes the price of an item.\n" + 
 						"Remove Item: Removes an item from the inventory.\n"+
+						"User Stats: Shows the average sales of each user by times logged in.\n" +
 						"End Day: Ends the current day.\n" +
 						"Daily Inventory: Gets todays inventory.\n"+
 						"Daily Report: Gets the number of items sold that day.\n" + 
