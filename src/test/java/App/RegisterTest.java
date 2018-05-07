@@ -84,7 +84,7 @@ public class RegisterTest {
 		
 	}
 	*/
-	@Test
+	@Test @Ignore
 	public void testEndDay() {
 		Register r = new Register(in, ml);
 		r.endDay();
