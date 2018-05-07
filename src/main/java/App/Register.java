@@ -82,7 +82,7 @@ public class Register {
 				//mList.writeToXML();
 			} else {
 				System.out.println("That number is not in our system.");
-				System.out.println("No purcahse was made.");
+				System.out.println("No purchase was made.");
 				readdItems(removedItems, u);
 			}
 		}
@@ -134,7 +134,7 @@ public class Register {
 		if(newItem != null) {
 			inventory.removeItemByName(enteredName, enteredBrand);
 		} else {
-			System.out.println("We do not have: "+enteredName+" from: "+enteredBrand+ " .");
+			System.out.println("We do not have: "+enteredName+" from: "+enteredBrand+ ".");
 		}
 	}
 
